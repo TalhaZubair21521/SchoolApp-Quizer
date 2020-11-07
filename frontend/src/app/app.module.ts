@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,6 +13,10 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { ServerNotRespondingComponent } from './server-not-responding/server-not-responding.component';
 import { NotAuthorizedComponent } from './not-authorized/not-authorized.component';
 import { HomepageComponent } from './homepage/homepage.component';
+import { HomepageNavbarComponent } from './homepage-navbar/homepage-navbar.component';
+import { UserNavbarComponent } from './user-navbar/user-navbar.component';
+import { AdminNavbarComponent } from './admin-navbar/admin-navbar.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -25,10 +30,15 @@ import { HomepageComponent } from './homepage/homepage.component';
     ServerNotRespondingComponent,
     NotAuthorizedComponent,
     HomepageComponent,
+    HomepageNavbarComponent,
+    UserNavbarComponent,
+    AdminNavbarComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    RouterModule
   ],
   providers: [],
   bootstrap: [AppComponent]
