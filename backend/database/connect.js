@@ -18,7 +18,7 @@ database.connect(function (err) {
     if (err) {
         return console.error("Error: " + err.message);
     }
-    console.log("MySQL Database Connection is Successful");
+    console.log("Congrats !!! MySQL Database is Successfully Connected");
 });
 
 module.exports = database;

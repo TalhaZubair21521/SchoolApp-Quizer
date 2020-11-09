@@ -27,5 +27,5 @@ app.get("/", function (req, res) {
 });
 
 app.listen(port, host, () => {
-    console.log("Running Server at http://" + host + ":" + port);
+    console.log("Your Server running at http://" + host + ":" + port);
 });
