@@ -1,0 +1,70 @@
+CREATE TABLE admin(
+    adminID int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    email varchar(30) NOT NULL,
+    password varchar(100) NOT NULL
+);
+
+CREATE TABLE activity(
+    activityID int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    name varchar(30) NOT NULL
+);
+
+CREATE TABLE question(
+    questionID int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    type varchar(30) NOT NULL,
+    question varchar(30) NOT NULL,
+    option1 varchar(30) NOT NULL,
+    option2 varchar(30) NOT NULL,
+    option3 varchar(30) NOT NULL,
+    option4 varchar(30) NOT NULL,
+    answer varchar(30) NOT NULL,
+    skill varchar(30) NOT NULL
+);
+
+CREATE TABLE belongTo(
+    belongToID int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    classId varchar(30) NOT NULL,
+    subjectId varchar(30) NOT NULL,
+    chapterId varchar(30) NOT NULL
+);
+
+CREATE TABLE skillResult(
+    skillResultID int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    reading int NOT NULL,
+    observation int NOT NULL,
+    listening int NOT NULL,
+    writing int NOT NULL,
+    learning int NOT NULL,
+    memory int NOT NULL,
+    conceptual int NOT NULL,
+    application int NOT NULL,
+    analysis int NOT NULL
+);
+
+CREATE TABLE activityQuestion(
+    acitivityQuestionID int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    activityID int NOT NULL,
+    questionID int NOT NULL,
+    FOREIGN KEY (activityID) REFERENCES activity(activityID),
+    FOREIGN KEY (questionID) REFERENCES question(questionID)
+);
+
+CREATE TABLE activityBelongsTo(
+    activityBelongsToID int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    activityQuestionID int NOT NULL,
+    belongToID int NOT NULL,
+    FOREIGN KEY (activityQuestionID) REFERENCES activityQuestion(acitivityQuestionID),
+    FOREIGN KEY (belongToID) REFERENCES belongTo(belongToID)
+);
+
+
+CREATE TABLE result(
+    resultID int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    belongToID int NOT NULL,
+    userID int NOT NULL,
+    skillResultID int NOT NULL,
+    points int NOT NULL,
+    FOREIGN KEY (belongToID) REFERENCES belongTo(belongToID),
+    FOREIGN KEY (skillResultID) REFERENCES skillResult(skillResultID)
+);
+
