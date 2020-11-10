@@ -1,22 +1,11 @@
-CREATE TABLE admin(
-    adminID int NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    email varchar(30) NOT NULL,
-    password varchar(100) NOT NULL
-);
-
-CREATE TABLE activity(
-    activityID int NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    name varchar(30) NOT NULL
-);
-
 CREATE TABLE question(
     questionID int NOT NULL PRIMARY KEY AUTO_INCREMENT,
     type varchar(30) NOT NULL,
     question varchar(30) NOT NULL,
-    option1 varchar(30) NOT NULL,
-    option2 varchar(30) NOT NULL,
-    option3 varchar(30) NOT NULL,
-    option4 varchar(30) NOT NULL,
+    option1 varchar(30),
+    option2 varchar(30),
+    option3 varchar(30),
+    option4 varchar(30),
     answer varchar(30) NOT NULL,
     skill varchar(30) NOT NULL
 );
@@ -43,17 +32,10 @@ CREATE TABLE skillResult(
 
 CREATE TABLE activityQuestion(
     acitivityQuestionID int NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    activityID int NOT NULL,
+    activity varchar(100) NOT NULL,
     questionID int NOT NULL,
-    FOREIGN KEY (activityID) REFERENCES activity(activityID),
-    FOREIGN KEY (questionID) REFERENCES question(questionID)
-);
-
-CREATE TABLE activityBelongsTo(
-    activityBelongsToID int NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    activityQuestionID int NOT NULL,
     belongToID int NOT NULL,
-    FOREIGN KEY (activityQuestionID) REFERENCES activityQuestion(acitivityQuestionID),
+    FOREIGN KEY (questionID) REFERENCES question(questionID),
     FOREIGN KEY (belongToID) REFERENCES belongTo(belongToID)
 );
 
