@@ -1,15 +1,19 @@
-<nav class="navbar navbar-dark bg-primary">
-  <a class="navbar-brand" href="#"><img src="../../assets/logo.png" /></a>
-  <h3 style="color: azure">Dashboard</h3>
+<nav class="navbar bg-danger shadow p-2 mb-2">
+  <a class="navbar-brand"><img height="50px" src="../../assets/logo.png" /></a>
+  <h3 style="color: white; margin-top: 5px">Admin Dashboard</h3>
   <button class="navbar-toggler" type="button">
-    <!-- <span class="navbar-toggler-icon"></span> -->
+    <img src="../../assets/avatar.png" alt="Avatar" class="avatar" />
   </button>
 </nav>
+
+<h1 class="text-center">Add Questions</h1>
 <div class="container mt-3">
   <div class="row justify-content-center">
     <div class="col-3">
       <div class="form-group">
-        <h5 align="center" for="exampleFormControlSelect1">Choose Class</h5>
+        <h5 style="text-align: center" for="exampleFormControlSelect1">
+          Choose Class
+        </h5>
         <select class="form-control" id="exampleFormControlSelect1">
           <option>Class 1</option>
           <option>Class 2</option>
@@ -19,9 +23,12 @@
         </select>
       </div>
     </div>
+
     <div class="col-3">
       <div class="form-group">
-        <h5 align="center" for="exampleFormControlSelect1">Choose Subject</h5>
+        <h5 style="text-align: center" for="exampleFormControlSelect1">
+          Choose Subject
+        </h5>
         <select class="form-control" id="exampleFormControlSelect1">
           <option>Subject Name 1</option>
           <option>Subject Name 2</option>
@@ -31,9 +38,12 @@
         </select>
       </div>
     </div>
+
     <div class="col-3">
       <div class="form-group">
-        <h5 align="center" for="exampleFormControlSelect1">Choose Chapter</h5>
+        <h5 style="text-align: center" for="exampleFormControlSelect1">
+          Choose Chapter
+        </h5>
         <select class="form-control" id="exampleFormControlSelect1">
           <option>Chapter 1</option>
           <option>Chapter 2</option>
@@ -47,215 +57,281 @@
 
   <div class="row">
     <div class="col">
-      <div class="card">
+      <div class="card spacer">
         <h5 class="card-header">
           <a
             data-toggle="collapse"
-            href="#collapse-example"
+            href="#video"
             aria-expanded="true"
             aria-controls="collapse-example"
             id="heading-example"
             class="d-block"
           >
             <i class="fa fa-chevron-down pull-right"></i>
-            Video
+            Video Activity
           </a>
         </h5>
-        <div
-          id="collapse-example"
-          class="collapse show"
-          aria-labelledby="heading-example"
-        >
+        <div id="video" class="collapse" aria-labelledby="heading-example">
           <div class="card-body">
-            <div class="questions">
-              <div class="card mb-3">
-                <div class="card-header text-right">Skill</div>
-                <div class="card-body">
-                  <h5 class="card-title">Question 1</h5>
-                  <div class="form-group">
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="Question1"
-                      aria-describedby="QHelp"
-                      placeholder="Enter Question Here"
-                    />
-                    <small id="QHelp" class="form-text text-muted"
-                      >Enter Choices and click correct choice.</small
-                    >
-                  </div>
-                  <div class="choices">
-                    <div class="form-check">
-                      <input
-                        class="form-check-input"
-                        type="radio"
-                        name="q1"
-                        id="c1"
-                        value="option1"
-                      />
-                      <label class="form-check-label" for="c1">
-                        <input
-                          type="text"
-                          class="form-control"
-                          id="Question1"
-                          placeholder="Enter Choice 1"
-                        />
-                      </label>
-                    </div>
-                    <div class="form-check">
-                      <input
-                        class="form-check-input"
-                        type="radio"
-                        name="q1"
-                        id="c2"
-                        value="option2"
-                      />
-                      <label class="form-check-label" for="c2">
-                        <input
-                          type="text"
-                          class="form-control"
-                          id="Question2"
-                          placeholder="Enter Choice 2"
-                        />
-                      </label>
-                    </div>
-                    <div class="form-check">
-                      <input
-                        class="form-check-input"
-                        type="radio"
-                        name="q1"
-                        id="c3"
-                        value="option3"
-                      />
-                      <label class="form-check-label" for="c3">
-                        <input
-                          type="text"
-                          class="form-control"
-                          id="Question3"
-                          placeholder="Enter Choice 3"
-                        />
-                      </label>
-                    </div>
-                    <div class="form-check">
-                      <input
-                        class="form-check-input"
-                        type="radio"
-                        name="q1"
-                        id="c4"
-                        value="option4"
-                      />
-                      <label class="form-check-label" for="c4">
-                        <input
-                          type="text"
-                          class="form-control"
-                          id="Question4"
-                          placeholder="Enter Choice 4"
-                        />
-                      </label>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="card mb-3">
-                <div class="card-header text-right">Skill</div>
-                <div class="card-body">
-                  <h5 class="card-title">Question 2</h5>
-                  <div class="form-group">
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="Question1"
-                      aria-describedby="QHelp"
-                      placeholder="Enter Question Here"
-                    />
-                    <small id="QHelp" class="form-text text-muted"
-                      >Choice True or false.</small
-                    >
-                  </div>
-                  <div class="choices">
-                    <div class="form-check">
-                      <input
-                        class="form-check-input"
-                        type="radio"
-                        name="q2"
-                        id="q2c1"
-                        value="option1"
-                      />
-                      <label class="form-check-label" for="q1c1"> True </label>
-                    </div>
-                    <div class="form-check">
-                      <input
-                        class="form-check-input"
-                        type="radio"
-                        name="q2"
-                        id="q2c2"
-                        value="option2"
-                      />
-                      <label class="form-check-label" for="q2c2"> False </label>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="card mb-3">
-                <div class="card-header text-right">Skill</div>
-                <div class="card-body">
-                  <h5 class="card-title">Question 3</h5>
-                  <div class="form-group">
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="Question1"
-                      aria-describedby="QHelp"
-                      placeholder="Enter Question Here"
-                    />
-                    <small id="QHelp" class="form-text text-muted"
-                      >Enter Choices and correct option.</small
-                    >
-                  </div>
-                  <div class="choices">
-                    <div class="form-check">
-                      <input
-                        class="form-check-input"
-                        type="radio"
-                        name="q3"
-                        id="q3c1"
-                        value="option1"
-                      />
-                      <label class="form-check-label" for="q3c1">
-                        <input
-                          type="text"
-                          class="form-control"
-                          id="Question1"
-                          placeholder="Enter Choice 1"
-                        />
-                      </label>
-                    </div>
-                    <div class="form-check">
-                      <input
-                        class="form-check-input"
-                        type="radio"
-                        name="q3"
-                        id="q3c2"
-                        value="option2"
-                      />
-                      <label class="form-check-label" for="q3c2">
-                        <input
-                          type="text"
-                          class="form-control"
-                          id="Question1"
-                          placeholder="Enter Choice 2"
-                        />
-                      </label>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <div class="questions"></div>
           </div>
         </div>
+      </div>
+      <div class="card spacer">
+        <h5 class="card-header">
+          <a
+            data-toggle="collapse"
+            href="#revision"
+            aria-expanded="true"
+            aria-controls="collapse-example"
+            id="heading-example"
+            class="d-block"
+          >
+            <i class="fa fa-chevron-down pull-right"></i>
+            Revision Exercise Activity
+          </a>
+        </h5>
+        <div id="revision" class="collapse" aria-labelledby="heading-example">
+          <div class="card-body">
+            <div class="questions"></div>
+          </div>
+        </div>
+      </div>
+      <div class="card spacer">
+        <h5 class="card-header">
+          <a
+            data-toggle="collapse"
+            href="#game"
+            aria-expanded="true"
+            aria-controls="collapse-example"
+            id="heading-example"
+            class="d-block"
+          >
+            <i class="fa fa-chevron-down pull-right"></i>
+            Game Activity
+          </a>
+        </h5>
+        <div id="game" class="collapse" aria-labelledby="heading-example">
+          <div class="card-body">
+            <div class="questions"></div>
+          </div>
+        </div>
+      </div>
+      <div class="card spacer">
+        <h5 class="card-header">
+          <a
+            data-toggle="collapse"
+            href="#test"
+            aria-expanded="true"
+            aria-controls="collapse-example"
+            id="heading-example"
+            class="d-block"
+          >
+            <i class="fa fa-chevron-down pull-right"></i>
+            Test Paper Activity
+          </a>
+        </h5>
+        <div id="test" class="collapse" aria-labelledby="heading-example">
+          <div class="card-body">
+            <div class="questions"></div>
+          </div>
+        </div>
+      </div>
+      <div class="spacer text-right">
+        <button class="btn btn-danger">Submit</button>
       </div>
     </div>
   </div>
 </div>
+
+MCQS
+<!-- 
+<div class="card mb-3">
+  <div class="card-header text-right">Skill</div>
+  <div class="card-body">
+    <h5 class="card-title">Question 1</h5>
+    <div class="form-group">
+      <input
+        type="text"
+        class="form-control"
+        id="Question1"
+        aria-describedby="QHelp"
+        placeholder="Enter Question Here"
+      />
+      <small id="QHelp" class="form-text text-muted"
+        >Enter Choices and click correct choice.</small
+      >
+    </div>
+    <div class="choices">
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="radio"
+          name="q1"
+          id="c1"
+          value="option1"
+        />
+        <label class="form-check-label" for="c1">
+          <input
+            type="text"
+            class="form-control"
+            id="Question1"
+            placeholder="Enter Choice 1"
+          />
+        </label>
+      </div>
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="radio"
+          name="q1"
+          id="c2"
+          value="option2"
+        />
+        <label class="form-check-label" for="c2">
+          <input
+            type="text"
+            class="form-control"
+            id="Question2"
+            placeholder="Enter Choice 2"
+          />
+        </label>
+      </div>
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="radio"
+          name="q1"
+          id="c3"
+          value="option3"
+        />
+        <label class="form-check-label" for="c3">
+          <input
+            type="text"
+            class="form-control"
+            id="Question3"
+            placeholder="Enter Choice 3"
+          />
+        </label>
+      </div>
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="radio"
+          name="q1"
+          id="c4"
+          value="option4"
+        />
+        <label class="form-check-label" for="c4">
+          <input
+            type="text"
+            class="form-control"
+            id="Question4"
+            placeholder="Enter Choice 4"
+          />
+        </label>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+TRUE FALSE
+<!-- 
+<div class="card mb-3">
+  <div class="card-header text-right">Skill</div>
+  <div class="card-body">
+    <h5 class="card-title">Question 2</h5>
+    <div class="form-group">
+      <input
+        type="text"
+        class="form-control"
+        id="Question1"
+        aria-describedby="QHelp"
+        placeholder="Enter Question Here"
+      />
+      <small id="QHelp" class="form-text text-muted"
+        >Choice True or false.</small
+      >
+    </div>
+    <div class="choices">
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="radio"
+          name="q2"
+          id="q2c1"
+          value="option1"
+        />
+        <label class="form-check-label" for="q1c1"> True </label>
+      </div>
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="radio"
+          name="q2"
+          id="q2c2"
+          value="option2"
+        />
+        <label class="form-check-label" for="q2c2"> False </label>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+One Word Answer
+
+<!-- 
+<div class="card mb-3">
+  <div class="card-header text-right">Skill</div>
+  <div class="card-body">
+    <h5 class="card-title">Question 3</h5>
+    <div class="form-group">
+      <input
+        type="text"
+        class="form-control"
+        id="Question1"
+        aria-describedby="QHelp"
+        placeholder="Enter Question Here"
+      />
+      <small id="QHelp" class="form-text text-muted"
+        >Enter Choices and correct option.</small
+      >
+    </div>
+    <div class="choices">
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="radio"
+          name="q3"
+          id="q3c1"
+          value="option1"
+        />
+        <label class="form-check-label" for="q3c1">
+          <input
+            type="text"
+            class="form-control"
+            id="Question1"
+            placeholder="Enter Choice 1"
+          />
+        </label>
+      </div>
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="radio"
+          name="q3"
+          id="q3c2"
+          value="option2"
+        />
+        <label class="form-check-label" for="q3c2">
+          <input
+            type="text"
+            class="form-control"
+            id="Question1"
+            placeholder="Enter Choice 2"
+          />
+        </label>
+      </div>
+    </div>
+  </div>
+</div> -->
