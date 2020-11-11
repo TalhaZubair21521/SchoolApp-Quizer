@@ -64,9 +64,9 @@ exports.Signin = (req, res) => {
 
 exports.SaveActivityQuestions = async (req, res) => {
    const data = {
-      classId: 1,
-      subjectId: 2,
-      chapterId: 3,
+      class: 1,
+      subject: 2,
+      chapter: 3,
       questions: [
          { activity: "video", type: "mcqs", question: "What is your name?", option1: "A", option2: "B", option3: "C", option4: "D", answer: "A", skill: "reading" },
          { activity: "video", type: "mcqs", question: "What is your name?", option1: "A", option2: "B", option3: "C", option4: "D", answer: "B", skill: "observation" },
@@ -94,12 +94,39 @@ exports.SaveActivityQuestions = async (req, res) => {
       ]
    };
 
-   //Insert A BelongTo and Get ID
-
-   //Loop on Questions
-   //For Each Question add it to the database and Get the ID 
-   //     Then insert the activty question by using belong ID and question id as well
-
-   var query = mysql.format("INSERT INTO belongto (email, password) VALUES (?,?)", [admin.email, admin.password]);
-   res.status(200).json({ type: "success", result: "Questions Recieved" });
+   //Inserting Belong To Details
+   var query = mysql.format("INSERT INTO belongto (class, subject, chapter) VALUES (?,?,?)", [data.class, data.subject, data.chapter]);
+   db.query(query, (err, result, fields) => {
+      if (err) {
+         console.log(err);
+         res.status(500).json({ type: "failure", data: { message: err } });
+         return;
+      }
+      const belongToID = result.insertId;
+      //Loop on Questions
+      data.questions.forEach(async (question) => {
+         //Loop on Inserting Question
+         var query = mysql.format("INSERT INTO question (type, option1, option2, option3, option4, answer, skill) VALUES (?,?,?,?,?,?,?)", [question.type, question.question, question.option1, question.option2, question.option3, question.option4, question.answer, question.skill]);
+         var activity = question.activity;
+         db.query(query, (err, result, fields) => {
+            if (err) {
+               console.log(err);
+               res.status(500).json({ type: "failure", data: { message: err } });
+               return;
+            }
+            const questionID = result.insertId;
+            //Inserting Activity Questions
+            var query = mysql.format("INSERT INTO activityquestion (activity, questionID, belongToID) VALUES (?,?,?)", [activity, questionID, belongToID]);
+            db.query(query, (err, result, fields) => {
+               if (err) {
+                  console.log(err);
+                  res.status(500).json({ type: "failure", data: { message: err } });
+                  return;
+               }
+            })
+         })
+      });
+      //Sending Response
+      res.status(200).json({ type: "success", data: { message: "Questions Inserted Successfully" } })
+   });
 }
