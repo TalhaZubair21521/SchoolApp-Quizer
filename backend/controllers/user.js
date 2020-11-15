@@ -3,10 +3,10 @@ const mysql = require("mysql");
 
 exports.GetQuestions = async (req, res) => {
     try {
-        const activity = req.query.activity;
-        const classID = req.query.class;
-        const subjectID = req.query.subject;
-        const chapterID = req.query.chapter;
+        const activity = req.body.data.activity;
+        const classID = req.body.data.class;
+        const subjectID = req.body.data.subject;
+        const chapterID = req.body.data.chapter;
         var query = mysql.format("SELECT * from question join activityquestion on question.questionID=activityquestion.questionID join belongto on belongto.belongToID=activityquestion.belongToID where activityquestion.activity=? && belongto.classID=? && belongto.subjectID=? && belongto.chapterID=?;", [activity, classID, subjectID, chapterID]);
         db.query(query, (err, result, fields) => {
             if (err) {
