@@ -12,22 +12,9 @@ CREATE TABLE question(
 
 CREATE TABLE belongTo(
     belongToID int NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    class varchar(30) NOT NULL,
-    subject varchar(30) NOT NULL,
-    chapter varchar(30) NOT NULL
-);
-
-CREATE TABLE skillResult(
-    skillResultID int NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    reading int NOT NULL,
-    observation int NOT NULL,
-    listening int NOT NULL,
-    writing int NOT NULL,
-    learning int NOT NULL,
-    memory int NOT NULL,
-    conceptual int NOT NULL,
-    application int NOT NULL,
-    analysis int NOT NULL
+    classID varchar(30) NOT NULL,
+    subjectID varchar(30) NOT NULL,
+    chapterID varchar(30) NOT NULL
 );
 
 CREATE TABLE activityQuestion(
@@ -39,14 +26,31 @@ CREATE TABLE activityQuestion(
     FOREIGN KEY (belongToID) REFERENCES belongTo(belongToID)
 );
 
+CREATE TABLE userAnswer(
+    userAnswerID int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    userID varchar(100) NOT NULL,
+    questionID int NOT NULL,
+    belongToID int NOT NULL,
+    answer varchar(200) NOT NULL,
+    FOREIGN KEY (questionID) REFERENCES question(questionID),
+    FOREIGN KEY (belongToID) REFERENCES belongTo(belongToID)
+);
 
 CREATE TABLE result(
     resultID int NOT NULL PRIMARY KEY AUTO_INCREMENT,
     belongToID int NOT NULL,
     userID int NOT NULL,
-    skillResultID int NOT NULL,
     points int NOT NULL,
-    FOREIGN KEY (belongToID) REFERENCES belongTo(belongToID),
-    FOREIGN KEY (skillResultID) REFERENCES skillResult(skillResultID)
+    reading int NOT NULL,
+    observation int NOT NULL,
+    listening int NOT NULL,
+    writing int NOT NULL,
+    learning int NOT NULL,
+    memory int NOT NULL,
+    conceptual int NOT NULL,
+    application int NOT NULL,
+    analysis int NOT NULL,
+    FOREIGN KEY (belongToID) REFERENCES belongTo(belongToID)
 );
 
+SELECT * from question join activityquestion on question.questionID=activityquestion.questionID join belongto on belongto.belongToID=activityquestion.belongToID where activityquestion.activity="video" && belongto.classID=1 && belongto.subjectID=1 && belongto.chapterID=1;

@@ -1,54 +1,53 @@
 const db = require("../database/connect");
 const mysql = require("mysql");
-const bcrypt = require("bcryptjs");
-const JWT = require("jsonwebtoken");
-require("dotenv").config();
-const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY;
 
-exports.Signup = (req, res) => {
-    var user = req.body;
-    user.email = user.email.toLowerCase();
-    user.password = bcrypt.hashSync(user.password);
-    var query = mysql.format("SELECT * FROM user where email=?", [user.email]);
-    db.query(query, function (err, result, fields) {
-        if (err) {
-            res.status(500).json({ type: "failure", data: { message: err } });
-            return;
-        }
-        if (result.length !== 0) {
-            res.status(200).json({ type: "failure", data: { message: "Looks Like this Email is Already Registered" } });
-            return;
-        }
-        var query = mysql.format("INSERT INTO user (name, email, password) VALUES (?,?,?)", [user.name, user.email, user.password]);
-        db.query(query, function (err, result, fields) {
+exports.GetQuestions = async (req, res) => {
+    try {
+        const activity = req.query.activity;
+        const classID = req.query.class;
+        const subjectID = req.query.subject;
+        const chapterID = req.query.chapter;
+        var query = mysql.format("SELECT * from question join activityquestion on question.questionID=activityquestion.questionID join belongto on belongto.belongToID=activityquestion.belongToID where activityquestion.activity=? && belongto.classID=? && belongto.subjectID=? && belongto.chapterID=?;", [activity, classID, subjectID, chapterID]);
+        db.query(query, (err, result, fields) => {
             if (err) {
+                console.log(err);
                 res.status(500).json({ type: "failure", data: { message: err } });
                 return;
             }
-            res.status(201).json({ type: "success", data: { message: "User Registered Successfully" } });
-        });
-    });
-};
+            res.status(200).json({ type: "success", data: { message: "Questions", questions: result } })
+        })
+    } catch (error) {
+        res.status(500).json({ type: "failure", data: { message: error } });
+    }
+}
 
-exports.Signin = (req, res) => {
-    var user = { email: req.query.email.toLowerCase(), password: req.query.password };
-    var query = mysql.format("SELECT * FROM user where email=?", [user.email]);
-    db.query(query, async (err, result, fields) => {
-        if (err) {
-            res.status(500).json({ type: "failure", data: { message: err } });
-            return;
-        }
-        if (result.length === 0) {
-            res.status(200).json({ type: "failure", data: { message: "Wrong Credientials" } });
-            return;
-        }
-        const isPasswordMatched = await bcrypt.compare(user.password, result[0]['password']);
-        if (isPasswordMatched) {
-            const token = JWT.sign({ username: user.email }, JWT_SECRET_KEY);
-            res.status(200).json({ type: "success", data: { message: "Login Successfully", token: token } });
-            return;
-        }
-        res.status(200).json({ type: "failure", data: { message: "Wrong Credientials" } });
-        return;
-    });
-};
+exports.SaveAnswers = async (req, res) => {
+    try {
+        const userID = req.body.userID;
+        const belongToID = req.body.belongToID;
+
+        const answers = req.body.answers;
+
+        answers = [
+            { questionID: 1, answer: "answerForQuestion1" },
+            { questionID: 2, answer: "answerForQuestion2" },
+            { questionID: 3, answer: "answerForQuestion3" },
+            { questionID: 4, answer: "answerForQuestion4" },
+            { questionID: 5, answer: "answerForQuestion5" },
+        ];
+
+        answers.forEach(async (question) => {
+            var query = mysql.format("INSERT INTO useranswer (userID,questionID,belongToID,answer) VALUES (?,?,?,?)", [userID, question.questionID, belongToID, question.answer]);
+            db.query(query, (err, result, fields) => {
+                if (err) {
+                    console.log(err);
+                    res.status(500).json({ type: "failure", data: { message: err } });
+                    return;
+                }
+            });
+        });
+        res.status(200).json({ type: "success", data: { message: "Answer Saved Successfully" } })
+    } catch (error) {
+        res.status(500).json({ type: "failure", data: { message: error } });
+    }
+}
