@@ -1,7 +1,12 @@
-<video #video width="vw" height="vh" controls autoplay>
-  <source src="../../assets/demo.mp4" type="video/mp4" />
-  Your browser does not support the video tag.
-</video>
+<div class="d-flex justify-content-center p-2 m-2">
+  <h1 style="color: tomato">Video Activity</h1>
+</div>
+<div class="d-flex justify-content-center">
+  <video #video width="vw" height="vh" autoplay>
+    <source src="../../assets/demo.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+</div>
 <br />
 <!-- <button (click)="handleClick()">Click</button> -->
 <!-- Button trigger modal -->
@@ -43,7 +48,17 @@
             <div class="row">
               <div class="col text-left">Question 1</div>
               <div class="col text-right">
-                {{ list[0].skill }}
+                <label
+                  style="
+                    color: floralwhite;
+                    background-color: darkslateblue;
+                    padding: 2px 10px 2px 10px;
+                    font-weight: bold;
+                    border-radius: 3px;
+                  "
+                >
+                  {{ list[0].skill }}
+                </label>
               </div>
             </div>
           </div>
@@ -64,7 +79,7 @@
                   name="q1"
                   id="c1"
                   [value]="list[0].option1"
-                  [(ngModel)]="answer"
+                  [(ngModel)]="answer1"
                 />
                 <label class="form-check-label" for="c1">
                   {{ list[0].option1 }}
@@ -77,7 +92,7 @@
                   name="q1"
                   id="c2"
                   [value]="list[0].option2"
-                  [(ngModel)]="answer"
+                  [(ngModel)]="answer1"
                 />
                 <label class="form-check-label" for="c2">
                   {{ list[0].option2 }}
@@ -90,7 +105,7 @@
                   name="q1"
                   id="c3"
                   [value]="list[0].option3"
-                  [(ngModel)]="answer"
+                  [(ngModel)]="answer1"
                 />
                 <label class="form-check-label" for="c3">
                   {{ list[0].option3 }}
@@ -103,7 +118,7 @@
                   name="q1"
                   id="c4"
                   [value]="list[0].option4"
-                  [(ngModel)]="answer"
+                  [(ngModel)]="answer1"
                 />
                 <label class="form-check-label" for="c4">
                   {{ list[0].option4 }}
@@ -116,15 +131,8 @@
       <div class="modal-footer">
         <button
           type="button"
-          class="btn btn-secondary"
+          class="btn btn-sm btn-danger"
           data-dismiss="modal"
-          (click)="handleClick()"
-        >
-          Close
-        </button>
-        <button
-          type="button"
-          class="btn btn-primary"
           (click)="saveAnswser(1, list[0]['questionID'])"
         >
           Submit
@@ -162,7 +170,17 @@
             <div class="row">
               <div class="col text-left">Question 2</div>
               <div class="col text-right">
-                {{ list[1].skill }}
+                <label
+                  style="
+                    color: floralwhite;
+                    background-color: darkslateblue;
+                    padding: 2px 10px 2px 10px;
+                    font-weight: bold;
+                    border-radius: 3px;
+                  "
+                >
+                  {{ list[1].skill }}
+                </label>
               </div>
             </div>
           </div>
@@ -180,9 +198,10 @@
                 <input
                   class="form-check-input"
                   type="radio"
-                  name="q1"
+                  name="q2"
                   id="c1"
                   [value]="list[1].option1"
+                  [(ngModel)]="answer2"
                 />
                 <label class="form-check-label" for="c1">
                   {{ list[1].option1 }}
@@ -192,9 +211,10 @@
                 <input
                   class="form-check-input"
                   type="radio"
-                  name="q1"
+                  name="q2"
                   id="c2"
                   [value]="list[1].option2"
+                  [(ngModel)]="answer2"
                 />
                 <label class="form-check-label" for="c2">
                   {{ list[1].option2 }}
@@ -204,9 +224,10 @@
                 <input
                   class="form-check-input"
                   type="radio"
-                  name="q1"
+                  name="q2"
                   id="c3"
                   [value]="list[1].option3"
+                  [(ngModel)]="answer2"
                 />
                 <label class="form-check-label" for="c3">
                   {{ list[1].option3 }}
@@ -216,9 +237,10 @@
                 <input
                   class="form-check-input"
                   type="radio"
-                  name="q1"
+                  name="q2"
                   id="c4"
                   [value]="list[1].option4"
+                  [(ngModel)]="answer2"
                 />
                 <label class="form-check-label" for="c4">
                   {{ list[1].option4 }}
@@ -231,15 +253,8 @@
       <div class="modal-footer">
         <button
           type="button"
-          class="btn btn-secondary"
+          class="btn btn-sm btn-danger"
           data-dismiss="modal"
-          (click)="handleClick()"
-        >
-          Close
-        </button>
-        <button
-          type="button"
-          class="btn btn-primary"
           (click)="saveAnswser(2, list[1]['questionID'])"
         >
           Submit
@@ -277,7 +292,17 @@
             <div class="row">
               <div class="col text-left">Question 3</div>
               <div class="col text-right">
-                {{ list[2].skill }}
+                <label
+                  style="
+                    color: floralwhite;
+                    background-color: darkslateblue;
+                    padding: 2px 10px 2px 10px;
+                    font-weight: bold;
+                    border-radius: 3px;
+                  "
+                >
+                  {{ list[2].skill }}
+                </label>
               </div>
             </div>
           </div>
@@ -295,9 +320,10 @@
                 <input
                   class="form-check-input"
                   type="radio"
-                  name="q1"
+                  name="q3"
                   id="c1"
                   [value]="list[2].option1"
+                  [(ngModel)]="answer3"
                 />
                 <label class="form-check-label" for="c1">
                   {{ list[2].option1 }}
@@ -307,9 +333,10 @@
                 <input
                   class="form-check-input"
                   type="radio"
-                  name="q1"
+                  name="q3"
                   id="c2"
                   [value]="list[2].option2"
+                  [(ngModel)]="answer3"
                 />
                 <label class="form-check-label" for="c2">
                   {{ list[2].option2 }}
@@ -319,9 +346,10 @@
                 <input
                   class="form-check-input"
                   type="radio"
-                  name="q1"
+                  name="q3"
                   id="c3"
                   [value]="list[2].option3"
+                  [(ngModel)]="answer3"
                 />
                 <label class="form-check-label" for="c3">
                   {{ list[2].option3 }}
@@ -331,9 +359,10 @@
                 <input
                   class="form-check-input"
                   type="radio"
-                  name="q1"
+                  name="q3"
                   id="c4"
                   [value]="list[2].option4"
+                  [(ngModel)]="answer3"
                 />
                 <label class="form-check-label" for="c4">
                   {{ list[2].option4 }}
@@ -346,15 +375,8 @@
       <div class="modal-footer">
         <button
           type="button"
-          class="btn btn-secondary"
           data-dismiss="modal"
-          (click)="handleClick()"
-        >
-          Close
-        </button>
-        <button
-          type="button"
-          class="btn btn-primary"
+          class="btn btn-sm btn-danger"
           (click)="saveAnswser(3, list[2]['questionID'])"
         >
           Submit
@@ -392,7 +414,17 @@
             <div class="row">
               <div class="col text-left">Question 4</div>
               <div class="col text-right">
-                {{ list[3].skill }}
+                <label
+                  style="
+                    color: floralwhite;
+                    background-color: darkslateblue;
+                    padding: 2px 10px 2px 10px;
+                    font-weight: bold;
+                    border-radius: 3px;
+                  "
+                >
+                  {{ list[3].skill }}
+                </label>
               </div>
             </div>
           </div>
@@ -410,9 +442,10 @@
                 <input
                   class="form-check-input"
                   type="radio"
-                  name="q1"
+                  name="q4"
                   id="c1"
                   [value]="list[3].option1"
+                  [(ngModel)]="answer4"
                 />
                 <label class="form-check-label" for="c1">
                   {{ list[3].option1 }}
@@ -422,9 +455,10 @@
                 <input
                   class="form-check-input"
                   type="radio"
-                  name="q1"
+                  name="q4"
                   id="c2"
                   [value]="list[3].option2"
+                  [(ngModel)]="answer4"
                 />
                 <label class="form-check-label" for="c2">
                   {{ list[3].option2 }}
@@ -434,9 +468,10 @@
                 <input
                   class="form-check-input"
                   type="radio"
-                  name="q1"
+                  name="q4"
                   id="c3"
                   [value]="list[3].option3"
+                  [(ngModel)]="answer4"
                 />
                 <label class="form-check-label" for="c3">
                   {{ list[3].option3 }}
@@ -446,9 +481,10 @@
                 <input
                   class="form-check-input"
                   type="radio"
-                  name="q1"
+                  name="q4"
                   id="c4"
                   [value]="list[3].option4"
+                  [(ngModel)]="answer4"
                 />
                 <label class="form-check-label" for="c4">
                   {{ list[3].option4 }}
@@ -461,15 +497,8 @@
       <div class="modal-footer">
         <button
           type="button"
-          class="btn btn-secondary"
           data-dismiss="modal"
-          (click)="handleClick()"
-        >
-          Close
-        </button>
-        <button
-          type="button"
-          class="btn btn-primary"
+          class="btn btn-sm btn-danger"
           (click)="saveAnswser(4, list[3]['questionID'])"
         >
           Submit
@@ -507,7 +536,17 @@
             <div class="row">
               <div class="col text-left">Question 5</div>
               <div class="col text-right">
-                {{ list[4].skill }}
+                <label
+                  style="
+                    color: floralwhite;
+                    background-color: darkslateblue;
+                    padding: 2px 10px 2px 10px;
+                    font-weight: bold;
+                    border-radius: 3px;
+                  "
+                >
+                  {{ list[4].skill }}
+                </label>
               </div>
             </div>
           </div>
@@ -525,9 +564,10 @@
                 <input
                   class="form-check-input"
                   type="radio"
-                  name="q1"
+                  name="q5"
                   id="c1"
                   [value]="list[4].option1"
+                  [(ngModel)]="answer5"
                 />
                 <label class="form-check-label" for="c1">
                   {{ list[4].option1 }}
@@ -537,9 +577,10 @@
                 <input
                   class="form-check-input"
                   type="radio"
-                  name="q1"
+                  name="q5"
                   id="c2"
                   [value]="list[4].option2"
+                  [(ngModel)]="answer5"
                 />
                 <label class="form-check-label" for="c2">
                   {{ list[4].option2 }}
@@ -549,9 +590,10 @@
                 <input
                   class="form-check-input"
                   type="radio"
-                  name="q1"
+                  name="q5"
                   id="c3"
                   [value]="list[4].option3"
+                  [(ngModel)]="answer5"
                 />
                 <label class="form-check-label" for="c3">
                   {{ list[4].option3 }}
@@ -561,9 +603,10 @@
                 <input
                   class="form-check-input"
                   type="radio"
-                  name="q1"
+                  name="q5"
                   id="c4"
                   [value]="list[4].option4"
+                  [(ngModel)]="answer5"
                 />
                 <label class="form-check-label" for="c4">
                   {{ list[4].option4 }}
@@ -575,16 +618,9 @@
       </div>
       <div class="modal-footer">
         <button
-          type="button"
-          class="btn btn-secondary"
           data-dismiss="modal"
-          (click)="handleClick()"
-        >
-          Close
-        </button>
-        <button
           type="button"
-          class="btn btn-primary"
+          class="btn btn-sm btn-danger"
           (click)="saveAnswser(5, list[4]['questionID'])"
         >
           Submit

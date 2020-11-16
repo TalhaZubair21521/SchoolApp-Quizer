@@ -7,11 +7,11 @@ exports.SaveActivityQuestions = async (req, res) => {
       subject: 1,
       chapter: 1,
       questions: [
-         { activity: "video", type: "mcqs", question: "What is your name 1?", option1: "A", option2: "B", option3: "C", option4: "D", answer: "A", skill: "reading" },
-         { activity: "video", type: "mcqs", question: "What is your name 2?", option1: "A", option2: "B", option3: "C", option4: "D", answer: "B", skill: "observation" },
-         { activity: "video", type: "mcqs", question: "What is your name 3?", option1: "A", option2: "B", option3: "C", option4: "D", answer: "A", skill: "listening" },
-         { activity: "video", type: "mcqs", question: "What is your name 4?", option1: "A", option2: "B", option3: "C", option4: "D", answer: "C", skill: "writing" },
-         { activity: "video", type: "mcqs", question: "What is your name 5?", option1: "A", option2: "B", option3: "C", option4: "D", answer: "D", skill: "learning" },
+         { activity: "video", type: "mcqs", question: "What is Kharif Crop?", option1: "Wheat", option2: "Rice", option3: "Flour", option4: "Melon", answer: "Wheat", skill: "Reading" },
+         { activity: "video", type: "mcqs", question: "In the video which machinary is used for farming?", option1: "Car", option2: "Tractor", option3: "Jeep", option4: "Bulldozer", answer: "Tractor", skill: "Observation" },
+         { activity: "video", type: "mcqs", question: "How do you sow?", option1: "Mars", option2: "Flour", option3: "Earth", option4: "Jubiter", answer: "Earth", skill: "Listening" },
+         { activity: "video", type: "mcqs", question: "What is Rabi?", option1: "Lazani", option2: "Pike", option3: "Jugus", option4: "Shallow", answer: "Jugus", skill: "Writing" },
+         { activity: "video", type: "mcqs", question: "What ingredient is used while sowing wseds?", option1: "Crops", option2: "Masters", option3: "Fertilizer", option4: "Germs", answer: "Fertilizers", skill: "Learning" },
 
          { activity: "revision", type: "oneword", question: "What is your name?", option1: "A", option2: "B", option3: "C", option4: "D", answer: "A", skill: "reading" },
          { activity: "revision", type: "oneword", question: "What is your name?", option1: "A", option2: "B", option3: "C", option4: "D", answer: "B", skill: "observation" },

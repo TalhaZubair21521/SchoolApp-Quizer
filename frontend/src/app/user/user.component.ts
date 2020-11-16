@@ -15,7 +15,11 @@ export class UserComponent implements OnInit {
   @ViewChild('popup5') popup5: ElementRef;
 
   timecheck: any;
-  answer: any;
+  answer1: any;
+  answer2: any;
+  answer3: any;
+  answer4: any;
+  answer5: any;
   list: any = [];
   solutions: any = [];
 
@@ -35,12 +39,7 @@ export class UserComponent implements OnInit {
     this.quizInterval();
   }
 
-  handleClick() {
-    this.video.nativeElement.play();
-  }
-
   quizInterval() {
-
     this.timecheck = setInterval(() => {
       var currenttime = Math.floor(this.video.nativeElement.currentTime);
       if (currenttime === this.t[this.count]) {
@@ -81,14 +80,37 @@ export class UserComponent implements OnInit {
   }
 
   saveAnswser(questionNo, id) {
-    // alert("Question" + questionNo + " : " + this.answer);
-    this.solutions.push({ questionID: questionNo, answer: this.answer })
+    switch (questionNo) {
+      case 1:
+        console.log(questionNo, this.answer1);
+        this.solutions.push({ questionID: questionNo, answer: this.answer1 })
+        break;
+      case 2:
+        console.log(questionNo, this.answer2);
+        this.solutions.push({ questionID: questionNo, answer: this.answer2 })
+        break;
+      case 3:
+        console.log(questionNo, this.answer3);
+        this.solutions.push({ questionID: questionNo, answer: this.answer3 })
+        break;
+      case 4:
+        console.log(questionNo, this.answer4);
+        this.solutions.push({ questionID: questionNo, answer: this.answer4 })
+        break;
+      case 5:
+        console.log(questionNo, this.answer5);
+        this.solutions.push({ questionID: questionNo, answer: this.answer5 })
+        break;
+      default:
+        break;
+    }
     if (questionNo === 5) {
       this.dataService.saveQuestions(this.solutions).subscribe(
         (data) => { console.log(data) },
         (err) => { console.log(err) }
       )
     }
+    this.video.nativeElement.play();
   }
 
 }
