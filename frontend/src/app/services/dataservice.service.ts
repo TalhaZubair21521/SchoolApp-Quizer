@@ -13,4 +13,7 @@ export class DataserviceService {
     const data = { activity: activtiy, class: classID, subject: subjectID, chapter: chapterID };
     return this.http.post<JSON>(this.url.concat("user/getQuestions"), { data: data });
   }
+  saveQuestions(solutions) {
+    return this.http.post<JSON>(this.url.concat("user/saveAnswers"), { data: solutions, userID: 1, belongToID: 1 });
+  }
 }

@@ -1,6 +1,4 @@
-<p>Dialogue Box At 5 sec</p>
-<!-- <mat-video src="../../assets/demo.mp4"></mat-video> -->
-<video #video width="vw" height="vh" controls>
+<video #video width="vw" height="vh" controls autoplay>
   <source src="../../assets/demo.mp4" type="video/mp4" />
   Your browser does not support the video tag.
 </video>
@@ -9,11 +7,11 @@
 <!-- Button trigger modal -->
 <button
   type="button"
-  #popup
+  #popup1
   [hidden]="true"
   class="btn btn-primary"
   data-toggle="modal"
-  data-target="#exampleModalCenter"
+  data-target="#question1"
 >
   Launch demo modal
 </button>
@@ -21,7 +19,7 @@
 <!-- Modal -->
 <div
   class="modal fade"
-  id="exampleModalCenter"
+  id="question1"
   tabindex="-1"
   role="dialog"
   aria-labelledby="exampleModalCenterTitle"
@@ -30,7 +28,6 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Quiz Time</h5>
         <button
           type="button"
           class="close"
@@ -42,12 +39,18 @@
       </div>
       <div class="modal-body">
         <div class="card mb-3">
-          <div class="card-header text-right">Skill</div>
+          <div class="card-header">
+            <div class="row">
+              <div class="col text-left">Question 1</div>
+              <div class="col text-right">
+                {{ list[0].skill }}
+              </div>
+            </div>
+          </div>
           <div class="card-body">
-            <h5 class="card-title">Question 1</h5>
             <div class="form-group">
               <label class="form-check-label" for="c1"
-                ><b>How do you sow vegetables ?</b></label
+                ><b>{{ list[0].question }}</b></label
               >
               <small id="QHelp" class="form-text text-muted"
                 >Select correct choice.</small
@@ -60,10 +63,11 @@
                   type="radio"
                   name="q1"
                   id="c1"
-                  value="option1"
+                  [value]="list[0].option1"
+                  [(ngModel)]="answer"
                 />
                 <label class="form-check-label" for="c1">
-                  Enter Choice 1
+                  {{ list[0].option1 }}
                 </label>
               </div>
               <div class="form-check">
@@ -72,10 +76,11 @@
                   type="radio"
                   name="q1"
                   id="c2"
-                  value="option2"
+                  [value]="list[0].option2"
+                  [(ngModel)]="answer"
                 />
                 <label class="form-check-label" for="c2">
-                  Enter Choice 2
+                  {{ list[0].option2 }}
                 </label>
               </div>
               <div class="form-check">
@@ -84,10 +89,11 @@
                   type="radio"
                   name="q1"
                   id="c3"
-                  value="option3"
+                  [value]="list[0].option3"
+                  [(ngModel)]="answer"
                 />
                 <label class="form-check-label" for="c3">
-                  Enter Choice 3
+                  {{ list[0].option3 }}
                 </label>
               </div>
               <div class="form-check">
@@ -96,10 +102,11 @@
                   type="radio"
                   name="q1"
                   id="c4"
-                  value="option4"
+                  [value]="list[0].option4"
+                  [(ngModel)]="answer"
                 />
                 <label class="form-check-label" for="c4">
-                  Enter Choice 4
+                  {{ list[0].option4 }}
                 </label>
               </div>
             </div>
@@ -115,7 +122,473 @@
         >
           Close
         </button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="saveAnswser(1, list[0]['questionID'])"
+        >
+          Submit
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<button
+  type="button"
+  #popup2
+  [hidden]="true"
+  class="btn btn-primary"
+  data-toggle="modal"
+  data-target="#question2"
+>
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="question2"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="card mb-3">
+          <div class="card-header">
+            <div class="row">
+              <div class="col text-left">Question 2</div>
+              <div class="col text-right">
+                {{ list[1].skill }}
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="form-group">
+              <label class="form-check-label" for="c1"
+                ><b>{{ list[1].question }}</b></label
+              >
+              <small id="QHelp" class="form-text text-muted"
+                >Select correct choice.</small
+              >
+            </div>
+            <div class="choices">
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="q1"
+                  id="c1"
+                  [value]="list[1].option1"
+                />
+                <label class="form-check-label" for="c1">
+                  {{ list[1].option1 }}
+                </label>
+              </div>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="q1"
+                  id="c2"
+                  [value]="list[1].option2"
+                />
+                <label class="form-check-label" for="c2">
+                  {{ list[1].option2 }}
+                </label>
+              </div>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="q1"
+                  id="c3"
+                  [value]="list[1].option3"
+                />
+                <label class="form-check-label" for="c3">
+                  {{ list[1].option3 }}
+                </label>
+              </div>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="q1"
+                  id="c4"
+                  [value]="list[1].option4"
+                />
+                <label class="form-check-label" for="c4">
+                  {{ list[1].option4 }}
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-dismiss="modal"
+          (click)="handleClick()"
+        >
+          Close
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="saveAnswser(2, list[1]['questionID'])"
+        >
+          Submit
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<button
+  type="button"
+  #popup3
+  [hidden]="true"
+  class="btn btn-primary"
+  data-toggle="modal"
+  data-target="#question3"
+>
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="question3"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="card mb-3">
+          <div class="card-header">
+            <div class="row">
+              <div class="col text-left">Question 3</div>
+              <div class="col text-right">
+                {{ list[2].skill }}
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="form-group">
+              <label class="form-check-label" for="c1"
+                ><b>{{ list[2].question }}</b></label
+              >
+              <small id="QHelp" class="form-text text-muted"
+                >Select correct choice.</small
+              >
+            </div>
+            <div class="choices">
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="q1"
+                  id="c1"
+                  [value]="list[2].option1"
+                />
+                <label class="form-check-label" for="c1">
+                  {{ list[2].option1 }}
+                </label>
+              </div>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="q1"
+                  id="c2"
+                  [value]="list[2].option2"
+                />
+                <label class="form-check-label" for="c2">
+                  {{ list[2].option2 }}
+                </label>
+              </div>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="q1"
+                  id="c3"
+                  [value]="list[2].option3"
+                />
+                <label class="form-check-label" for="c3">
+                  {{ list[2].option3 }}
+                </label>
+              </div>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="q1"
+                  id="c4"
+                  [value]="list[2].option4"
+                />
+                <label class="form-check-label" for="c4">
+                  {{ list[2].option4 }}
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-dismiss="modal"
+          (click)="handleClick()"
+        >
+          Close
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="saveAnswser(3, list[2]['questionID'])"
+        >
+          Submit
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<button
+  type="button"
+  #popup4
+  [hidden]="true"
+  class="btn btn-primary"
+  data-toggle="modal"
+  data-target="#question4"
+>
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="question4"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="card mb-3">
+          <div class="card-header">
+            <div class="row">
+              <div class="col text-left">Question 4</div>
+              <div class="col text-right">
+                {{ list[3].skill }}
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="form-group">
+              <label class="form-check-label" for="c1"
+                ><b>{{ list[3].question }}</b></label
+              >
+              <small id="QHelp" class="form-text text-muted"
+                >Select correct choice.</small
+              >
+            </div>
+            <div class="choices">
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="q1"
+                  id="c1"
+                  [value]="list[3].option1"
+                />
+                <label class="form-check-label" for="c1">
+                  {{ list[3].option1 }}
+                </label>
+              </div>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="q1"
+                  id="c2"
+                  [value]="list[3].option2"
+                />
+                <label class="form-check-label" for="c2">
+                  {{ list[3].option2 }}
+                </label>
+              </div>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="q1"
+                  id="c3"
+                  [value]="list[3].option3"
+                />
+                <label class="form-check-label" for="c3">
+                  {{ list[3].option3 }}
+                </label>
+              </div>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="q1"
+                  id="c4"
+                  [value]="list[3].option4"
+                />
+                <label class="form-check-label" for="c4">
+                  {{ list[3].option4 }}
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-dismiss="modal"
+          (click)="handleClick()"
+        >
+          Close
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="saveAnswser(4, list[3]['questionID'])"
+        >
+          Submit
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<button
+  type="button"
+  #popup5
+  [hidden]="true"
+  class="btn btn-primary"
+  data-toggle="modal"
+  data-target="#question5"
+>
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="question5"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="card mb-3">
+          <div class="card-header">
+            <div class="row">
+              <div class="col text-left">Question 5</div>
+              <div class="col text-right">
+                {{ list[4].skill }}
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="form-group">
+              <label class="form-check-label" for="c1"
+                ><b>{{ list[4].question }}</b></label
+              >
+              <small id="QHelp" class="form-text text-muted"
+                >Select correct choice.</small
+              >
+            </div>
+            <div class="choices">
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="q1"
+                  id="c1"
+                  [value]="list[4].option1"
+                />
+                <label class="form-check-label" for="c1">
+                  {{ list[4].option1 }}
+                </label>
+              </div>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="q1"
+                  id="c2"
+                  [value]="list[4].option2"
+                />
+                <label class="form-check-label" for="c2">
+                  {{ list[4].option2 }}
+                </label>
+              </div>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="q1"
+                  id="c3"
+                  [value]="list[4].option3"
+                />
+                <label class="form-check-label" for="c3">
+                  {{ list[4].option3 }}
+                </label>
+              </div>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="q1"
+                  id="c4"
+                  [value]="list[4].option4"
+                />
+                <label class="form-check-label" for="c4">
+                  {{ list[4].option4 }}
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-dismiss="modal"
+          (click)="handleClick()"
+        >
+          Close
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="saveAnswser(5, list[4]['questionID'])"
+        >
+          Submit
+        </button>
       </div>
     </div>
   </div>

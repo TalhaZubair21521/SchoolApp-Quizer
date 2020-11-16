@@ -26,15 +26,14 @@ exports.SaveAnswers = async (req, res) => {
         const userID = req.body.userID;
         const belongToID = req.body.belongToID;
 
-        const answers = req.body.answers;
-
-        answers = [
-            { questionID: 1, answer: "answerForQuestion1" },
-            { questionID: 2, answer: "answerForQuestion2" },
-            { questionID: 3, answer: "answerForQuestion3" },
-            { questionID: 4, answer: "answerForQuestion4" },
-            { questionID: 5, answer: "answerForQuestion5" },
-        ];
+        const answers = req.body.data;
+        // answers = [
+        //     { questionID: 1, answer: "answerForQuestion1" },
+        //     { questionID: 2, answer: "answerForQuestion2" },
+        //     { questionID: 3, answer: "answerForQuestion3" },
+        //     { questionID: 4, answer: "answerForQuestion4" },
+        //     { questionID: 5, answer: "answerForQuestion5" },
+        // ];
 
         answers.forEach(async (question) => {
             var query = mysql.format("INSERT INTO useranswer (userID,questionID,belongToID,answer) VALUES (?,?,?,?)", [userID, question.questionID, belongToID, question.answer]);
