@@ -1,60 +1,71 @@
 const db = require("../database/connect");
 const mysql = require("mysql");
-const bcrypt = require("bcryptjs");
-const JWT = require("jsonwebtoken");
-require("dotenv").config();
-const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY;
 
-exports.Signup = (req, res) => {
-    var admin = req.body;
-    admin.email = admin.email.toLowerCase();
-    admin.password = bcrypt.hashSync(admin.password);
-    var query = mysql.format("SELECT * FROM admin where email=?", [admin.email]);
-    db.query(query, function (err, result, fields) {
-        if (err) {
-            res.status(500).json({ type: "failure", data: { message: err } });
-            return;
-        }
-        if (result.length !== 0) {
-            res.status(200).json({ type: "failure", data: { message: "Looks Like this Email is Already Registered" } });
-            return;
-        }
-        var query = mysql.format("INSERT INTO admin (email, password) VALUES (?,?)", [admin.email, admin.password]);
-        db.query(query, function (err, result, fields) {
+exports.SaveActivityQuestions = async (req, res) => {
+   const data = {
+      class: 1,
+      subject: 1,
+      chapter: 1,
+      questions: [
+         { activity: "video", type: "mcqs", question: "What is Kharif Crop?", option1: "Wheat", option2: "Rice", option3: "Flour", option4: "Melon", answer: "Wheat", skill: "Reading" },
+         { activity: "video", type: "mcqs", question: "In the video which machinary is used for farming?", option1: "Car", option2: "Tractor", option3: "Jeep", option4: "Bulldozer", answer: "Tractor", skill: "Observation" },
+         { activity: "video", type: "mcqs", question: "How do you sow?", option1: "Mars", option2: "Flour", option3: "Earth", option4: "Jubiter", answer: "Earth", skill: "Listening" },
+         { activity: "video", type: "mcqs", question: "What is Rabi?", option1: "Lazani", option2: "Pike", option3: "Jugus", option4: "Shallow", answer: "Jugus", skill: "Writing" },
+         { activity: "video", type: "mcqs", question: "What ingredient is used while sowing wseds?", option1: "Crops", option2: "Masters", option3: "Fertilizer", option4: "Germs", answer: "Fertilizers", skill: "Learning" },
+
+         { activity: "revision", type: "oneword", question: "What is your name?", option1: "A", option2: "B", option3: "C", option4: "D", answer: "A", skill: "reading" },
+         { activity: "revision", type: "oneword", question: "What is your name?", option1: "A", option2: "B", option3: "C", option4: "D", answer: "B", skill: "observation" },
+         { activity: "revision", type: "oneword", question: "What is your name?", option1: "A", option2: "B", option3: "C", option4: "D", answer: "A", skill: "listening" },
+         { activity: "revision", type: "t/f", question: "What is your name?", option1: "", option2: "", option3: "", option4: "", answer: "true", skill: "writing" },
+         { activity: "revision", type: "t/f", question: "What is your name?", option1: "", option2: "", option3: "", option4: "", answer: "false", skill: "learning" },
+
+         { activity: "game", type: "mcqs", question: "What is your name?", option1: "A", option2: "B", option3: "C", option4: "D", answer: "A", skill: "reading" },
+         { activity: "game", type: "mcqs", question: "What is your name?", option1: "A", option2: "B", option3: "C", option4: "D", answer: "B", skill: "observation" },
+         { activity: "game", type: "mcqs", question: "What is your name?", option1: "A", option2: "B", option3: "C", option4: "D", answer: "C", skill: "listening" },
+         { activity: "game", type: "mcqs", question: "What is your name?", option1: "A", option2: "B", option3: "C", option4: "D", answer: "A", skill: "writing" },
+         { activity: "game", type: "mcqs", question: "What is your name?", option1: "A", option2: "B", option3: "C", option4: "D", answer: "D", skill: "learning" },
+
+         { activity: "test", type: "mcqs", question: "What is your name?", option1: "A", option2: "B", option3: "C", option4: "D", answer: "D", skill: "memory" },
+         { activity: "test", type: "mcqs", question: "What is your name?", option1: "A", option2: "B", option3: "C", option4: "D", answer: "A", skill: "conceptual" },
+         { activity: "test", type: "mcqs", question: "What is your name?", option1: "A", option2: "B", option3: "C", option4: "D", answer: "C", skill: "application" },
+         { activity: "test", type: "mcqs", question: "What is your name?", option1: "A", option2: "B", option3: "C", option4: "D", answer: "A", skill: "analysis" },
+         { activity: "test", type: "mcqs", question: "What is your name?", option1: "A", option2: "B", option3: "C", option4: "D", answer: "B", skill: "observation" }
+      ]
+   };
+
+   //Inserting Belong To Details
+   var query = mysql.format("INSERT INTO belongto (classID, subjectID, chapterID) VALUES (?,?,?)", [data.class, data.subject, data.chapter]);
+   db.query(query, (err, result, fields) => {
+      if (err) {
+         console.log(err);
+         res.status(500).json({ type: "failure", data: { message: err } });
+         return;
+      }
+      const belongToID = result.insertId;
+      //Loop on Questions
+      data.questions.forEach(async (question) => {
+         //Loop on Inserting Question
+         var query = mysql.format("INSERT INTO question (type, question, option1, option2, option3, option4, answer, skill) VALUES (?,?,?,?,?,?,?,?)", [question.type, question.question, question.option1, question.option2, question.option3, question.option4, question.answer, question.skill]);
+         var activity = question.activity;
+         db.query(query, (err, result, fields) => {
             if (err) {
-                res.status(500).json({ type: "failure", data: { message: err } });
-                return;
+               console.log(err);
+               res.status(500).json({ type: "failure", data: { message: err } });
+               return;
             }
-            res.status(201).json({ type: "success", data: { message: "admin Registered Successfully" } });
-        });
-    });
-};
-
-exports.Signin = (req, res) => {
-    var admin = { email: req.query.email.toLowerCase(), password: req.query.password };
-    var query = mysql.format("SELECT * FROM admin where email=?", [admin.email]);
-    db.query(query, async (err, result, fields) => {
-        if (err) {
-            res.status(500).json({ type: "failure", data: { message: err } });
-            return;
-        }
-        if (result.length === 0) {
-            res.status(200).json({ type: "failure", data: { message: "Wrong Credientials" } });
-            return;
-        }
-        const isPasswordMatched = await bcrypt.compare(admin.password, result[0]['password']);
-        if (isPasswordMatched) {
-            const token = JWT.sign({ adminname: admin.email }, JWT_SECRET_KEY);
-            res.status(200).json({ type: "success", data: { message: "Login Successfully", token: token } });
-            return;
-        }
-        res.status(200).json({ type: "failure", data: { message: "Wrong Credientials" } });
-        return;
-    });
-};
-
-
-
-
-
-
+            const questionID = result.insertId;
+            //Inserting Activity Questions
+            var query = mysql.format("INSERT INTO activityquestion (activity, questionID, belongToID) VALUES (?,?,?)", [activity, questionID, belongToID]);
+            db.query(query, (err, result, fields) => {
+               if (err) {
+                  console.log(err);
+                  res.status(500).json({ type: "failure", data: { message: err } });
+                  return;
+               }
+            })
+         })
+      });
+      //Sending Response
+      res.status(200).json({ type: "success", data: { message: "Questions Inserted Successfully" } })
+   });
+}
