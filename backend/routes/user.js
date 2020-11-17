@@ -3,7 +3,7 @@ const userController = require("../controllers/user");
 const express = require("express");
 const router = express.Router();
 
-router.post("/signup", userController.Signup);
-router.get("/signin", userController.Signin);
+router.post("/getQuestions", userController.GetQuestions);
+router.post("/saveAnswers", userController.SaveAnswers);
 
 exports.routes = router;

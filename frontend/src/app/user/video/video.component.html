@@ -1,0 +1,639 @@
+<div class="d-flex justify-content-center p-2 m-2">
+  <h1 style="color: tomato">Video Activity</h1>
+</div>
+<div
+  width="vw"
+  height="vh"
+  style="margin: auto; width: 70%"
+  class="d-flex justify-content-center"
+>
+  <video #video width="100%" height="100%" controls autoplay>
+    <source
+      src="http://localhost:1111/assets/videos/quiz2.mp4"
+      type="video/mp4"
+    />
+    Your browser does not support the video tag.
+  </video>
+</div>
+<br />
+<!-- <button (click)="handleClick()">Click</button> -->
+<!-- Button trigger modal -->
+<button
+  type="button"
+  #popup1
+  [hidden]="true"
+  class="btn btn-primary"
+  data-toggle="modal"
+  data-target="#question1"
+>
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="question1"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="card mb-3">
+          <div class="card-header">
+            <div class="row">
+              <div class="col text-left">Question 1</div>
+              <div class="col text-right">
+                <label
+                  style="
+                    color: floralwhite;
+                    background-color: darkslateblue;
+                    padding: 2px 10px 2px 10px;
+                    font-weight: bold;
+                    border-radius: 3px;
+                  "
+                >
+                  {{ list[0].skill }}
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="form-group">
+              <label class="form-check-label" for="c1"
+                ><b>{{ list[0].question }}</b></label
+              >
+              <small id="QHelp" class="form-text text-muted"
+                >Select correct choice.</small
+              >
+            </div>
+            <div class="choices">
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="q1"
+                  id="c1"
+                  [value]="list[0].option1"
+                  [(ngModel)]="answer1"
+                />
+                <label class="form-check-label" for="c1">
+                  {{ list[0].option1 }}
+                </label>
+              </div>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="q1"
+                  id="c2"
+                  [value]="list[0].option2"
+                  [(ngModel)]="answer1"
+                />
+                <label class="form-check-label" for="c2">
+                  {{ list[0].option2 }}
+                </label>
+              </div>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="q1"
+                  id="c3"
+                  [value]="list[0].option3"
+                  [(ngModel)]="answer1"
+                />
+                <label class="form-check-label" for="c3">
+                  {{ list[0].option3 }}
+                </label>
+              </div>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="q1"
+                  id="c4"
+                  [value]="list[0].option4"
+                  [(ngModel)]="answer1"
+                />
+                <label class="form-check-label" for="c4">
+                  {{ list[0].option4 }}
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-sm btn-danger"
+          data-dismiss="modal"
+          (click)="saveAnswser(1, list[0]['questionID'])"
+        >
+          Submit
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<button
+  type="button"
+  #popup2
+  [hidden]="true"
+  class="btn btn-primary"
+  data-toggle="modal"
+  data-target="#question2"
+>
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="question2"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="card mb-3">
+          <div class="card-header">
+            <div class="row">
+              <div class="col text-left">Question 2</div>
+              <div class="col text-right">
+                <label
+                  style="
+                    color: floralwhite;
+                    background-color: darkslateblue;
+                    padding: 2px 10px 2px 10px;
+                    font-weight: bold;
+                    border-radius: 3px;
+                  "
+                >
+                  {{ list[1].skill }}
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="form-group">
+              <label class="form-check-label" for="c1"
+                ><b>{{ list[1].question }}</b></label
+              >
+              <small id="QHelp" class="form-text text-muted"
+                >Select correct choice.</small
+              >
+            </div>
+            <div class="choices">
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="q2"
+                  id="c1"
+                  [value]="list[1].option1"
+                  [(ngModel)]="answer2"
+                />
+                <label class="form-check-label" for="c1">
+                  {{ list[1].option1 }}
+                </label>
+              </div>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="q2"
+                  id="c2"
+                  [value]="list[1].option2"
+                  [(ngModel)]="answer2"
+                />
+                <label class="form-check-label" for="c2">
+                  {{ list[1].option2 }}
+                </label>
+              </div>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="q2"
+                  id="c3"
+                  [value]="list[1].option3"
+                  [(ngModel)]="answer2"
+                />
+                <label class="form-check-label" for="c3">
+                  {{ list[1].option3 }}
+                </label>
+              </div>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="q2"
+                  id="c4"
+                  [value]="list[1].option4"
+                  [(ngModel)]="answer2"
+                />
+                <label class="form-check-label" for="c4">
+                  {{ list[1].option4 }}
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-sm btn-danger"
+          data-dismiss="modal"
+          (click)="saveAnswser(2, list[1]['questionID'])"
+        >
+          Submit
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<button
+  type="button"
+  #popup3
+  [hidden]="true"
+  class="btn btn-primary"
+  data-toggle="modal"
+  data-target="#question3"
+>
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="question3"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="card mb-3">
+          <div class="card-header">
+            <div class="row">
+              <div class="col text-left">Question 3</div>
+              <div class="col text-right">
+                <label
+                  style="
+                    color: floralwhite;
+                    background-color: darkslateblue;
+                    padding: 2px 10px 2px 10px;
+                    font-weight: bold;
+                    border-radius: 3px;
+                  "
+                >
+                  {{ list[2].skill }}
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="form-group">
+              <label class="form-check-label" for="c1"
+                ><b>{{ list[2].question }}</b></label
+              >
+              <small id="QHelp" class="form-text text-muted"
+                >Select correct choice.</small
+              >
+            </div>
+            <div class="choices">
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="q3"
+                  id="c1"
+                  [value]="list[2].option1"
+                  [(ngModel)]="answer3"
+                />
+                <label class="form-check-label" for="c1">
+                  {{ list[2].option1 }}
+                </label>
+              </div>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="q3"
+                  id="c2"
+                  [value]="list[2].option2"
+                  [(ngModel)]="answer3"
+                />
+                <label class="form-check-label" for="c2">
+                  {{ list[2].option2 }}
+                </label>
+              </div>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="q3"
+                  id="c3"
+                  [value]="list[2].option3"
+                  [(ngModel)]="answer3"
+                />
+                <label class="form-check-label" for="c3">
+                  {{ list[2].option3 }}
+                </label>
+              </div>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="q3"
+                  id="c4"
+                  [value]="list[2].option4"
+                  [(ngModel)]="answer3"
+                />
+                <label class="form-check-label" for="c4">
+                  {{ list[2].option4 }}
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          data-dismiss="modal"
+          class="btn btn-sm btn-danger"
+          (click)="saveAnswser(3, list[2]['questionID'])"
+        >
+          Submit
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<button
+  type="button"
+  #popup4
+  [hidden]="true"
+  class="btn btn-primary"
+  data-toggle="modal"
+  data-target="#question4"
+>
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="question4"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="card mb-3">
+          <div class="card-header">
+            <div class="row">
+              <div class="col text-left">Question 4</div>
+              <div class="col text-right">
+                <label
+                  style="
+                    color: floralwhite;
+                    background-color: darkslateblue;
+                    padding: 2px 10px 2px 10px;
+                    font-weight: bold;
+                    border-radius: 3px;
+                  "
+                >
+                  {{ list[3].skill }}
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="form-group">
+              <label class="form-check-label" for="c1"
+                ><b>{{ list[3].question }}</b></label
+              >
+              <small id="QHelp" class="form-text text-muted"
+                >Select correct choice.</small
+              >
+            </div>
+            <div class="choices">
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="q4"
+                  id="c1"
+                  [value]="list[3].option1"
+                  [(ngModel)]="answer4"
+                />
+                <label class="form-check-label" for="c1">
+                  {{ list[3].option1 }}
+                </label>
+              </div>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="q4"
+                  id="c2"
+                  [value]="list[3].option2"
+                  [(ngModel)]="answer4"
+                />
+                <label class="form-check-label" for="c2">
+                  {{ list[3].option2 }}
+                </label>
+              </div>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="q4"
+                  id="c3"
+                  [value]="list[3].option3"
+                  [(ngModel)]="answer4"
+                />
+                <label class="form-check-label" for="c3">
+                  {{ list[3].option3 }}
+                </label>
+              </div>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="q4"
+                  id="c4"
+                  [value]="list[3].option4"
+                  [(ngModel)]="answer4"
+                />
+                <label class="form-check-label" for="c4">
+                  {{ list[3].option4 }}
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          data-dismiss="modal"
+          class="btn btn-sm btn-danger"
+          (click)="saveAnswser(4, list[3]['questionID'])"
+        >
+          Submit
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<button
+  type="button"
+  #popup5
+  [hidden]="true"
+  class="btn btn-primary"
+  data-toggle="modal"
+  data-target="#question5"
+>
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="question5"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="card mb-3">
+          <div class="card-header">
+            <div class="row">
+              <div class="col text-left">Question 5</div>
+              <div class="col text-right">
+                <label
+                  style="
+                    color: floralwhite;
+                    background-color: darkslateblue;
+                    padding: 2px 10px 2px 10px;
+                    font-weight: bold;
+                    border-radius: 3px;
+                  "
+                >
+                  {{ list[4].skill }}
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="form-group">
+              <label class="form-check-label" for="c1"
+                ><b>{{ list[4].question }}</b></label
+              >
+              <small id="QHelp" class="form-text text-muted"
+                >Select correct choice.</small
+              >
+            </div>
+            <div class="choices">
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="q5"
+                  id="c1"
+                  [value]="list[4].option1"
+                  [(ngModel)]="answer5"
+                />
+                <label class="form-check-label" for="c1">
+                  {{ list[4].option1 }}
+                </label>
+              </div>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="q5"
+                  id="c2"
+                  [value]="list[4].option2"
+                  [(ngModel)]="answer5"
+                />
+                <label class="form-check-label" for="c2">
+                  {{ list[4].option2 }}
+                </label>
+              </div>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="q5"
+                  id="c3"
+                  [value]="list[4].option3"
+                  [(ngModel)]="answer5"
+                />
+                <label class="form-check-label" for="c3">
+                  {{ list[4].option3 }}
+                </label>
+              </div>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="q5"
+                  id="c4"
+                  [value]="list[4].option4"
+                  [(ngModel)]="answer5"
+                />
+                <label class="form-check-label" for="c4">
+                  {{ list[4].option4 }}
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button
+          data-dismiss="modal"
+          type="button"
+          class="btn btn-sm btn-danger"
+          (click)="saveAnswser(5, list[4]['questionID'])"
+        >
+          Submit
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
