@@ -9,6 +9,8 @@ import { UserComponent } from './user/user.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from "@angular/forms";
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
+import { VideoComponent } from './user/video/video.component';
+import { RevisionComponent } from './user/revision/revision.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +18,8 @@ import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
     AdminComponent,
     UserComponent,
     PagenotfoundComponent,
+    VideoComponent,
+    RevisionComponent,
   ],
   imports: [
     BrowserModule,

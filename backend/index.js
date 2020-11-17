@@ -17,6 +17,7 @@ app.use(bodyparser.urlencoded({ extended: true }));
 const user = require("./routes/user");
 const admin = require("./routes/admin");
 
+app.use('/assets', express.static('assets'));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use("/api/user", user.routes);
