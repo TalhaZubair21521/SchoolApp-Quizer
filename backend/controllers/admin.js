@@ -13,11 +13,12 @@ exports.SaveActivityQuestions = async (req, res) => {
          { activity: "video", type: "mcqs", question: "What is Rabi?", option1: "Lazani", option2: "Pike", option3: "Jugus", option4: "Shallow", answer: "Jugus", skill: "Writing" },
          { activity: "video", type: "mcqs", question: "What ingredient is used while sowing wseds?", option1: "Crops", option2: "Masters", option3: "Fertilizer", option4: "Germs", answer: "Fertilizers", skill: "Learning" },
 
-         { activity: "revision", type: "oneword", question: "What is your name?", option1: "A", option2: "B", option3: "C", option4: "D", answer: "A", skill: "reading" },
-         { activity: "revision", type: "oneword", question: "What is your name?", option1: "A", option2: "B", option3: "C", option4: "D", answer: "B", skill: "observation" },
-         { activity: "revision", type: "oneword", question: "What is your name?", option1: "A", option2: "B", option3: "C", option4: "D", answer: "A", skill: "listening" },
-         { activity: "revision", type: "t/f", question: "What is your name?", option1: "", option2: "", option3: "", option4: "", answer: "true", skill: "writing" },
-         { activity: "revision", type: "t/f", question: "What is your name?", option1: "", option2: "", option3: "", option4: "", answer: "false", skill: "learning" },
+
+         { activity: "revision", type: "mcqs", question: "What is Kharif Crop?", option1: "Wheat", option2: "Rice", option3: "Flour", option4: "Melon", answer: "Wheat", skill: "Reading" },
+         { activity: "revision", type: "mcqs", question: "In the video which machinary is used for farming?", option1: "Car", option2: "Tractor", option3: "Jeep", option4: "Bulldozer", answer: "Tractor", skill: "Observation" },
+         { activity: "revision", type: "mcqs", question: "How do you sow?", option1: "Mars", option2: "Flour", option3: "Earth", option4: "Jubiter", answer: "Earth", skill: "Listening" },
+         { activity: "revision", type: "mcqs", question: "What is Rabi?", option1: "Lazani", option2: "Pike", option3: "Jugus", option4: "Shallow", answer: "Jugus", skill: "Writing" },
+         { activity: "revision", type: "mcqs", question: "What ingredient is used while sowing wseds?", option1: "Crops", option2: "Masters", option3: "Fertilizer", option4: "Germs", answer: "Fertilizers", skill: "Learning" },
 
          { activity: "game", type: "mcqs", question: "What is your name?", option1: "A", option2: "B", option3: "C", option4: "D", answer: "A", skill: "reading" },
          { activity: "game", type: "mcqs", question: "What is your name?", option1: "A", option2: "B", option3: "C", option4: "D", answer: "B", skill: "observation" },
