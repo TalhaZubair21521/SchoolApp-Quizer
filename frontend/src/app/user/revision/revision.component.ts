@@ -14,6 +14,7 @@ export class RevisionComponent implements OnInit {
   timer: any = 5;
   intialTimer: any = 5;
   solutions: any = [];
+  play: any = false;
   constructor(private dataService: DataserviceService) {
   }
 
@@ -47,6 +48,9 @@ export class RevisionComponent implements OnInit {
     )
   }
 
+  handlePlay() {
+    this.play = true;
+  }
   CreateSolutions() {
     this.questions.forEach((element) => {
       this.solutions.push({ questionID: element.questionID, answer: "" });
