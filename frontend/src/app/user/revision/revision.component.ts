@@ -13,6 +13,7 @@ export class RevisionComponent implements OnInit {
   questionIndexCounter: any = 0;
   timer: any = 5;
   intialTimer: any = 5;
+  solutions: any = [];
   constructor(private dataService: DataserviceService) {
   }
 
@@ -20,6 +21,7 @@ export class RevisionComponent implements OnInit {
     this.dataService.getQuestions("revision", "1", "1", "1").subscribe(
       (data) => {
         this.questions = data["data"]["questions"];
+        this.CreateSolutions();
         this.currentQuestion = this.questions[this.questionIndexCounter];
         this.questionIndexCounter++;
       },
@@ -39,27 +41,17 @@ export class RevisionComponent implements OnInit {
         this.timer = this.timer - 1;
       }, 1000, 5);
     }, 5 * 1000, 5);
+    this.dataService.saveQuestions(this.solutions).subscribe(
+      (data) => { console.log(data) },
+      (err) => { console.log(err) }
+    )
   }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  CreateSolutions() {
+    this.questions.forEach((element) => {
+      this.solutions.push({ questionID: element.questionID, answer: "" });
+    });
+  }
 
   myInterval(callback, delay, repetitions) {
     var x = 0;
@@ -69,6 +61,16 @@ export class RevisionComponent implements OnInit {
         window.clearInterval(intervalID);
       }
     }, delay);
+  }
+
+  submitSolution(option) {
+    this.solutions[this.questionIndexCounter - 1].answer = this.currentQuestion[option];
+    if (this.questionIndexCounter === 5) {
+      this.dataService.saveQuestions(this.solutions).subscribe(
+        (data) => { console.log(data) },
+        (err) => { console.log(err) }
+      )
+    }
   }
 
 }

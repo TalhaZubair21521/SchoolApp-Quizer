@@ -11,31 +11,30 @@
     <div class="row justify-content-center">
       <div class="col-xm-12 col-sm-10 col-md-8 col-lg-6 col-xl-5" id="content">
         <div class="row">
-          <div class="col pt-5 pb-5">Circle</div>
-        </div>
-        <div class="row">
           <div
             class="col pt-5 pb-5"
-            style="
-              color: rgb(0, 81, 255);
-              font-weight: bolder;
-              font-size: larger;
-            "
+            style="color: #ff9900; font-weight: bolder; font-size: larger"
           >
             {{ currentQuestion.question }}
           </div>
         </div>
         <div class="row">
-          <div class="col pt-5 pb-3">
+          <div style="font-weight: bold; color: brown" class="col pt-5 pb-3">
             Timer:{{ intialTimer === 0 ? timer : intialTimer }}
           </div>
         </div>
         <div class="row pt-5">
           <div class="col">
             <button
+              (click)="submitSolution('option1')"
               type="button"
-              class="btn btn-primary"
-              style="width: 100%; height: 50px"
+              style="
+                width: 100%;
+                height: 50px;
+                background-color: #b94278;
+                color: white;
+                font-weight: bold;
+              "
             >
               {{ currentQuestion.option1 }}
             </button>
@@ -45,8 +44,14 @@
           <div class="col">
             <button
               type="button"
-              class="btn btn-warning"
-              style="width: 100%; height: 50px"
+              (click)="submitSolution('option2')"
+              style="
+                width: 100%;
+                height: 50px;
+                background-color: #50c587;
+                color: white;
+                font-weight: bold;
+              "
             >
               {{ currentQuestion.option2 }}
             </button>
@@ -56,8 +61,14 @@
           <div class="col">
             <button
               type="button"
-              class="btn btn-danger"
-              style="width: 100%; height: 50px"
+              (click)="submitSolution('option3')"
+              style="
+                width: 100%;
+                height: 50px;
+                background-color: #8184db;
+                color: white;
+                font-weight: bold;
+              "
             >
               {{ currentQuestion.option3 }}
             </button>
@@ -67,8 +78,14 @@
           <div class="col">
             <button
               type="button"
-              class="btn btn-danger"
-              style="width: 100%; height: 50px"
+              (click)="submitSolution('option4')"
+              style="
+                width: 100%;
+                height: 50px;
+                background-color: #533a71;
+                color: white;
+                font-weight: bold;
+              "
             >
               {{ currentQuestion.option4 }}
             </button>
