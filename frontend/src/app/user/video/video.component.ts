@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { DataserviceService } from '../../services/dataservice.service';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-video',
   templateUrl: './video.component.html',
@@ -27,7 +27,7 @@ export class VideoComponent implements OnInit {
   count = 0;
   t: any;
 
-  constructor(private dataService: DataserviceService) {
+  constructor(private dataService: DataserviceService, private router: Router) {
     this.dataService.getQuestions("video", "1", "1", "1").subscribe(
       (data) => {
         this.list = data["data"]["questions"];
@@ -37,11 +37,14 @@ export class VideoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.duration = 225;
-    let interval = Math.floor(this.duration / 5);
-    this.t = [interval, interval * 2, interval * 3, interval * 4, interval * 5];
-    console.log(this.t);
-    this.quizInterval();
+    setTimeout(() => {
+      this.duration = this.video.nativeElement.duration;
+      let interval = Math.floor(this.duration / 5);
+      this.t = [interval, interval * 2, interval * 3, interval * 4, interval * 5];
+      // console.log(this.t);
+      this.quizInterval();
+    }, 1000)
+
   }
 
   quizInterval() {
@@ -111,7 +114,13 @@ export class VideoComponent implements OnInit {
     }
     if (questionNo === 5) {
       this.dataService.saveQuestions(this.solutions).subscribe(
-        (data) => { console.log(data) },
+        (data) => {
+          console.log(data);
+          if (data["type"] === "success") {
+            alert("Video Activity Result Saved");
+            this.router.navigate(['user/revision']);
+          }
+        },
         (err) => { console.log(err) }
       )
     }

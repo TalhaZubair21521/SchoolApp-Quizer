@@ -11,70 +11,67 @@ export class RevisionComponent implements OnInit {
   questions: any = null;
   currentQuestion: any = null;
   questionIndexCounter: any = 0;
-  timer: any = 5;
-  intialTimer: any = 5;
+  timer: any = 10;
   solutions: any = [];
   play: any = false;
   constructor(private dataService: DataserviceService) {
   }
 
   ngOnInit(): void {
-    this.dataService.getQuestions("revision", "1", "1", "1").subscribe(
-      (data) => {
-        this.questions = data["data"]["questions"];
-        this.CreateSolutions();
-        this.currentQuestion = this.questions[this.questionIndexCounter];
-        this.questionIndexCounter++;
-      },
-      err => { console.log(err) }
-    )
-
-    this.myInterval(() => {
-      this.intialTimer = this.intialTimer - 1;
-    }, 1000, 5);
-
-    this.myInterval(() => {
-      this.intialTimer == null;
-      this.timer = 5;
-      this.currentQuestion = this.questions[this.questionIndexCounter];
-      this.questionIndexCounter++;
-      this.myInterval(() => {
-        this.timer = this.timer - 1;
-      }, 1000, 5);
-    }, 5 * 1000, 5);
-    this.dataService.saveQuestions(this.solutions).subscribe(
-      (data) => { console.log(data) },
-      (err) => { console.log(err) }
-    )
   }
 
   handlePlay() {
     this.play = true;
+    this.dataService.getQuestions("revision", "1", "1", "1").subscribe(
+      (data) => {
+        this.questions = data["data"]["questions"];
+        this.CreateSolutions();
+        this.QuestionLoop();
+      },
+      err => { console.log(err) }
+    )
+
+    var x = 0;
+    var intervalID = window.setInterval(() => {
+      this.QuestionLoop();
+      if (++x === 5) {
+        window.clearInterval(intervalID);
+      }
+    }, 10000);
+  }
+
+  QuestionLoop() {
+    var x = 0;
+    var timerInterval = window.setInterval(() => {
+      this.timer = this.timer - 1;
+      if (++x === 10) {
+        this.timer = 10;
+        window.clearInterval(timerInterval);
+      }
+    }, 1000);
+    this.currentQuestion = this.questions[this.questionIndexCounter];
+    this.questionIndexCounter++;
+    if (this.questionIndexCounter === 6) {
+      this.questionIndexCounter = this.questionIndexCounter - 1;
+      console.table(this.solutions);
+      this.dataService.saveQuestions(this.solutions).subscribe(
+        (data) => {
+          console.log(data);
+          if (data["type"] === "success") {
+            alert("Revision Activity Result Saved");
+          }
+        },
+        (err) => { console.error(err) }
+      )
+    }
   }
   CreateSolutions() {
     this.questions.forEach((element) => {
       this.solutions.push({ questionID: element.questionID, answer: "" });
     });
   }
-
-  myInterval(callback, delay, repetitions) {
-    var x = 0;
-    var intervalID = window.setInterval(function () {
-      callback();
-      if (++x === repetitions) {
-        window.clearInterval(intervalID);
-      }
-    }, delay);
-  }
-
   submitSolution(option) {
     this.solutions[this.questionIndexCounter - 1].answer = this.currentQuestion[option];
-    if (this.questionIndexCounter === 5) {
-      this.dataService.saveQuestions(this.solutions).subscribe(
-        (data) => { console.log(data) },
-        (err) => { console.log(err) }
-      )
-    }
   }
 
 }
