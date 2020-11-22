@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -7,7 +7,6 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 export class DataserviceService {
   url = "http://localhost:1111/api/";
   constructor(private http: HttpClient) {
-
   }
   getQuestions(activtiy: string, classID: string, subjectID: string, chapterID: string) {
     const data = { activity: activtiy, class: classID, subject: subjectID, chapter: chapterID };
@@ -17,6 +16,6 @@ export class DataserviceService {
     return this.http.post<JSON>(this.url.concat("user/saveAnswers"), { data: solutions, userID: 1, belongToID: 1 });
   }
   addQuestions(data) {
-    return this.http.post<JSON>(this.url.concat("admin/addQuestions"), { data: data });
+    return this.http.post(this.url.concat("admin/addQuestions"), data);
   }
 }

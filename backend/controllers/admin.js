@@ -2,9 +2,7 @@ const db = require("../database/connect");
 const mysql = require("mysql");
 
 exports.SaveActivityQuestions = async (req, res) => {
-   console.log(req.body);
-   const data = req.body.data;
-
+   const data = JSON.parse(req.body.data);
    const videoSource = req.body.videoSource;
    //Inserting Belong To Details
    var query = mysql.format("INSERT INTO belongto (classID, subjectID, chapterID) VALUES (?,?,?)", [data.class, data.subject, data.chapter]);

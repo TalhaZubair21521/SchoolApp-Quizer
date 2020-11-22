@@ -14,6 +14,7 @@ export class VideoComponent implements OnInit {
   @ViewChild('popup4') popup4: ElementRef;
   @ViewChild('popup5') popup5: ElementRef;
 
+  videoURL: any = null;
   timecheck: any;
   answer1: any;
   answer2: any;
@@ -31,6 +32,7 @@ export class VideoComponent implements OnInit {
     this.dataService.getQuestions("video", "1", "1", "1").subscribe(
       (data) => {
         this.list = data["data"]["questions"];
+        this.videoURL = "http://localhost:1111/assets/videos/" + this.list[0].videoURL;
       },
       err => { console.log(err) }
     )

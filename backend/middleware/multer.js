@@ -2,10 +2,10 @@ const multer = require('multer');
 
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, 'assets')
+        cb(null, 'assets/videos/')
     },
     filename: function (req, file, cb) {
-        const filename = Data.now() + "-" + file.originalname;
+        const filename = Date.now() + "-" + file.originalname;
         req.body.videoSource = filename;
         cb(null, filename);
     }
