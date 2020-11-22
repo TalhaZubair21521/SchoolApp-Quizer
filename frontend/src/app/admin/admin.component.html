@@ -87,6 +87,14 @@
       </div>
       <div class="row">
         <div class="col">
+          <div class="d-md-flex align-items-center justify-content-center">
+            <input
+              type="file"
+              accept=".mp4"
+              name="uploadfile"
+              (change)="onFileSelected($event)"
+            />
+          </div>
           <!-- Video Activity -->
           <div class="card spacer">
             <h5 class="card-header">

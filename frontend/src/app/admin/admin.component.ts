@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { DataserviceService } from '../services/dataservice.service';
 
 @Component({
   selector: 'app-admin',
@@ -8,6 +9,8 @@ import { NgForm } from '@angular/forms';
 })
 export class AdminComponent implements OnInit {
 
+  file: File;
+  videoSrc;
   questions: any = {
     class: "1",
     subject: "1",
@@ -38,24 +41,47 @@ export class AdminComponent implements OnInit {
       { activity: "test", type: "oneword", question: "", option1: "noOption", option2: "noOption", option3: "noOption", option4: "noOption", answer: "", skill: "Observation" }
     ]
   };
-  constructor() { }
+  constructor(private dataService: DataserviceService) { }
 
   ngOnInit(): void {
   }
   onSubmit(formdata: NgForm) {
-    var flag = true;
-    this.questions.questions.forEach((question) => {
-      flag = !this.isSomethingEmpty(question);
-    });
-    if (flag) {
-      alert("Data Saved Into the Database");
+    if (!this.videoSrc) {
+      alert("No Video Selected !!");
     } else {
-      alert("Fill all Fields");
+      var flag = true;
+      this.questions.questions.forEach((question) => {
+        flag = !this.isSomethingEmpty(question);
+      });
+      if (flag) {
+        var data = new FormData();
+        data.append('video', this.file);
+        data.append('questions', this.questions);
+        this.dataService.addQuestions(this.questions).subscribe(
+          (data) => {
+            if (data["type"] === "success") {
+              alert("Data Saved Successfully");
+            } else {
+              alert("Error Occured");
+            }
+          },
+          (err) => { console.log(err) }
+        )
+      } else {
+        alert("Fill all Fields");
+      }
     }
   }
 
   isSomethingEmpty(question) {
     return (question.question === "" || question.answer === "" || question.option1 === "" || question.option2 === "" || question.option3 === "" || question.option4 === "");
+  }
+
+  onFileSelected($event) {
+    this.file = $event.target.files[0];
+    const reader = new FileReader();
+    reader.onload = e => this.videoSrc = reader.result;
+    reader.readAsDataURL(this.file);
   }
 
 }

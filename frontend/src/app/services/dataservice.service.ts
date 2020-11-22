@@ -16,4 +16,7 @@ export class DataserviceService {
   saveQuestions(solutions) {
     return this.http.post<JSON>(this.url.concat("user/saveAnswers"), { data: solutions, userID: 1, belongToID: 1 });
   }
+  addQuestions(data) {
+    return this.http.post<JSON>(this.url.concat("admin/addQuestions"), { data: data });
+  }
 }

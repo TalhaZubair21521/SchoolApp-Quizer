@@ -20,6 +20,7 @@ CREATE TABLE belongTo(
 CREATE TABLE activityQuestion(
     acitivityQuestionID int NOT NULL PRIMARY KEY AUTO_INCREMENT,
     activity varchar(100) NOT NULL,
+    videoURL varchar(100) NOT NULL,
     questionID int NOT NULL,
     belongToID int NOT NULL,
     FOREIGN KEY (questionID) REFERENCES question(questionID),
