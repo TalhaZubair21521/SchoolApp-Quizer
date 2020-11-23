@@ -17,15 +17,16 @@ app.use(bodyparser.urlencoded({ extended: true }));
 const user = require("./routes/user");
 const admin = require("./routes/admin");
 
-app.use('/assets', express.static('assets'));
-app.use(express.static(path.join(__dirname, 'public')));
-
 app.use("/api/user", user.routes);
 app.use("/api/admin", admin.routes);
 
-app.get("/", function (req, res) {
-    res.send("School App Backend");
+app.use('/assets', express.static('assets'));
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.use((req, res) => {
+    res.sendFile(path.join(__dirname, 'public/index.html'));
 });
+
 
 app.listen(port, host, () => {
     console.log("Your Server running at http://" + host + ":" + port);

@@ -5,7 +5,7 @@ exports.SaveActivityQuestions = async (req, res) => {
    const data = JSON.parse(req.body.data);
    const videoSource = req.body.videoSource;
    //Inserting Belong To Details
-   var query = mysql.format("INSERT INTO belongto (classID, subjectID, chapterID) VALUES (?,?,?)", [data.class, data.subject, data.chapter]);
+   var query = mysql.format("INSERT INTO belongto (classID, subjectID, chapterID) VALUES (?,?,?)", [1, 1, 1]);
    db.query(query, (err, result, fields) => {
       if (err) {
          console.log(err);
