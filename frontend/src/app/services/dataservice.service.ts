@@ -4,8 +4,9 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
+
 export class DataserviceService {
-  url = "/api/";
+  url = "api/";
   constructor(private http: HttpClient) {
   }
   getQuestions(activtiy: string, classID: string, subjectID: string, chapterID: string) {

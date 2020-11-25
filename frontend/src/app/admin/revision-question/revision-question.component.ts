@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { DataserviceService } from 'src/app/services/dataservice.service';
 
@@ -8,6 +8,8 @@ import { DataserviceService } from 'src/app/services/dataservice.service';
   styleUrls: ['./revision-question.component.css']
 })
 export class RevisionQuestionComponent implements OnInit {
+  @ViewChild('popup1') popup1: ElementRef;
+  @ViewChild('popup4') popup2: ElementRef;
   questions: any = {
     class: "1",
     subject: "1",
@@ -43,6 +45,24 @@ export class RevisionQuestionComponent implements OnInit {
   ngOnInit(): void {
   }
   onSubmit(formdata: NgForm) {
+    for (i = 0; i < this.questions.questions.length; i++) {
+      if (this.questions.questions[i].activity === "revision" && this.questions.questions[i].answer === "") {
+        let value = "revisionQ";
+        if (i === 5) {
+          value = value + "1";
+        } else if (i === 6) {
+          value = value + "2";
+        } else if (i === 7) {
+          value = value + "3";
+        } else if (i === 8) {
+          value = value + "4";
+        } else if (i === 9) {
+          value = value + "5";
+        }
+        value = value + "option4";
+        this.questions.questions[i].answer = formdata.value[value]
+      }
+    }
     var flag = [true, true, true, true, true];
     var i = 0;
     this.questions.questions.forEach((question) => {
@@ -51,15 +71,15 @@ export class RevisionQuestionComponent implements OnInit {
         i++;
       }
     });
+    console.log(this.questions.questions);
     if (flag[0] && flag[1] && flag[2] && flag[3] && flag[4]) {
-      // console.table(this.questions);
       this.dataService.addRevisionQuestions(this.questions).subscribe(
         (data) => {
           console.log(data);
           if (data["type"] === "success") {
-            console.log("Success");
+            this.popup1.nativeElement.click();
           } else {
-            console.log("Failure");
+            alert("Server not Responding");
           }
         },
         (err) => {
@@ -67,11 +87,15 @@ export class RevisionQuestionComponent implements OnInit {
         }
       )
     } else {
-      alert("Fill all Fields");
+      this.popup2.nativeElement.click()
+
     }
   }
 
   isSomethingEmpty(question) {
-    return (question.question !== "" && question.option1 !== "" && question.option2 !== "" && question.option3 !== "" && question.option4 !== "");
+    return (question.question !== "" && question.option1 !== "" && question.option2 !== "" && question.option3 !== "" && question.option4 !== "" && question.answer !== "");
+  }
+  changes() {
+    console.log("hello");
   }
 }

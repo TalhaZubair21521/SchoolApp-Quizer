@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { DataserviceService } from 'src/app/services/dataservice.service';
 
@@ -8,7 +8,10 @@ import { DataserviceService } from 'src/app/services/dataservice.service';
   styleUrls: ['./video-question.component.css']
 })
 export class VideoQuestionComponent implements OnInit {
-
+  @ViewChild('popup1') popup1: ElementRef;
+  @ViewChild('popup2') popup2: ElementRef;
+  @ViewChild('popup3') popup3: ElementRef;
+  @ViewChild('popup4') popup4: ElementRef;
   file: File;
   videoSrc;
   questions: any = {
@@ -48,12 +51,31 @@ export class VideoQuestionComponent implements OnInit {
 
   onSubmit(formdata: NgForm) {
     if (!this.videoSrc) {
-      alert("No Video Selected !!");
+      this.popup3.nativeElement.click();
     } else {
       const size = this.file.size / 1000000;
       if (size > 15) {
-        alert("File Size Must be less Than 15 MB");
+        this.popup2.nativeElement.click();
       } else {
+
+        for (var i = 0; i < this.questions.questions.length; i++) {
+          if (this.questions.questions[i].activity === "video" && this.questions.questions[i].answer === "") {
+            let value = "videoQ";
+            if (i === 0) {
+              value = value + "1";
+            } else if (i === 1) {
+              value = value + "2";
+            } else if (i === 2) {
+              value = value + "3";
+            } else if (i === 3) {
+              value = value + "4";
+            } else if (i === 4) {
+              value = value + "5";
+            }
+            value = value + "option4";
+            this.questions.questions[i].answer = formdata.value[value]
+          }
+        }
         var flag = [true, true, true, true, true];
         var i = 0;
         this.questions.questions.forEach((question) => {
@@ -66,14 +88,13 @@ export class VideoQuestionComponent implements OnInit {
           var data = new FormData();
           data.append('video', this.file);
           data.append('data', JSON.stringify(this.questions));
-          console.table(this.questions);
           this.dataService.addVideoQuestions(data).subscribe(
             (data) => {
-              console.log(data);
               if (data["type"] === "success") {
-                console.log("Success");
+                console.log(this.questions.questions);
+                this.popup1.nativeElement.click();
               } else {
-                console.log("Failure");
+                alert("Server not Responding");
               }
             },
             (err) => {
@@ -81,14 +102,14 @@ export class VideoQuestionComponent implements OnInit {
             }
           )
         } else {
-          alert("Fill all Fields");
+          this.popup4.nativeElement.click();
         }
       }
     }
   }
 
   isSomethingEmpty(question) {
-    return (question.question !== "" && question.option1 !== "" && question.option2 !== "" && question.option3 !== "" && question.option4 !== "");
+    return (question.question !== "" && question.option1 !== "" && question.option2 !== "" && question.option3 !== "" && question.option4 !== "" && question.answer !== "");
   }
 
   onFileSelected($event) {

@@ -275,7 +275,7 @@
                               class="form-control"
                               id="Question1"
                               placeholder="Enter Choice 1"
-                              name="videoQ1option1"
+                              name="videoQ2option1"
                               [(ngModel)]="questions.questions[1].option1"
                             />
                           </label>
@@ -296,7 +296,7 @@
                               class="form-control"
                               id="Question2"
                               placeholder="Enter Choice 2"
-                              name="videoQ1option2"
+                              name="videoQ2option2"
                               [(ngModel)]="questions.questions[1].option2"
                             />
                           </label>
@@ -317,7 +317,7 @@
                               class="form-control"
                               id="Question3"
                               placeholder="Enter Choice 3"
-                              name="videoQ1option3"
+                              name="videoQ2option3"
                               [(ngModel)]="questions.questions[1].option3"
                             />
                           </label>
@@ -338,7 +338,7 @@
                               class="form-control"
                               id="Question4"
                               placeholder="Enter Choice 4"
-                              name="videoQ1option4"
+                              name="videoQ2option4"
                               [(ngModel)]="questions.questions[1].option4"
                             />
                           </label>
@@ -390,7 +390,7 @@
                               class="form-control"
                               id="Question1"
                               placeholder="Enter Choice 1"
-                              name="videoQ1option1"
+                              name="videoQ3option1"
                               [(ngModel)]="questions.questions[2].option1"
                             />
                           </label>
@@ -411,7 +411,7 @@
                               class="form-control"
                               id="Question2"
                               placeholder="Enter Choice 2"
-                              name="videoQ1option2"
+                              name="videoQ3option2"
                               [(ngModel)]="questions.questions[2].option2"
                             />
                           </label>
@@ -432,7 +432,7 @@
                               class="form-control"
                               id="Question3"
                               placeholder="Enter Choice 3"
-                              name="videoQ1option3"
+                              name="videoQ3option3"
                               [(ngModel)]="questions.questions[2].option3"
                             />
                           </label>
@@ -453,7 +453,7 @@
                               class="form-control"
                               id="Question4"
                               placeholder="Enter Choice 4"
-                              name="videoQ1option4"
+                              name="videoQ3option4"
                               [(ngModel)]="questions.questions[2].option4"
                             />
                           </label>
@@ -505,7 +505,7 @@
                               class="form-control"
                               id="Question1"
                               placeholder="Enter Choice 1"
-                              name="videoQ1option1"
+                              name="videoQ4option1"
                               [(ngModel)]="questions.questions[3].option1"
                             />
                           </label>
@@ -526,7 +526,7 @@
                               class="form-control"
                               id="Question2"
                               placeholder="Enter Choice 2"
-                              name="videoQ1option2"
+                              name="videoQ4option2"
                               [(ngModel)]="questions.questions[3].option2"
                             />
                           </label>
@@ -547,7 +547,7 @@
                               class="form-control"
                               id="Question3"
                               placeholder="Enter Choice 3"
-                              name="videoQ1option3"
+                              name="videoQ4option3"
                               [(ngModel)]="questions.questions[3].option3"
                             />
                           </label>
@@ -568,7 +568,7 @@
                               class="form-control"
                               id="Question4"
                               placeholder="Enter Choice 4"
-                              name="videoQ1option4"
+                              name="videoQ4option4"
                               [(ngModel)]="questions.questions[3].option4"
                             />
                           </label>
@@ -620,7 +620,7 @@
                               class="form-control"
                               id="Question1"
                               placeholder="Enter Choice 1"
-                              name="videoQ1option1"
+                              name="videoQ5option1"
                               [(ngModel)]="questions.questions[4].option1"
                             />
                           </label>
@@ -641,7 +641,7 @@
                               class="form-control"
                               id="Question2"
                               placeholder="Enter Choice 2"
-                              name="videoQ1option2"
+                              name="videoQ5option2"
                               [(ngModel)]="questions.questions[4].option2"
                             />
                           </label>
@@ -662,7 +662,7 @@
                               class="form-control"
                               id="Question3"
                               placeholder="Enter Choice 3"
-                              name="videoQ1option3"
+                              name="videoQ5option3"
                               [(ngModel)]="questions.questions[4].option3"
                             />
                           </label>
@@ -683,7 +683,7 @@
                               class="form-control"
                               id="Question4"
                               placeholder="Enter Choice 4"
-                              name="videoQ1option4"
+                              name="videoQ5option4"
                               [(ngModel)]="questions.questions[4].option4"
                             />
                           </label>
@@ -702,4 +702,222 @@
       </div>
     </div>
   </form>
+</div>
+
+<button
+  type="button"
+  #popup1
+  [hidden]="true"
+  class="btn btn-primary"
+  data-toggle="modal"
+  data-target="#question1"
+>
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="question1"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="card mb-3">
+          <div class="card-header">
+            <div class="row">
+              <div class="col text-center">Data Succcessfully Saved</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-sm btn-danger"
+          data-dismiss="modal"
+        >
+          Ok
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<button
+  type="button"
+  #popup2
+  [hidden]="true"
+  class="btn btn-primary"
+  data-toggle="modal"
+  data-target="#question2"
+>
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="question2"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="card mb-3">
+          <div class="card-header">
+            <div class="row">
+              <div class="col text-center">
+                File Size Must be Less than 15 MB
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-sm btn-danger"
+          data-dismiss="modal"
+        >
+          Ok
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<button
+  type="button"
+  #popup3
+  [hidden]="true"
+  class="btn btn-primary"
+  data-toggle="modal"
+  data-target="#question3"
+>
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="question3"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="card mb-3">
+          <div class="card-header">
+            <div class="row">
+              <div class="col text-center">No Video Selected</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-sm btn-danger"
+          data-dismiss="modal"
+        >
+          Ok
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<button
+  type="button"
+  #popup4
+  [hidden]="true"
+  class="btn btn-primary"
+  data-toggle="modal"
+  data-target="#question4"
+>
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="question4"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="card mb-3">
+          <div class="card-header">
+            <div class="row">
+              <div class="col text-center">Fill All the Fields</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-sm btn-danger"
+          data-dismiss="modal"
+        >
+          Ok
+        </button>
+      </div>
+    </div>
+  </div>
 </div>

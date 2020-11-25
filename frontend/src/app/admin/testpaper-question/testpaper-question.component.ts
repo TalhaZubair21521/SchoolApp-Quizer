@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { DataserviceService } from 'src/app/services/dataservice.service';
 
@@ -8,6 +8,8 @@ import { DataserviceService } from 'src/app/services/dataservice.service';
   styleUrls: ['./testpaper-question.component.css']
 })
 export class TestpaperQuestionComponent implements OnInit {
+  @ViewChild('popup1') popup1: ElementRef;
+  @ViewChild('popup4') popup2: ElementRef;
   questions: any = {
     class: "1",
     subject: "1",
@@ -51,14 +53,16 @@ export class TestpaperQuestionComponent implements OnInit {
         i++;
       }
     });
+    console.log(flag);
+
     if (flag[0] && flag[1] && flag[2] && flag[3] && flag[4]) {
       this.dataService.addTestQuestions(this.questions).subscribe(
         (data) => {
           console.log(data);
           if (data["type"] === "success") {
-            console.log("Success");
+            this.popup1.nativeElement.click();
           } else {
-            console.log("Failure");
+            alert("Server not Responding");
           }
         },
         (err) => {
@@ -66,11 +70,11 @@ export class TestpaperQuestionComponent implements OnInit {
         }
       )
     } else {
-      alert("Fill all Fields");
+      this.popup2.nativeElement.click()
     }
   }
 
   isSomethingEmpty(question) {
-    return (question.question !== "" && question.option1 !== "" && question.option2 !== "" && question.option3 !== "" && question.option4 !== "");
+    return (question.question !== "" && question.option1 !== "" && question.option2 !== "" && question.option3 !== "" && question.option4 !== "" && question.answer !== "");
   }
 }
