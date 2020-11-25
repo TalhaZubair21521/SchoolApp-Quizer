@@ -50,30 +50,36 @@ export class VideoQuestionComponent implements OnInit {
     if (!this.videoSrc) {
       alert("No Video Selected !!");
     } else {
-      if (Math.floor(this.file.size / 1000000)) {
+      const size = this.file.size / 1000000;
+      if (size > 15) {
         alert("File Size Must be less Than 15 MB");
       } else {
-        var flag = true;
+        var flag = [true, true, true, true, true];
+        var i = 0;
         this.questions.questions.forEach((question) => {
-          flag = !this.isSomethingEmpty(question);
+          if (question.activity === "video") {
+            flag[i] = this.isSomethingEmpty(question);
+            i++;
+          }
         });
-        if (flag) {
+        if (flag[0] && flag[1] && flag[2] && flag[3] && flag[4]) {
           var data = new FormData();
           data.append('video', this.file);
           data.append('data', JSON.stringify(this.questions));
           console.table(this.questions);
-          // this.dataService.addQuestions(data).subscribe(
-          //   (data) => {
-          //     if (data["type"] === "success") {
-          //       alert("Data Saved Successfully");
-          //     } else {
-          //       alert("Error Occured");
-          //     }
-          //   },
-          //   (err) => {
-          //     console.log(err)
-          //   }
-          // )
+          this.dataService.addVideoQuestions(data).subscribe(
+            (data) => {
+              console.log(data);
+              if (data["type"] === "success") {
+                console.log("Success");
+              } else {
+                console.log("Failure");
+              }
+            },
+            (err) => {
+              console.log(err)
+            }
+          )
         } else {
           alert("Fill all Fields");
         }
@@ -82,18 +88,13 @@ export class VideoQuestionComponent implements OnInit {
   }
 
   isSomethingEmpty(question) {
-    return (question.question === "" || question.answer === "" || question.option1 === "" || question.option2 === "" || question.option3 === "" || question.option4 === "");
+    return (question.question !== "" && question.option1 !== "" && question.option2 !== "" && question.option3 !== "" && question.option4 !== "");
   }
 
   onFileSelected($event) {
     this.file = $event.target.files[0];
-    var size = Math.floor(this.file.size / 1000000);
-    if (size < 15) {
-      const reader = new FileReader();
-      reader.onload = e => this.videoSrc = reader.result;
-      reader.readAsDataURL(this.file);
-    } else {
-      alert("File Size is Greater Than 15MB")
-    }
+    const reader = new FileReader();
+    reader.onload = e => this.videoSrc = reader.result;
+    reader.readAsDataURL(this.file);
   }
 }

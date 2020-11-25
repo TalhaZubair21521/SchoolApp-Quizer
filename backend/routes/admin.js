@@ -5,6 +5,9 @@ const router = express.Router();
 
 const VideoSaverMiddleware = require("../middleware/multer");
 
-router.post("/addQuestions", VideoSaverMiddleware.upload.single("video"), adminController.SaveActivityQuestions);
+router.post("/videoQuestions", VideoSaverMiddleware.upload.single("video"), adminController.SaveActivityQuestions);
+router.post("/revisionQuestions", adminController.SaveRevisionQuestions);
+router.post("/gameQuestions", adminController.SaveGameQuestions);
+router.post("/testQuestions", adminController.SaveTestQuestions);
 
 exports.routes = router;

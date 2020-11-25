@@ -10,14 +10,16 @@ CREATE TABLE question(
     skill varchar(30) NOT NULL
 );
 
-CREATE TABLE belongTo(
+CREATE TABLE belongto(
     belongToID int NOT NULL PRIMARY KEY AUTO_INCREMENT,
     classID varchar(30) NOT NULL,
     subjectID varchar(30) NOT NULL,
     chapterID varchar(30) NOT NULL
 );
 
-CREATE TABLE activityQuestion(
+insert into belongto (classID,subjectID,chapterID) values (1,1,1);
+
+CREATE TABLE activityquestion(
     acitivityQuestionID int NOT NULL PRIMARY KEY AUTO_INCREMENT,
     activity varchar(100) NOT NULL,
     videoURL varchar(100) NOT NULL,
@@ -27,7 +29,7 @@ CREATE TABLE activityQuestion(
     FOREIGN KEY (belongToID) REFERENCES belongTo(belongToID)
 );
 
-CREATE TABLE userAnswer(
+CREATE TABLE useranswer(
     userAnswerID int NOT NULL PRIMARY KEY AUTO_INCREMENT,
     userID varchar(100) NOT NULL,
     questionID int NOT NULL,

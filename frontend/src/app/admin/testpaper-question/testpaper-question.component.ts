@@ -43,32 +43,34 @@ export class TestpaperQuestionComponent implements OnInit {
   ngOnInit(): void {
   }
   onSubmit(formdata: NgForm) {
-    var flag = true;
+    var flag = [true, true, true, true, true];
+    var i = 0;
     this.questions.questions.forEach((question) => {
-      flag = !this.isSomethingEmpty(question);
+      if (question.activity === "test") {
+        flag[i] = this.isSomethingEmpty(question);
+        i++;
+      }
     });
-    if (flag) {
-      var data = new FormData();
-      data.append('data', JSON.stringify(this.questions));
-      console.table(this.questions);
-      // this.dataService.addQuestions(data).subscribe(
-      //   (data) => {
-      //     if (data["type"] === "success") {
-      //       alert("Data Saved Successfully");
-      //     } else {
-      //       alert("Error Occured");
-      //     }
-      //   },
-      //   (err) => {
-      //     console.log(err)
-      //   }
-      // )
+    if (flag[0] && flag[1] && flag[2] && flag[3] && flag[4]) {
+      this.dataService.addTestQuestions(this.questions).subscribe(
+        (data) => {
+          console.log(data);
+          if (data["type"] === "success") {
+            console.log("Success");
+          } else {
+            console.log("Failure");
+          }
+        },
+        (err) => {
+          console.log(err)
+        }
+      )
     } else {
       alert("Fill all Fields");
     }
   }
 
   isSomethingEmpty(question) {
-    return (question.question === "" || question.answer === "" || question.option1 === "" || question.option2 === "" || question.option3 === "" || question.option4 === "");
+    return (question.question !== "" && question.option1 !== "" && question.option2 !== "" && question.option3 !== "" && question.option4 !== "");
   }
 }

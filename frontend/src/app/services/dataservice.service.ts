@@ -15,7 +15,16 @@ export class DataserviceService {
   saveQuestions(solutions) {
     return this.http.post<JSON>(this.url.concat("user/saveAnswers"), { data: solutions, userID: 1, belongToID: 1 });
   }
-  addQuestions(data) {
-    return this.http.post(this.url.concat("admin/addQuestions"), data);
+  addVideoQuestions(data) {
+    return this.http.post(this.url.concat("admin/videoQuestions"), data);
+  }
+  addRevisionQuestions(data) {
+    return this.http.post(this.url.concat("admin/revisionQuestions"), data);
+  }
+  addGameQuestions(data) {
+    return this.http.post(this.url.concat("admin/gameQuestions"), data);
+  }
+  addTestQuestions(data) {
+    return this.http.post(this.url.concat("admin/testQuestions"), data);
   }
 }
