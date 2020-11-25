@@ -27,7 +27,6 @@ app.use((req, res) => {
     res.sendFile(path.join(__dirname, 'public/index.html'));
 });
 
-
 app.listen(port, host, () => {
     console.log("Your Server running at http://" + host + ":" + port);
 });

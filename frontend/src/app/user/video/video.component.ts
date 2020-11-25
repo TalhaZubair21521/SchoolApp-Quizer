@@ -32,7 +32,8 @@ export class VideoComponent implements OnInit {
     this.dataService.getQuestions("video", "1", "1", "1").subscribe(
       (data) => {
         this.list = data["data"]["questions"];
-        this.videoURL = "http://localhost:1111/assets/videos/" + this.list[0].videoURL;
+        console.log(this.list);
+        this.videoURL = "/assets/videos/" + this.list[0].videoURL;
       },
       err => { console.log(err) }
     )
@@ -43,7 +44,7 @@ export class VideoComponent implements OnInit {
       this.duration = this.video.nativeElement.duration;
       let interval = Math.floor(this.duration / 5);
       this.t = [interval, interval * 2, interval * 3, interval * 4, interval * 5];
-      // console.log(this.t);
+      console.log(this.t);
       this.quizInterval();
     }, 1000)
 

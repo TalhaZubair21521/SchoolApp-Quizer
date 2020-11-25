@@ -1,16 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { DataserviceService } from '../services/dataservice.service';
+import { DataserviceService } from 'src/app/services/dataservice.service';
 
 @Component({
-  selector: 'app-admin',
-  templateUrl: './admin.component.html',
-  styleUrls: ['./admin.component.css']
+  selector: 'app-game-question',
+  templateUrl: './game-question.component.html',
+  styleUrls: ['./game-question.component.css']
 })
-export class AdminComponent implements OnInit {
+export class GameQuestionComponent implements OnInit {
 
-  file: File;
-  videoSrc;
   questions: any = {
     class: "1",
     subject: "1",
@@ -46,50 +44,31 @@ export class AdminComponent implements OnInit {
   ngOnInit(): void {
   }
   onSubmit(formdata: NgForm) {
-    if (!this.videoSrc) {
-      alert("No Video Selected !!");
+    var flag = true;
+    this.questions.questions.forEach((question) => {
+      flag = !this.isSomethingEmpty(question);
+    });
+    if (flag) {
+      var data = new FormData();
+      data.append('data', JSON.stringify(this.questions));
+      console.table(this.questions);
+      // this.dataService.addQuestions(data).subscribe(
+      //   (data) => {
+      //     if (data["type"] === "success") {
+      //       alert("Data Saved Successfully");
+      //     } else {
+      //       alert("Error Occured");
+      //     }
+      //   },
+      //   (err) => { console.log(err) 
+      //   }
+      // )
     } else {
-      var flag = true;
-      this.questions.questions.forEach((question) => {
-        flag = !this.isSomethingEmpty(question);
-      });
-      if (flag) {
-        var data = new FormData();
-        data.append('video', this.file);
-        data.append('data', JSON.stringify(this.questions));
-        console.table(this.questions);
-        this.dataService.addQuestions(data).subscribe(
-          (data) => {
-            if (data["type"] === "success") {
-              alert("Data Saved Successfully");
-            } else {
-              alert("Error Occured");
-            }
-          },
-          (err) => { console.log(err) }
-        )
-      } else {
-        alert("Fill all Fields");
-      }
+      alert("Fill all Fields");
     }
   }
 
   isSomethingEmpty(question) {
     return (question.question === "" || question.answer === "" || question.option1 === "" || question.option2 === "" || question.option3 === "" || question.option4 === "");
   }
-
-  onFileSelected($event) {
-    this.file = $event.target.files[0];
-    var size = Math.floor(this.file.size / 1000000);
-    console.log(size);
-    if (size < 15) {
-      const reader = new FileReader();
-      reader.onload = e => this.videoSrc = reader.result;
-      reader.readAsDataURL(this.file);
-    } else {
-      alert("File Size is Greater Than 15MB")
-    }
-  }
-
-
 }

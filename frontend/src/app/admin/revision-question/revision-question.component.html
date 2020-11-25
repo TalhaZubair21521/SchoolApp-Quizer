@@ -1,0 +1,680 @@
+<div class="card m-5 p-4">
+  <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+    <div class="container mt-3">
+      
+      <div class="row">
+        <div class="col">
+          
+          <!-- Revision Exercise -->
+          <div class="card spacer">
+            <h5 class="card-header">
+              <a
+                data-toggle="collapse"
+                href="#revision"
+                aria-expanded="true"
+                aria-controls="collapse-example"
+                id="heading-example"
+                class="d-block"
+                style="text-decoration: none"
+              >
+                <i class="fa fa-chevron-down pull-right"></i>
+                Revision Exercise Activity
+              </a>
+            </h5>
+            <div
+              id="revision"
+              class="collapse"
+              aria-labelledby="heading-example"
+            >
+              <!-- Question 1 -->
+              <div class="card-body">
+                <div class="questions">
+                    <div class="row justify-content-center">
+        <div class="col-3">
+          <div class="form-group">
+            <h5 style="text-align: center" for="exampleFormControlSelect1">
+              Choose Class
+            </h5>
+            <select
+              class="form-control"
+              id="exampleFormControlSelect1"
+              name="class"
+              [(ngModel)]="questions.class"
+            >
+              <option value="1">Class 1</option>
+              <option value="2">Class 2</option>
+              <option value="3">Class 3</option>
+              <option value="4">Class 4</option>
+              <option value="5">Class 5</option>
+              <option value="6">Class 6</option>
+              <option value="7">Class 7</option>
+              <option value="8">Class 8</option>
+              <option value="9">Class 9</option>
+              <option value="10">Class 10</option>
+              <option value="11">Class 11</option>
+              <option value="12">Class 12</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="form-group">
+            <h5 style="text-align: center" for="exampleFormControlSelect1">
+              Choose Subject
+            </h5>
+            <select
+              class="form-control"
+              id="exampleFormControlSelect1"
+              name="subject"
+              [(ngModel)]="questions.subject"
+            >
+              <option value="1">Subject Name 1</option>
+              <option value="2">Subject Name 2</option>
+              <option value="3">Subject Name 3</option>
+              <option value="4">Subject Name 4</option>
+              <option value="5">Subject Name 5</option>
+              <option value="6">Subject Name 6</option>
+              <option value="7">Subject Name 7</option>
+              <option value="8">Subject Name 8</option>
+              <option value="9">Subject Name 9</option>
+              <option value="10">Subject Name 10</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="form-group">
+            <h5 style="text-align: center" for="exampleFormControlSelect1">
+              Choose Chapter
+            </h5>
+            <select
+              class="form-control"
+              id="exampleFormControlSelect1"
+              name="chapter"
+              [(ngModel)]="questions.chapter"
+            >
+              <option value="1">Chapter 1</option>
+              <option value="2">Chapter 2</option>
+              <option value="3">Chapter 3</option>
+              <option value="4">Chapter 4</option>
+              <option value="5">Chapter 5</option>
+              <option value="6">Chapter 6</option>
+              <option value="7">Chapter 7</option>
+              <option value="8">Chapter 8</option>
+              <option value="9">Chapter 9</option>
+              <option value="10">Chapter 10</option>
+            </select>
+          </div>
+        </div>
+      </div>
+                  <div class="card mb-3">
+                    <div class="card-header text-right" style="color: brown">
+                      {{ questions.questions[5].skill }}
+                    </div>
+                    <div class="card-body">
+                      <h5 class="card-title">Question 1</h5>
+                      <div class="form-group">
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="Question1"
+                          aria-describedby="QHelp"
+                          placeholder="Enter Question Here"
+                          name="revisionQ1"
+                          [(ngModel)]="questions.questions[5].question"
+                        />
+                        <small id="QHelp" class="form-text text-muted"
+                          >Enter Choices and click correct choice.</small
+                        >
+                      </div>
+                      <div class="choices">
+                        <div class="form-check mt-2">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="revisionQ1answer"
+                            [(ngModel)]="questions.questions[5].answer"
+                            id="c1"
+                            [(value)]="questions.questions[5].option1"
+                            style="margin-top: 10px"
+                          />
+                          <label class="form-check-label" for="c1">
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="Question1"
+                              placeholder="Enter Choice 1"
+                              name="videoQ1option1"
+                              [(ngModel)]="questions.questions[5].option1"
+                            />
+                          </label>
+                        </div>
+                        <div class="form-check mt-2">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="revisionQ1answer"
+                            id="c2"
+                            [(ngModel)]="questions.questions[5].answer"
+                            [(value)]="questions.questions[5].option2"
+                            style="margin-top: 10px"
+                          />
+                          <label class="form-check-label" for="c2">
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="Question2"
+                              placeholder="Enter Choice 2"
+                              name="videoQ1option2"
+                              [(ngModel)]="questions.questions[5].option2"
+                            />
+                          </label>
+                        </div>
+                        <div class="form-check mt-2">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="revisionQ1answer"
+                            id="c3"
+                            [(ngModel)]="questions.questions[5].answer"
+                            [(value)]="questions.questions[5].option3"
+                            style="margin-top: 10px"
+                          />
+                          <label class="form-check-label" for="c3">
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="Question3"
+                              placeholder="Enter Choice 3"
+                              name="videoQ1option3"
+                              [(ngModel)]="questions.questions[5].option3"
+                            />
+                          </label>
+                        </div>
+                        <div class="form-check mt-2">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="revisionQ1answer"
+                            id="c4"
+                            [(ngModel)]="questions.questions[5].answer"
+                            [(value)]="questions.questions[5].option4"
+                            style="margin-top: 10px"
+                          />
+                          <label class="form-check-label" for="c4">
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="Question4"
+                              placeholder="Enter Choice 4"
+                              name="videoQ1option4"
+                              [(ngModel)]="questions.questions[5].option4"
+                            />
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Question 2 -->
+              <div class="card-body">
+                <div class="questions">
+                  <div class="card mb-3">
+                    <div class="card-header text-right" style="color: brown">
+                      {{ questions.questions[6].skill }}
+                    </div>
+                    <div class="card-body">
+                      <h5 class="card-title">Question 2</h5>
+                      <div class="form-group">
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="Question1"
+                          aria-describedby="QHelp"
+                          placeholder="Enter Question Here"
+                          name="revisionQ2"
+                          [(ngModel)]="questions.questions[6].question"
+                        />
+                        <small id="QHelp" class="form-text text-muted"
+                          >Enter Choices and click correct choice.</small
+                        >
+                      </div>
+                      <div class="choices">
+                        <div class="form-check mt-2">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="revisionQ2answer"
+                            [(ngModel)]="questions.questions[6].answer"
+                            id="c1"
+                            [(value)]="questions.questions[6].option1"
+                            style="margin-top: 10px"
+                          />
+                          <label class="form-check-label" for="c1">
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="Question1"
+                              placeholder="Enter Choice 1"
+                              name="videoQ1option1"
+                              [(ngModel)]="questions.questions[6].option1"
+                            />
+                          </label>
+                        </div>
+                        <div class="form-check mt-2">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="revisionQ2answer"
+                            id="c2"
+                            [(ngModel)]="questions.questions[6].answer"
+                            [(value)]="questions.questions[6].option2"
+                            style="margin-top: 10px"
+                          />
+                          <label class="form-check-label" for="c2">
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="Question2"
+                              placeholder="Enter Choice 2"
+                              name="videoQ1option2"
+                              [(ngModel)]="questions.questions[6].option2"
+                            />
+                          </label>
+                        </div>
+                        <div class="form-check mt-2">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="revisionQ2answer"
+                            id="c3"
+                            [(ngModel)]="questions.questions[6].answer"
+                            [(value)]="questions.questions[6].option3"
+                            style="margin-top: 10px"
+                          />
+                          <label class="form-check-label" for="c3">
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="Question3"
+                              placeholder="Enter Choice 3"
+                              name="videoQ1option3"
+                              [(ngModel)]="questions.questions[6].option3"
+                            />
+                          </label>
+                        </div>
+                        <div class="form-check mt-2">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="revisionQ2answer"
+                            id="c4"
+                            [(ngModel)]="questions.questions[6].answer"
+                            [(value)]="questions.questions[6].option4"
+                            style="margin-top: 10px"
+                          />
+                          <label class="form-check-label" for="c4">
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="Question4"
+                              placeholder="Enter Choice 4"
+                              name="videoQ1option4"
+                              [(ngModel)]="questions.questions[6].option4"
+                            />
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Question 3 -->
+              <div class="card-body">
+                <div class="questions">
+                  <div class="card mb-3">
+                    <div class="card-header text-right" style="color: brown">
+                      {{ questions.questions[7].skill }}
+                    </div>
+                    <div class="card-body">
+                      <h5 class="card-title">Question 3</h5>
+                      <div class="form-group">
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="Question1"
+                          aria-describedby="QHelp"
+                          placeholder="Enter Question Here"
+                          name="revisionQ3"
+                          [(ngModel)]="questions.questions[7].question"
+                        />
+                        <small id="QHelp" class="form-text text-muted"
+                          >Enter Choices and click correct choice.</small
+                        >
+                      </div>
+                      <div class="choices">
+                        <div class="form-check mt-2">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="revisionQ3answer"
+                            [(ngModel)]="questions.questions[7].answer"
+                            id="c1"
+                            [(value)]="questions.questions[7].option1"
+                            style="margin-top: 10px"
+                          />
+                          <label class="form-check-label" for="c1">
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="Question1"
+                              placeholder="Enter Choice 1"
+                              name="videoQ1option1"
+                              [(ngModel)]="questions.questions[7].option1"
+                            />
+                          </label>
+                        </div>
+                        <div class="form-check mt-2">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="revisionQ3answer"
+                            id="c2"
+                            [(ngModel)]="questions.questions[7].answer"
+                            [(value)]="questions.questions[7].option2"
+                            style="margin-top: 10px"
+                          />
+                          <label class="form-check-label" for="c2">
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="Question2"
+                              placeholder="Enter Choice 2"
+                              name="videoQ1option2"
+                              [(ngModel)]="questions.questions[7].option2"
+                            />
+                          </label>
+                        </div>
+                        <div class="form-check mt-2">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="revisionQ3answer"
+                            id="c3"
+                            [(ngModel)]="questions.questions[7].answer"
+                            [(value)]="questions.questions[7].option3"
+                            style="margin-top: 10px"
+                          />
+                          <label class="form-check-label" for="c3">
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="Question3"
+                              placeholder="Enter Choice 3"
+                              name="videoQ1option3"
+                              [(ngModel)]="questions.questions[7].option3"
+                            />
+                          </label>
+                        </div>
+                        <div class="form-check mt-2">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="revisionQ3answer"
+                            id="c4"
+                            [(ngModel)]="questions.questions[7].answer"
+                            [(value)]="questions.questions[7].option4"
+                            style="margin-top: 10px"
+                          />
+                          <label class="form-check-label" for="c4">
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="Question4"
+                              placeholder="Enter Choice 4"
+                              name="videoQ1option4"
+                              [(ngModel)]="questions.questions[7].option4"
+                            />
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Question 4 -->
+              <div class="card-body">
+                <div class="questions">
+                  <div class="card mb-3">
+                    <div class="card-header text-right" style="color: brown">
+                      {{ questions.questions[8].skill }}
+                    </div>
+                    <div class="card-body">
+                      <h5 class="card-title">Question 4</h5>
+                      <div class="form-group">
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="Question1"
+                          aria-describedby="QHelp"
+                          placeholder="Enter Question Here"
+                          name="revisionQ4"
+                          [(ngModel)]="questions.questions[8].question"
+                        />
+                        <small id="QHelp" class="form-text text-muted"
+                          >Enter Choices and click correct choice.</small
+                        >
+                      </div>
+                      <div class="choices">
+                        <div class="form-check mt-2">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="revisionQ4answer"
+                            [(ngModel)]="questions.questions[8].answer"
+                            id="c1"
+                            [(value)]="questions.questions[8].option1"
+                            style="margin-top: 10px"
+                          />
+                          <label class="form-check-label" for="c1">
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="Question1"
+                              placeholder="Enter Choice 1"
+                              name="videoQ1option1"
+                              [(ngModel)]="questions.questions[8].option1"
+                            />
+                          </label>
+                        </div>
+                        <div class="form-check mt-2">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="revisionQ4answer"
+                            id="c2"
+                            [(ngModel)]="questions.questions[8].answer"
+                            [(value)]="questions.questions[8].option2"
+                            style="margin-top: 10px"
+                          />
+                          <label class="form-check-label" for="c2">
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="Question2"
+                              placeholder="Enter Choice 2"
+                              name="videoQ1option2"
+                              [(ngModel)]="questions.questions[8].option2"
+                            />
+                          </label>
+                        </div>
+                        <div class="form-check mt-2">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="revisionQ4answer"
+                            id="c3"
+                            [(ngModel)]="questions.questions[8].answer"
+                            [(value)]="questions.questions[8].option3"
+                            style="margin-top: 10px"
+                          />
+                          <label class="form-check-label" for="c3">
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="Question3"
+                              placeholder="Enter Choice 3"
+                              name="videoQ1option3"
+                              [(ngModel)]="questions.questions[8].option3"
+                            />
+                          </label>
+                        </div>
+                        <div class="form-check mt-2">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="revisionQ4answer"
+                            id="c4"
+                            [(ngModel)]="questions.questions[8].answer"
+                            [(value)]="questions.questions[8].option4"
+                            style="margin-top: 10px"
+                          />
+                          <label class="form-check-label" for="c4">
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="Question4"
+                              placeholder="Enter Choice 4"
+                              name="videoQ1option4"
+                              [(ngModel)]="questions.questions[8].option4"
+                            />
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Question 5 -->
+              <div class="card-body">
+                <div class="questions">
+                  <div class="card mb-3">
+                    <div class="card-header text-right" style="color: brown">
+                      {{ questions.questions[9].skill }}
+                    </div>
+                    <div class="card-body">
+                      <h5 class="card-title">Question 5</h5>
+                      <div class="form-group">
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="Question1"
+                          aria-describedby="QHelp"
+                          placeholder="Enter Question Here"
+                          name="revisionQ5"
+                          [(ngModel)]="questions.questions[9].question"
+                        />
+                        <small id="QHelp" class="form-text text-muted"
+                          >Enter Choices and click correct choice.</small
+                        >
+                      </div>
+                      <div class="choices">
+                        <div class="form-check mt-2">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="revisionQ5answer"
+                            [(ngModel)]="questions.questions[9].answer"
+                            id="c1"
+                            [(value)]="questions.questions[9].option1"
+                            style="margin-top: 10px"
+                          />
+                          <label class="form-check-label" for="c1">
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="Question1"
+                              placeholder="Enter Choice 1"
+                              name="videoQ1option1"
+                              [(ngModel)]="questions.questions[9].option1"
+                            />
+                          </label>
+                        </div>
+                        <div class="form-check mt-2">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="revisionQ5answer"
+                            id="c2"
+                            [(ngModel)]="questions.questions[9].answer"
+                            [(value)]="questions.questions[9].option2"
+                            style="margin-top: 10px"
+                          />
+                          <label class="form-check-label" for="c2">
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="Question2"
+                              placeholder="Enter Choice 2"
+                              name="videoQ1option2"
+                              [(ngModel)]="questions.questions[9].option2"
+                            />
+                          </label>
+                        </div>
+                        <div class="form-check mt-2">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="revisionQ5answer"
+                            id="c3"
+                            [(ngModel)]="questions.questions[9].answer"
+                            [(value)]="questions.questions[9].option3"
+                            style="margin-top: 10px"
+                          />
+                          <label class="form-check-label" for="c3">
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="Question3"
+                              placeholder="Enter Choice 3"
+                              name="videoQ1option3"
+                              [(ngModel)]="questions.questions[9].option3"
+                            />
+                          </label>
+                        </div>
+                        <div class="form-check mt-2">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="revisionQ5answer"
+                            id="c4"
+                            [(ngModel)]="questions.questions[9].answer"
+                            [(value)]="questions.questions[9].option4"
+                            style="margin-top: 10px"
+                          />
+                          <label class="form-check-label" for="c4">
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="Question4"
+                              placeholder="Enter Choice 4"
+                              name="videoQ1option4"
+                              [(ngModel)]="questions.questions[9].option4"
+                            />
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="spacer text-right">
+            <button class="btn btn-danger">Submit</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

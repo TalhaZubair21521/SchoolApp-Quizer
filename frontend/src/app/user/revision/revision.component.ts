@@ -25,6 +25,7 @@ export class RevisionComponent implements OnInit {
     this.dataService.getQuestions("revision", "1", "1", "1").subscribe(
       (data) => {
         this.questions = data["data"]["questions"];
+        console.log(this.questions);
         this.CreateSolutions();
         this.QuestionLoop();
       },

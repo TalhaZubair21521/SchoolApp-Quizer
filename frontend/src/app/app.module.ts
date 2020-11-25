@@ -11,6 +11,10 @@ import { FormsModule } from "@angular/forms";
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { VideoComponent } from './user/video/video.component';
 import { RevisionComponent } from './user/revision/revision.component';
+import { RevisionQuestionComponent } from './admin/revision-question/revision-question.component';
+import { GameQuestionComponent } from './admin/game-question/game-question.component';
+import { TestpaperQuestionComponent } from './admin/testpaper-question/testpaper-question.component';
+import { VideoQuestionComponent } from './admin/video-question/video-question.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +24,10 @@ import { RevisionComponent } from './user/revision/revision.component';
     PagenotfoundComponent,
     VideoComponent,
     RevisionComponent,
+    RevisionQuestionComponent,
+    GameQuestionComponent,
+    TestpaperQuestionComponent,
+    VideoQuestionComponent,
   ],
   imports: [
     BrowserModule,

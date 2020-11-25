@@ -5,7 +5,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
   providedIn: 'root'
 })
 export class DataserviceService {
-  url = "http://localhost:1111/api/";
+  url = "/api/";
   constructor(private http: HttpClient) {
   }
   getQuestions(activtiy: string, classID: string, subjectID: string, chapterID: string) {

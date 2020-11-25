@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { DataserviceService } from '../services/dataservice.service';
+import { DataserviceService } from 'src/app/services/dataservice.service';
 
 @Component({
-  selector: 'app-admin',
-  templateUrl: './admin.component.html',
-  styleUrls: ['./admin.component.css']
+  selector: 'app-video-question',
+  templateUrl: './video-question.component.html',
+  styleUrls: ['./video-question.component.css']
 })
-export class AdminComponent implements OnInit {
+export class VideoQuestionComponent implements OnInit {
 
   file: File;
   videoSrc;
@@ -45,31 +45,38 @@ export class AdminComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
   onSubmit(formdata: NgForm) {
     if (!this.videoSrc) {
       alert("No Video Selected !!");
     } else {
-      var flag = true;
-      this.questions.questions.forEach((question) => {
-        flag = !this.isSomethingEmpty(question);
-      });
-      if (flag) {
-        var data = new FormData();
-        data.append('video', this.file);
-        data.append('data', JSON.stringify(this.questions));
-        console.table(this.questions);
-        this.dataService.addQuestions(data).subscribe(
-          (data) => {
-            if (data["type"] === "success") {
-              alert("Data Saved Successfully");
-            } else {
-              alert("Error Occured");
-            }
-          },
-          (err) => { console.log(err) }
-        )
+      if (Math.floor(this.file.size / 1000000)) {
+        alert("File Size Must be less Than 15 MB");
       } else {
-        alert("Fill all Fields");
+        var flag = true;
+        this.questions.questions.forEach((question) => {
+          flag = !this.isSomethingEmpty(question);
+        });
+        if (flag) {
+          var data = new FormData();
+          data.append('video', this.file);
+          data.append('data', JSON.stringify(this.questions));
+          console.table(this.questions);
+          // this.dataService.addQuestions(data).subscribe(
+          //   (data) => {
+          //     if (data["type"] === "success") {
+          //       alert("Data Saved Successfully");
+          //     } else {
+          //       alert("Error Occured");
+          //     }
+          //   },
+          //   (err) => {
+          //     console.log(err)
+          //   }
+          // )
+        } else {
+          alert("Fill all Fields");
+        }
       }
     }
   }
@@ -81,7 +88,6 @@ export class AdminComponent implements OnInit {
   onFileSelected($event) {
     this.file = $event.target.files[0];
     var size = Math.floor(this.file.size / 1000000);
-    console.log(size);
     if (size < 15) {
       const reader = new FileReader();
       reader.onload = e => this.videoSrc = reader.result;
@@ -90,6 +96,4 @@ export class AdminComponent implements OnInit {
       alert("File Size is Greater Than 15MB")
     }
   }
-
-
 }
