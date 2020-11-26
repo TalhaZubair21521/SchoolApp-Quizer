@@ -1,147 +1,150 @@
-<div
-  width="vw"
-  height="vh"
-  style="margin: auto; width: 70%"
-  class="d-flex justify-content-center"
->
-  <div class="container">
-    <div class="row justify-content-center">
-      <div
-        class="col-xm-12 col-sm-10 col-md-8 col-lg-6 col-xl-5"
-        id="content"
-        style="height: 100vh"
-      >
-        <div *ngIf="!play">
-          <div class="row mt-5 pt-5 pl-5">
-            <div class="col">
-              <p>Food where does it come from</p>
+<div *ngIf="isError">{{ this.message }}</div>
+<div *ngIf="!isError">
+  <div
+    width="vw"
+    height="vh"
+    style="margin: auto; width: 70%"
+    class="d-flex justify-content-center"
+  >
+    <div class="container">
+      <div class="row justify-content-center">
+        <div
+          class="col-xm-12 col-sm-10 col-md-8 col-lg-6 col-xl-5"
+          id="content"
+          style="height: 100vh"
+        >
+          <div *ngIf="!play">
+            <div class="row mt-5 pt-5 pl-5">
+              <div class="col">
+                <p>Food where does it come from</p>
+              </div>
             </div>
-          </div>
-          <div class="row ml-5 pl-5">
-            <div class="col">
-              <h1>Mutiple</h1>
-              <h1>Choice</h1>
-              <h1>Question</h1>
+            <div class="row ml-5 pl-5">
+              <div class="col">
+                <h1>Mutiple</h1>
+                <h1>Choice</h1>
+                <h1>Question</h1>
+              </div>
             </div>
-          </div>
-          <div class="row pl-5 ml-5" style="position: absolute; bottom: 20%">
-            <div class="col">
-              <button
-                type="button"
-                class="btn"
-                style="
-                  width: 200%;
-                  height: 60px;
-                  color: cornsilk;
-                  background-color: #25baaa;
-                  border-color: #25baaa;
-                "
-                (click)="handlePlay()"
-              >
-                Play
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <div *ngIf="play">
-          <div class="row">
-            <div class="col mt-3 pb-5">
-              <div class="row">
-                <div
-                  class="col-2 rounded-circle"
-                  style="background-color: tomato; border: 3px solid"
+            <div class="row pl-5 ml-5" style="position: absolute; bottom: 20%">
+              <div class="col">
+                <button
+                  type="button"
+                  class="btn"
+                  style="
+                    width: 200%;
+                    height: 60px;
+                    color: cornsilk;
+                    background-color: #25baaa;
+                    border-color: #25baaa;
+                  "
+                  (click)="handlePlay()"
                 >
-                  <p class="pt-2 pl-1" style="color: cornsilk">
-                    <b>{{ questionIndexCounter + "/5" }}</b>
-                  </p>
-                </div>
+                  Play
+                </button>
               </div>
             </div>
           </div>
-          <div class="row">
-            <div
-              class="col mt-5 pb-5"
-              style="color: #25baaa; text-align: center"
-            >
-              <h4>{{ currentQuestion.question }}</h4>
+
+          <div *ngIf="play">
+            <div class="row">
+              <div class="col mt-3 pb-5">
+                <div class="row">
+                  <div
+                    class="col-2 rounded-circle"
+                    style="background-color: tomato; border: 3px solid"
+                  >
+                    <p class="pt-2 pl-1" style="color: cornsilk">
+                      <b>{{ questionIndexCounter + "/5" }}</b>
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
-          <div class="row">
-            <div class="col mt-5 mb-2">
-              <h4>Timer:{{ timer }}</h4>
-            </div>
-          </div>
-          <div class="row mt-5">
-            <div class="col">
-              <button
-                type="button"
-                class="btn btn-primary"
-                (click)="submitSolution('option1')"
-                style="
-                  width: 100%;
-                  height: 60px;
-                  color: cornsilk;
-                  background-color: #25baaa;
-                  border-color: #25baaa;
-                "
+            <div class="row">
+              <div
+                class="col mt-5 pb-5"
+                style="color: #25baaa; text-align: center"
               >
-                {{ currentQuestion.option1 }}
-              </button>
+                <h4>{{ currentQuestion.question }}</h4>
+              </div>
             </div>
-          </div>
-          <div class="row mt-2">
-            <div class="col">
-              <button
-                type="button"
-                class="btn btn-warning"
-                (click)="submitSolution('option2')"
-                style="
-                  width: 100%;
-                  height: 60px;
-                  color: cornsilk;
-                  background-color: #72b743;
-                  border-color: #72b743;
-                "
-              >
-                {{ currentQuestion.option2 }}
-              </button>
+            <div class="row">
+              <div class="col mt-5 mb-2">
+                <h4>Timer:{{ timer }}</h4>
+              </div>
             </div>
-          </div>
-          <div class="row mt-2 pb-1">
-            <div class="col">
-              <button
-                type="button"
-                class="btn btn-danger"
-                (click)="submitSolution('option3')"
-                style="
-                  width: 100%;
-                  height: 60px;
-                  color: cornsilk;
-                  background-color: #954f9e;
-                  border-color: #954f9e;
-                "
-              >
-                {{ currentQuestion.option3 }}
-              </button>
+            <div class="row mt-5">
+              <div class="col">
+                <button
+                  type="button"
+                  class="btn btn-primary"
+                  (click)="submitSolution('option1')"
+                  style="
+                    width: 100%;
+                    height: 60px;
+                    color: cornsilk;
+                    background-color: #25baaa;
+                    border-color: #25baaa;
+                  "
+                >
+                  {{ currentQuestion.option1 }}
+                </button>
+              </div>
             </div>
-          </div>
-          <div class="row mt-2 pb-1">
-            <div class="col">
-              <button
-                type="button"
-                class="btn btn-danger"
-                (click)="submitSolution('option4')"
-                style="
-                  width: 100%;
-                  height: 60px;
-                  color: cornsilk;
-                  background-color: #2a5516;
-                  border-color: #2a5516;
-                "
-              >
-                {{ currentQuestion.option4 }}
-              </button>
+            <div class="row mt-2">
+              <div class="col">
+                <button
+                  type="button"
+                  class="btn btn-warning"
+                  (click)="submitSolution('option2')"
+                  style="
+                    width: 100%;
+                    height: 60px;
+                    color: cornsilk;
+                    background-color: #72b743;
+                    border-color: #72b743;
+                  "
+                >
+                  {{ currentQuestion.option2 }}
+                </button>
+              </div>
+            </div>
+            <div class="row mt-2 pb-1">
+              <div class="col">
+                <button
+                  type="button"
+                  class="btn btn-danger"
+                  (click)="submitSolution('option3')"
+                  style="
+                    width: 100%;
+                    height: 60px;
+                    color: cornsilk;
+                    background-color: #954f9e;
+                    border-color: #954f9e;
+                  "
+                >
+                  {{ currentQuestion.option3 }}
+                </button>
+              </div>
+            </div>
+            <div class="row mt-2 pb-1">
+              <div class="col">
+                <button
+                  type="button"
+                  class="btn btn-danger"
+                  (click)="submitSolution('option4')"
+                  style="
+                    width: 100%;
+                    height: 60px;
+                    color: cornsilk;
+                    background-color: #2a5516;
+                    border-color: #2a5516;
+                  "
+                >
+                  {{ currentQuestion.option4 }}
+                </button>
+              </div>
             </div>
           </div>
         </div>

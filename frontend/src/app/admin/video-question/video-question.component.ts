@@ -12,6 +12,7 @@ export class VideoQuestionComponent implements OnInit {
   @ViewChild('popup2') popup2: ElementRef;
   @ViewChild('popup3') popup3: ElementRef;
   @ViewChild('popup4') popup4: ElementRef;
+  @ViewChild('popup5') popup5: ElementRef;
   file: File;
   videoSrc;
   questions: any = {
@@ -90,15 +91,17 @@ export class VideoQuestionComponent implements OnInit {
           data.append('data', JSON.stringify(this.questions));
           this.dataService.addVideoQuestions(data).subscribe(
             (data) => {
+              console.log(data);
               if (data["type"] === "success") {
-                console.log(this.questions.questions);
                 this.popup1.nativeElement.click();
+              } else if (data["type"] === "fail") {
+                this.popup5.nativeElement.click();
               } else {
-                alert("Server not Responding");
+                alert("Server Not Responding");
               }
             },
             (err) => {
-              console.log(err)
+              alert("Server Not Responding");
             }
           )
         } else {

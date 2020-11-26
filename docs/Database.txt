@@ -7,36 +7,20 @@ CREATE TABLE question(
     option3 varchar(30),
     option4 varchar(30),
     answer varchar(30) NOT NULL,
-    skill varchar(30) NOT NULL
-);
-
-CREATE TABLE belongto(
-    belongToID int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    skill varchar(30) NOT NULL,
+    activity varchar(100) NOT NULL,
+    videoURL varchar(100) NOT NULL,
     classID varchar(30) NOT NULL,
     subjectID varchar(30) NOT NULL,
     chapterID varchar(30) NOT NULL
 );
 
-insert into belongto (classID,subjectID,chapterID) values (1,1,1);
-
-CREATE TABLE activityquestion(
-    acitivityQuestionID int NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    activity varchar(100) NOT NULL,
-    videoURL varchar(100) NOT NULL,
-    questionID int NOT NULL,
-    belongToID int NOT NULL,
-    FOREIGN KEY (questionID) REFERENCES question(questionID),
-    FOREIGN KEY (belongToID) REFERENCES belongTo(belongToID)
-);
-
 CREATE TABLE useranswer(
     userAnswerID int NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    userID varchar(100) NOT NULL,
+    userID int NOT NULL,
     questionID int NOT NULL,
-    belongToID int NOT NULL,
     answer varchar(200) NOT NULL,
     FOREIGN KEY (questionID) REFERENCES question(questionID),
-    FOREIGN KEY (belongToID) REFERENCES belongTo(belongToID)
 );
 
 CREATE TABLE result(

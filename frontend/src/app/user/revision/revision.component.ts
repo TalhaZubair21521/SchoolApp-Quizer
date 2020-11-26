@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { DataserviceService } from 'src/app/services/dataservice.service';
 
 @Component({
@@ -7,14 +8,19 @@ import { DataserviceService } from 'src/app/services/dataservice.service';
   styleUrls: ['./revision.component.css']
 })
 export class RevisionComponent implements OnInit {
-
+  classID: Number;
+  subjectID: Number;
+  chapterID: Number;
+  userID: Number;
   questions: any = null;
   currentQuestion: any = null;
   questionIndexCounter: any = 0;
   timer: any = 10;
   solutions: any = [];
   play: any = false;
-  constructor(private dataService: DataserviceService) {
+  isError: Boolean = false;
+  message: String = "";
+  constructor(private dataService: DataserviceService, private activatedRoute: ActivatedRoute) {
   }
 
   ngOnInit(): void {
@@ -22,8 +28,20 @@ export class RevisionComponent implements OnInit {
 
   handlePlay() {
     this.play = true;
-    this.dataService.getQuestions("revision", "1", "1", "1").subscribe(
+    this.activatedRoute.queryParams.subscribe(params => {
+      this.userID = params['userId'];
+      this.classID = params['classId'];
+      this.subjectID = params['subjectId'];
+      this.chapterID = params['chapterId'];
+    });
+    this.dataService.getQuestions("revision", this.classID, this.subjectID, this.chapterID, this.userID).subscribe(
       (data) => {
+        console.log(data);
+        if (data['type'] === "fail") {
+          this.message = data['data'];
+          console.log(this.message);
+          this.isError = true;
+        }
         this.questions = data["data"]["questions"];
         console.log(this.questions);
         this.CreateSolutions();
@@ -55,7 +73,7 @@ export class RevisionComponent implements OnInit {
     if (this.questionIndexCounter === 6) {
       this.questionIndexCounter = this.questionIndexCounter - 1;
       console.table(this.solutions);
-      this.dataService.saveQuestions(this.solutions).subscribe(
+      this.dataService.saveQuestions(this.solutions, this.userID, this.classID, this.subjectID, this.chapterID, "revision").subscribe(
         (data) => {
           console.log(data);
           if (data["type"] === "success") {

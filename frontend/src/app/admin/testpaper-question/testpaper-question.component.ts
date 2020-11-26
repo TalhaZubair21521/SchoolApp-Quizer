@@ -10,6 +10,7 @@ import { DataserviceService } from 'src/app/services/dataservice.service';
 export class TestpaperQuestionComponent implements OnInit {
   @ViewChild('popup1') popup1: ElementRef;
   @ViewChild('popup4') popup2: ElementRef;
+  @ViewChild('popup5') popup3: ElementRef;
   questions: any = {
     class: "1",
     subject: "1",
@@ -61,12 +62,14 @@ export class TestpaperQuestionComponent implements OnInit {
           console.log(data);
           if (data["type"] === "success") {
             this.popup1.nativeElement.click();
+          } else if (data["type"] === "fail") {
+            this.popup3.nativeElement.click();
           } else {
-            alert("Server not Responding");
+            alert("Server Not Responding");
           }
         },
         (err) => {
-          console.log(err)
+          alert("Server Not Responding");
         }
       )
     } else {
