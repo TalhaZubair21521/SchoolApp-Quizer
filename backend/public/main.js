@@ -1623,7 +1623,8 @@ class VideoComponent {
                 console.log(data);
                 if (data["type"] === "success") {
                     alert("Video Activity Result Saved");
-                    this.router.navigate(['user/revision']);
+                    let queryParams = "?classId=" + this.classID + "&userId=" + this.userID + "&subjectId=" + this.subjectID + "&chapterId=" + this.chapterID;
+                    this.router.navigateByUrl('user/revision'.concat(queryParams));
                 }
             }, (err) => { console.log(err); });
         }
