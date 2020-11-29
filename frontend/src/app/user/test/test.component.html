@@ -1,0 +1,88 @@
+<div *ngIf="isError">{{ this.message }}</div>
+<div *ngIf="!isError">
+  <div
+    width="vw"
+    height="vh"
+    style="margin: auto"
+    class="d-flex justify-content-center"
+  >
+    <div class="container">
+      <div class="row justify-content-center no-gutters" style="width: 100%">
+        <div
+          class="col-12"
+          id="content"
+          style="height: 100vh; background-color: #343a40"
+        >
+          <h2 class="text-white bg-info p-4 text-center">
+            MCQ (Multiple Choice Questions)
+          </h2>
+          <div *ngIf="!play" class="text-center">
+            <button
+              id="start"
+              type="button"
+              class="btn-lg btn-light rounded-circle playbtn"
+              style="width: 100px; height: 100px; margin-top: 20%"
+              (click)="handlePlay()"
+            >
+              Start
+            </button>
+          </div>
+          <div *ngIf="play && count !== 5" style="margin-top: 10%">
+            <!-- <div *ngIf="count!==5" > -->
+            <h2 class="text-white ml-4">Timer:- {{ timeLeft }}</h2>
+            <h2
+              class="text-white p-4 text-center"
+              style="background-color: #bd6363; border-radius: 5%"
+            >
+              {{ count + 1 }}. {{ questions[count].question }}
+            </h2>
+
+            <div class="row m-4">
+              <div class="col-6 col-lg-6 col-sm-12">
+                <button
+                  type="button"
+                  class="btn p-4 btn-info btn-lg btn-block"
+                  id="A"
+                  (click)="resetTimer($event)"
+                >
+                  {{ questions[count].option1 }}
+                </button>
+                <button
+                  type="button"
+                  class="btn p-4 btn-success btn-lg btn-block"
+                  id="B"
+                  (click)="resetTimer($event)"
+                >
+                  {{ questions[count].option2 }}
+                </button>
+              </div>
+              <div class="col-6 col-lg-6 col-sm-12">
+                <button
+                  type="button"
+                  class="btn p-4 btn-danger btn-lg btn-block"
+                  id="C"
+                  (click)="resetTimer($event)"
+                >
+                  {{ questions[count].option3 }}
+                </button>
+                <button
+                  type="button"
+                  class="btn p-4 btn-warning btn-lg btn-block"
+                  id="D"
+                  (click)="resetTimer($event)"
+                >
+                  {{ questions[count].option4 }}
+                </button>
+              </div>
+            </div>
+
+            <!-- </div> -->
+          </div>
+          <div *ngIf="count == 5" style="margin-top: 10%">
+            <h2>Test Completed</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

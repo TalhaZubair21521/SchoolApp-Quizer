@@ -15,6 +15,7 @@ import { RevisionQuestionComponent } from './admin/revision-question/revision-qu
 import { GameQuestionComponent } from './admin/game-question/game-question.component';
 import { TestpaperQuestionComponent } from './admin/testpaper-question/testpaper-question.component';
 import { VideoQuestionComponent } from './admin/video-question/video-question.component';
+import { TestComponent } from './user/test/test.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { VideoQuestionComponent } from './admin/video-question/video-question.co
     GameQuestionComponent,
     TestpaperQuestionComponent,
     VideoQuestionComponent,
+    TestComponent,
   ],
   imports: [
     BrowserModule,

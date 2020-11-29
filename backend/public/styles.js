@@ -7,8 +7,8 @@
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! T:\Projects\freelance\SchoolApp\frontend\node_modules\bootstrap\dist\css\bootstrap.min.css */"q4sD");
-module.exports = __webpack_require__(/*! T:\Projects\freelance\SchoolApp\frontend\src\styles.css */"OmL/");
+__webpack_require__(/*! T:\Projects\Freelance\SchoolApp\frontend\node_modules\bootstrap\dist\css\bootstrap.min.css */"q4sD");
+module.exports = __webpack_require__(/*! T:\Projects\Freelance\SchoolApp\frontend\src\styles.css */"OmL/");
 
 
 /***/ }),

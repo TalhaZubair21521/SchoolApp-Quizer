@@ -6,7 +6,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 })
 
 export class DataserviceService {
-  url = "http://localhost:1111/api/";
+  url = "/api/";
   constructor(private http: HttpClient) {
   }
   getQuestions(activtiy: string, classID: Number, subjectID: Number, chapterID: Number, userID: Number) {

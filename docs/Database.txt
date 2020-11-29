@@ -20,7 +20,7 @@ CREATE TABLE useranswer(
     userID int NOT NULL,
     questionID int NOT NULL,
     answer varchar(200) NOT NULL,
-    FOREIGN KEY (questionID) REFERENCES question(questionID),
+    FOREIGN KEY (questionID) REFERENCES question(questionID)
 );
 
 CREATE TABLE result(
