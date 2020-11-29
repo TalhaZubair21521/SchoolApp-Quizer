@@ -8,6 +8,7 @@ import { DataserviceService } from 'src/app/services/dataservice.service';
   styleUrls: ['./testpaper-question.component.css']
 })
 export class TestpaperQuestionComponent implements OnInit {
+
   @ViewChild('popup1') popup1: ElementRef;
   @ViewChild('popup4') popup2: ElementRef;
   @ViewChild('popup5') popup3: ElementRef;
@@ -28,24 +29,43 @@ export class TestpaperQuestionComponent implements OnInit {
       { activity: "revision", type: "mcqs", question: "", option1: "", option2: "", option3: "", option4: "", answer: "", skill: "Writing" },
       { activity: "revision", type: "mcqs", question: "", option1: "", option2: "", option3: "", option4: "", answer: "", skill: "Learning" },
 
-      { activity: "game", type: "mcqs", question: "", option1: "", option2: "", option3: "", option4: "", answer: "", skill: "Reading" },
-      { activity: "game", type: "mcqs", question: "", option1: "", option2: "", option3: "", option4: "", answer: "", skill: "Observation" },
-      { activity: "game", type: "mcqs", question: "", option1: "", option2: "", option3: "", option4: "", answer: "", skill: "Listening" },
-      { activity: "game", type: "mcqs", question: "", option1: "", option2: "", option3: "", option4: "", answer: "", skill: "Writing" },
-      { activity: "game", type: "mcqs", question: "", option1: "", option2: "", option3: "", option4: "", answer: "", skill: "Learning" },
+      { activity: "test", type: "mcqs", question: "", option1: "", option2: "", option3: "", option4: "", answer: "", skill: "Memory" },
+      { activity: "test", type: "mcqs", question: "", option1: "", option2: "", option3: "", option4: "", answer: "", skill: "Conceptual" },
+      { activity: "test", type: "mcqs", question: "", option1: "", option2: "", option3: "", option4: "", answer: "", skill: "Application" },
+      { activity: "test", type: "mcqs", question: "", option1: "", option2: "", option3: "", option4: "", answer: "", skill: "Analysis" },
+      { activity: "test", type: "mcqs", question: "", option1: "", option2: "", option3: "", option4: "", answer: "", skill: "Observation" },
 
-      { activity: "test", type: "true/false", question: "", option1: "true", option2: "false", option3: "noOption", option4: "noOption", answer: "", skill: "Memory" },
-      { activity: "test", type: "true/false", question: "", option1: "true", option2: "false", option3: "noOption", option4: "noOption", answer: "", skill: "Conceptual" },
-      { activity: "test", type: "true/false", question: "", option1: "true", option2: "false", option3: "noOption", option4: "noOption", answer: "rue", skill: "Application" },
-      { activity: "test", type: "oneword", question: "", option1: "noOption", option2: "noOption", option3: "noOption", option4: "noOption", answer: "", skill: "Analysis" },
-      { activity: "test", type: "oneword", question: "", option1: "noOption", option2: "noOption", option3: "noOption", option4: "noOption", answer: "", skill: "Observation" }
+      { activity: "game", type: "true/false", question: "", option1: "true", option2: "false", option3: "noOption", option4: "noOption", answer: "", skill: "Memory" },
+      { activity: "game", type: "true/false", question: "", option1: "true", option2: "false", option3: "noOption", option4: "noOption", answer: "", skill: "Conceptual" },
+      { activity: "game", type: "true/false", question: "", option1: "true", option2: "false", option3: "noOption", option4: "noOption", answer: "", skill: "Application" },
+      { activity: "game", type: "oneword", question: "", option1: "noOption", option2: "noOption", option3: "noOption", option4: "noOption", answer: "", skill: "Analysis" },
+      { activity: "game", type: "oneword", question: "", option1: "noOption", option2: "noOption", option3: "noOption", option4: "noOption", answer: "", skill: "Observation" }
     ]
   };
   constructor(private dataService: DataserviceService) { }
 
   ngOnInit(): void {
   }
+
   onSubmit(formdata: NgForm) {
+    for (var i = 0; i < this.questions.questions.length; i++) {
+      if (this.questions.questions[i].activity === "test" && this.questions.questions[i].answer === "") {
+        let value = "gameQ";
+        if (i === 10) {
+          value = value + "1";
+        } else if (i === 11) {
+          value = value + "2";
+        } else if (i === 12) {
+          value = value + "3";
+        } else if (i === 13) {
+          value = value + "4";
+        } else if (i === 14) {
+          value = value + "5";
+        }
+        value = value + "option4";
+        this.questions.questions[i].answer = formdata.value[value]
+      }
+    }
     var flag = [true, true, true, true, true];
     var i = 0;
     this.questions.questions.forEach((question) => {
@@ -55,8 +75,10 @@ export class TestpaperQuestionComponent implements OnInit {
       }
     });
     console.log(flag);
+    console.table(this.questions.questions);
 
     if (flag[0] && flag[1] && flag[2] && flag[3] && flag[4]) {
+      // console.table(this.questions.questions);
       this.dataService.addTestQuestions(this.questions).subscribe(
         (data) => {
           console.log(data);
