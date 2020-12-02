@@ -1,0 +1,33 @@
+INSERT INTO `classes` (`name`) VALUES ('One');
+INSERT INTO `classes` (`name`) VALUES ( 'Two');
+INSERT INTO `classes` (`name`) VALUES ('Three');
+INSERT INTO `classes` (`name`) VALUES ( 'Four');
+INSERT INTO `classes` (`name`) VALUES ('Five');
+INSERT INTO `classes` (`name`) VALUES ( 'Six');
+INSERT INTO `classes` (`name`) VALUES ('Seven');
+INSERT INTO `classes` (`name`) VALUES ( 'Eight');
+INSERT INTO `classes` (`name`) VALUES ('Nine');
+INSERT INTO `classes` (`name`) VALUES ( 'Tenth');
+
+INSERT INTO `subjects` (`name`) VALUES ('Science');
+INSERT INTO `subjects` (`name`) VALUES ('Maths');
+INSERT INTO `subjects` (`name`) VALUES ('Civics');
+INSERT INTO `subjects` (`name`) VALUES ('Geography');
+INSERT INTO `subjects` (`name`) VALUES ('History');
+
+INSERT INTO `chapters` (`name`) VALUES ('Food:Where Dies it Come From');
+
+INSERT INTO `classsubjects` (`classId`,`subjectId`) VALUES ('6','1');
+INSERT INTO `classsubjects` (`classId`,`subjectId`) VALUES ('6','2');
+INSERT INTO `classsubjects` (`classId`,`subjectId`) VALUES ('6','3');
+INSERT INTO `classsubjects` (`classId`,`subjectId`) VALUES ('6','4');
+INSERT INTO `classsubjects` (`classId`,`subjectId`) VALUES ('6','5');
+
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('1','1');
+
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('2','5');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('3','5');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('4','5');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('5','5');
+
+select * from classes join classsubjects on classes.classId=classsubjects.classId join subjects on classsubjects.subjectId=subjects.subjectId join subjectschapter on subjectschapter.subjectId=subjects.subjectId join chapters on subjectschapter.chapterId=chapters.chapterId;

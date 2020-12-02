@@ -15,6 +15,7 @@ export class VideoQuestionComponent implements OnInit {
   @ViewChild('popup5') popup5: ElementRef;
   file: File;
   videoSrc;
+  classes = [];
   questions: any = {
     class: "1",
     subject: "1",
@@ -48,6 +49,10 @@ export class VideoQuestionComponent implements OnInit {
   constructor(private dataService: DataserviceService) { }
 
   ngOnInit(): void {
+    this.dataService.getClasses().subscribe(
+      (data) => { console.log(data) },
+      (error) => { console.log(error) }
+    )
   }
 
   onSubmit(formdata: NgForm) {

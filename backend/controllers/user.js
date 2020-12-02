@@ -8,39 +8,50 @@ exports.GetQuestions = async (req, res) => {
         const subjectID = req.body.data.subject;
         const chapterID = req.body.data.chapter;
         const userID = req.body.data.user;
-        var query = mysql.format("Select * from question where classID=? AND subjectID=? AND chapterID=? AND question.activity=?", [classID, subjectID, chapterID, activity]);
-        db.query(query, (err, result, fields) => {
-            if (err) {
-                res.status(500).json({ type: "failure", data: { message: err } });
-                return;
-            } else {
-                if (result.length > 0) {
-                    var query = mysql.format("Select * from question join useranswer on question.questionID=useranswer.questionID where question.classID=? AND question.subjectID=? AND question.chapterID=? AND useranswer.userID=? AND question.activity=?", [classID, subjectID, chapterID, userID, activity]);
-                    db.query(query, (err, result, fields) => {
-                        if (err) {
-                            res.status(500).json({ type: "failure", data: { message: err } });
-                            return;
-                        } else {
-                            if (result.length > 0) {
-                                res.status(200).json({ type: "fail", data: "You have already Completed This Activity" })
-                            } else {
-                                var query = mysql.format("Select * from question where classID=? AND subjectID=? AND chapterID=? AND activity=?;", [classID, subjectID, chapterID, activity]);
-                                db.query(query, (err, result, fields) => {
-                                    if (err) {
-                                        res.status(500).json({ type: "failure", data: { message: err } });
-                                        return;
-                                    } else {
-                                        res.status(200).json({ type: "success", data: { message: "Questions", questions: result } })
-                                    }
-                                })
-                            }
-                        }
-                    });
+        if (activity === "video") {
+            var query = mysql.format("Select * from videoquestions where classID=? AND subjectID=? AND chapterID=?", [classID, subjectID, chapterID]);
+            db.query(query, (err, result, fields) => {
+                if (err) {
+                    res.status(500).json({ type: "failure", data: { message: err } });
+                    return;
                 } else {
-                    res.status(200).json({ type: "fail", data: "Admin has Not Added Questions For this Chapter" })
+                    if (result.length > 0) {
+                        var query = mysql.format("Select * from videoquestions join videoanswers on videoquestions.questionID=videoanswers.videoquestionID where videoquestions.classID=? AND videoquestions.subjectID=? AND videoquestions.chapterID=? AND videoanswers.userID=?", [classID, subjectID, chapterID, userID]);
+                        db.query(query, (err, result, fields) => {
+                            if (err) {
+                                res.status(500).json({ type: "failure", data: { message: err } });
+                                return;
+                            } else {
+                                if (result.length > 0) {
+                                    res.status(200).json({ type: "fail", data: "You have already Completed This Activity" })
+                                } else {
+                                    var query = mysql.format("Select * from videoquestions where classID=? AND subjectID=? AND chapterID=?;", [classID, subjectID, chapterID]);
+                                    db.query(query, (err, result, fields) => {
+                                        if (err) {
+                                            res.status(500).json({ type: "failure", data: { message: err } });
+                                            return;
+                                        } else {
+                                            res.status(200).json({ type: "success", data: { message: "Questions", questions: result } })
+                                        }
+                                    })
+                                }
+                            }
+                        });
+                    } else {
+                        res.status(200).json({ type: "fail", data: "Admin has Not Added Questions For this Chapter" })
+                    }
                 }
-            }
-        });
+            });
+        } else if (activity === "revision") {
+
+        } else if (activity === "game") {
+
+        } else if (activity === "testpaper") {
+
+        }
+
+
+
     } catch (error) {
         res.status(500).json({ type: "failure", data: { message: error } });
     }

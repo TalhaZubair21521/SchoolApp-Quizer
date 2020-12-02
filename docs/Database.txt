@@ -1,4 +1,4 @@
-CREATE TABLE question(
+CREATE TABLE videoquestions(
     questionID int NOT NULL PRIMARY KEY AUTO_INCREMENT,
     type varchar(30) NOT NULL,
     question varchar(30) NOT NULL,
@@ -8,24 +8,152 @@ CREATE TABLE question(
     option4 varchar(30),
     answer varchar(30) NOT NULL,
     skill varchar(30) NOT NULL,
-    activity varchar(100) NOT NULL,
     videoURL varchar(100) NOT NULL,
     classID varchar(30) NOT NULL,
     subjectID varchar(30) NOT NULL,
     chapterID varchar(30) NOT NULL
 );
 
-CREATE TABLE useranswer(
-    userAnswerID int NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    userID int NOT NULL,
-    questionID int NOT NULL,
-    answer varchar(200) NOT NULL,
-    FOREIGN KEY (questionID) REFERENCES question(questionID)
+CREATE TABLE revisionquestions(
+    questionID int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    type varchar(30) NOT NULL,
+    question varchar(30) NOT NULL,
+    option1 varchar(30),
+    option2 varchar(30),
+    option3 varchar(30),
+    option4 varchar(30),
+    answer varchar(30) NOT NULL,
+    skill varchar(30) NOT NULL,
+    classID varchar(30) NOT NULL,
+    subjectID varchar(30) NOT NULL,
+    chapterID varchar(30) NOT NULL
 );
 
+CREATE TABLE testpaperquestions(
+    questionID int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    type varchar(30) NOT NULL,
+    question varchar(30) NOT NULL,
+    option1 varchar(30),
+    option2 varchar(30),
+    option3 varchar(30),
+    option4 varchar(30),
+    answer varchar(30) NOT NULL,
+    skill varchar(30) NOT NULL,
+    classID varchar(30) NOT NULL,
+    subjectID varchar(30) NOT NULL,
+    chapterID varchar(30) NOT NULL
+);
+
+CREATE TABLE gamequestions(
+    questionID int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    type varchar(30) NOT NULL,
+    question varchar(30) NOT NULL,
+    option1 varchar(30),
+    option2 varchar(30),
+    option3 varchar(30),
+    option4 varchar(30),
+    answer varchar(30) NOT NULL,
+    skill varchar(30) NOT NULL,
+    classID varchar(30) NOT NULL,
+    subjectID varchar(30) NOT NULL,
+    chapterID varchar(30) NOT NULL
+);
+
+CREATE TABLE videoanswers(
+    userAnswerID int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    userID int NOT NULL,
+    videoquestionID int NOT NULL,
+    answer varchar(200) NOT NULL,
+    FOREIGN KEY (videoquestionID) REFERENCES videoquestions(questionID)
+);
+
+CREATE TABLE revisionanswers(
+    userAnswerID int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    userID int NOT NULL,
+    reivisionquestionID int NOT NULL,
+    answer varchar(200) NOT NULL,
+    FOREIGN KEY (reivisionquestionID) REFERENCES revisionquestions(questionID)
+);
+
+CREATE TABLE testpaperanswers(
+    userAnswerID int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    userID int NOT NULL,
+    testpaperquestionID int NOT NULL,
+    answer varchar(200) NOT NULL,
+    FOREIGN KEY (testpaperquestionID) REFERENCES testpaperquestions(questionID)
+);
+
+CREATE TABLE gameanswers(
+    userAnswerID int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    userID int NOT NULL,
+    gamequestionID int NOT NULL,
+    answer varchar(200) NOT NULL,
+    FOREIGN KEY (gamequestionID) REFERENCES gamequestions(questionID)
+);
+
+CREATE TABLE classes(
+    classId int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    name varchar(20) NOT NULL
+);
+
+CREATE TABLE subjects(
+    subjectId int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    name varchar(20) NOT NULL
+);
+
+CREATE TABLE chapters(
+    chapterId int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    name varchar(20) NOT NULL
+);
+
+CREATE TABLE classsubjects(
+    classsubjectID int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    classId int NOT NULL,
+    subjectId int NOT NULL,
+    FOREIGN KEY (classId) REFERENCES classes(classId),
+    FOREIGN KEY (subjectId) REFERENCES subjects(subjectId)
+);
+
+CREATE TABLE subjectschapter(
+    subjectchapterID int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    chapterId int NOT NULL,
+    subjectId int NOT NULL,
+    FOREIGN KEY (chapterId) REFERENCES chapters(chapterId),
+    FOREIGN KEY (subjectId) REFERENCES subjects(subjectId)
+);
+INSERT INTO `classes` (`name`) VALUES ('One');
+INSERT INTO `classes` (`name`) VALUES ( 'Two');
+INSERT INTO `classes` (`name`) VALUES ('Three');
+INSERT INTO `classes` (`name`) VALUES ( 'Four');
+INSERT INTO `classes` (`name`) VALUES ('Five');
+INSERT INTO `classes` (`name`) VALUES ( 'Six');
+INSERT INTO `classes` (`name`) VALUES ('Seven');
+INSERT INTO `classes` (`name`) VALUES ( 'Eight');
+INSERT INTO `classes` (`name`) VALUES ('Nine');
+INSERT INTO `classes` (`name`) VALUES ( 'Tenth');
+
+INSERT INTO `subjects` (`name`) VALUES ('Science');
+INSERT INTO `subjects` (`name`) VALUES ('Maths');
+INSERT INTO `subjects` (`name`) VALUES ('Civics');
+INSERT INTO `subjects` (`name`) VALUES ('Geography');
+INSERT INTO `subjects` (`name`) VALUES ('History');
+
+INSERT INTO `chapters` (`name`) VALUES ('Food:Where Dies it Come From');
+
+INSERT INTO `classsubjects` (`classId`,`subjectId`) VALUES ('6','1');
+INSERT INTO `classsubjects` (`classId`,`subjectId`) VALUES ('6','2');
+INSERT INTO `classsubjects` (`classId`,`subjectId`) VALUES ('6','3');
+INSERT INTO `classsubjects` (`classId`,`subjectId`) VALUES ('6','4');
+INSERT INTO `classsubjects` (`classId`,`subjectId`) VALUES ('6','5');
+
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('1','1');
+
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('2','5');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('3','5');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('4','5');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('5','5');
 CREATE TABLE result(
     resultID int NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    belongToID int NOT NULL,
     userID int NOT NULL,
     points int NOT NULL,
     reading int NOT NULL,
@@ -36,6 +164,5 @@ CREATE TABLE result(
     memory int NOT NULL,
     conceptual int NOT NULL,
     application int NOT NULL,
-    analysis int NOT NULL,
-    FOREIGN KEY (belongToID) REFERENCES belongTo(belongToID)
+    analysis int NOT NULL
 );
