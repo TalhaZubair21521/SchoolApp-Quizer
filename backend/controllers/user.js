@@ -42,17 +42,114 @@ exports.GetQuestions = async (req, res) => {
                     }
                 }
             });
+
         } else if (activity === "revision") {
+            var query = mysql.format("Select * from revisionquestions where classID=? AND subjectID=? AND chapterID=?", [classID, subjectID, chapterID]);
+            db.query(query, (err, result, fields) => {
+                if (err) {
+                    res.status(500).json({ type: "failure", data: { message: err } });
+                    return;
+                } else {
+                    if (result.length > 0) {
+                        var query = mysql.format("Select * from revisionquestions join revisionanswers on revisionquestions.questionID=revisionanswers.reivisionquestionID where revisionquestions.classID=? AND revisionquestions.subjectID=? AND revisionquestions.chapterID=? AND revisionanswers.userID=?", [classID, subjectID, chapterID, userID]);
+                        db.query(query, (err, result, fields) => {
+                            if (err) {
+                                res.status(500).json({ type: "failure", data: { message: err } });
+                                return;
+                            } else {
+                                if (result.length > 0) {
+                                    res.status(200).json({ type: "fail", data: "You have already Completed This Activity" })
+                                } else {
+                                    var query = mysql.format("Select * from revisionquestions where classID=? AND subjectID=? AND chapterID=?;", [classID, subjectID, chapterID]);
+                                    db.query(query, (err, result, fields) => {
+                                        if (err) {
+                                            res.status(500).json({ type: "failure", data: { message: err } });
+                                            return;
+                                        } else {
+                                            res.status(200).json({ type: "success", data: { message: "Questions", questions: result } })
+                                        }
+                                    })
+                                }
+                            }
+                        });
+                    } else {
+                        res.status(200).json({ type: "fail", data: "Admin has Not Added Questions For this Chapter" })
+                    }
+                }
+            });
 
         } else if (activity === "game") {
+            var query = mysql.format("Select * from gamequestions where classID=? AND subjectID=? AND chapterID=?", [classID, subjectID, chapterID]);
+            db.query(query, (err, result, fields) => {
+                if (err) {
+                    res.status(500).json({ type: "failure", data: { message: err } });
+                    return;
+                } else {
+                    if (result.length > 0) {
+                        var query = mysql.format("Select * from gamequestions join gameanswers on gamequestions.questionID=gameanswers.gamequestionID where gamequestions.classID=? AND gamequestions.subjectID=? AND gamequestions.chapterID=? AND gameanswers.userID=?", [classID, subjectID, chapterID, userID]);
+                        db.query(query, (err, result, fields) => {
+                            if (err) {
+                                res.status(500).json({ type: "failure", data: { message: err } });
+                                return;
+                            } else {
+                                if (result.length > 0) {
+                                    res.status(200).json({ type: "fail", data: "You have already Completed This Activity" })
+                                } else {
+                                    var query = mysql.format("Select * from gamequestions where classID=? AND subjectID=? AND chapterID=?;", [classID, subjectID, chapterID]);
+                                    db.query(query, (err, result, fields) => {
+                                        if (err) {
+                                            res.status(500).json({ type: "failure", data: { message: err } });
+                                            return;
+                                        } else {
+                                            res.status(200).json({ type: "success", data: { message: "Questions", questions: result } })
+                                        }
+                                    })
+                                }
+                            }
+                        });
+                    } else {
+                        res.status(200).json({ type: "fail", data: "Admin has Not Added Questions For this Chapter" })
+                    }
+                }
+            });
 
-        } else if (activity === "testpaper") {
-
+        } else if (activity === "test") {
+            var query = mysql.format("Select * from testpaperquestions where classID=? AND subjectID=? AND chapterID=?", [classID, subjectID, chapterID]);
+            db.query(query, (err, result, fields) => {
+                if (err) {
+                    res.status(500).json({ type: "failure", data: { message: err } });
+                    return;
+                } else {
+                    if (result.length > 0) {
+                        var query = mysql.format("Select * from testpaperquestions join testpaperanswers on testpaperquestions.questionID=testpaperanswers.testpaperquestionID where testpaperquestions.classID=? AND testpaperquestions.subjectID=? AND testpaperquestions.chapterID=? AND testpaperanswers.userID=?", [classID, subjectID, chapterID, userID]);
+                        db.query(query, (err, result, fields) => {
+                            if (err) {
+                                res.status(500).json({ type: "failure", data: { message: err } });
+                                return;
+                            } else {
+                                if (result.length > 0) {
+                                    res.status(200).json({ type: "fail", data: "You have already Completed This Activity" })
+                                } else {
+                                    var query = mysql.format("Select * from testpaperquestions where classID=? AND subjectID=? AND chapterID=?;", [classID, subjectID, chapterID]);
+                                    db.query(query, (err, result, fields) => {
+                                        if (err) {
+                                            res.status(500).json({ type: "failure", data: { message: err } });
+                                            return;
+                                        } else {
+                                            res.status(200).json({ type: "success", data: { message: "Questions", questions: result } })
+                                        }
+                                    })
+                                }
+                            }
+                        });
+                    } else {
+                        res.status(200).json({ type: "fail", data: "Admin has Not Added Questions For this Chapter" })
+                    }
+                }
+            });
         }
-
-
-
     } catch (error) {
+        console.log(error)
         res.status(500).json({ type: "failure", data: { message: error } });
     }
 }
@@ -61,6 +158,7 @@ exports.SaveAnswers = async (req, res) => {
     try {
         const userID = req.body.userID;
         const answers = req.body.data;
+        const activity = req.body.activity;
         let anss = answers.map((ans) => {
             if (typeof ans.answer === 'undefined' || ans.answer === "") {
                 return { questionID: ans.questionID, answer: "NoAnswerGiven" }
@@ -68,16 +166,52 @@ exports.SaveAnswers = async (req, res) => {
                 return ans;
             }
         });
-        anss.forEach(async (question) => {
-            var query = mysql.format("INSERT INTO useranswer (userID,questionID,answer) VALUES (?,?,?)", [userID, question.questionID, question.answer]);
-            db.query(query, (err, result, fields) => {
-                if (err) {
-                    console.log(err);
-                    res.status(500).json({ type: "failure", data: { message: err } });
-                    return;
-                }
+        if (activity === "video") {
+            anss.forEach(async (question) => {
+                var query = mysql.format("INSERT INTO videoanswers (userID,videoquestionID,answer) VALUES (?,?,?)", [userID, question.questionID, question.answer]);
+                db.query(query, (err, result, fields) => {
+                    if (err) {
+                        console.log(err);
+                        res.status(500).json({ type: "failure", data: { message: err } });
+                        return;
+                    }
+                });
             });
-        });
+        } else if (activity === "revision") {
+            anss.forEach(async (question) => {
+                var query = mysql.format("INSERT INTO revisionanswers (userID,reivisionquestionID,answer) VALUES (?,?,?)", [userID, question.questionID, question.answer]);
+                db.query(query, (err, result, fields) => {
+                    if (err) {
+                        console.log(err);
+                        res.status(500).json({ type: "failure", data: { message: err } });
+                        return;
+                    }
+                });
+            });
+        } else if (activity === "game") {
+            anss.forEach(async (question) => {
+                var query = mysql.format("INSERT INTO gameanswers (userID,gamequestionID,answer) VALUES (?,?,?)", [userID, question.questionID, question.answer]);
+                db.query(query, (err, result, fields) => {
+                    if (err) {
+                        console.log(err);
+                        res.status(500).json({ type: "failure", data: { message: err } });
+                        return;
+                    }
+                });
+            });
+        } else if (activity === "test") {
+            anss.forEach(async (question) => {
+                var query = mysql.format("INSERT INTO testpaperanswers (userID,testpaperquestionID,answer) VALUES (?,?,?)", [userID, question.questionID, question.answer]);
+                db.query(query, (err, result, fields) => {
+                    if (err) {
+                        console.log(err);
+                        res.status(500).json({ type: "failure", data: { message: err } });
+                        return;
+                    }
+                });
+            });
+        }
+
         res.status(200).json({ type: "success", data: { message: "Answer Saved Successfully" } })
     } catch (error) {
         res.status(500).json({ type: "failure", data: { message: error } });

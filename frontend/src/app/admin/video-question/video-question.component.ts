@@ -16,6 +16,8 @@ export class VideoQuestionComponent implements OnInit {
   file: File;
   videoSrc;
   classes = [];
+  subjects = [];
+  chapters = [];
   questions: any = {
     class: "1",
     subject: "1",
@@ -50,7 +52,11 @@ export class VideoQuestionComponent implements OnInit {
 
   ngOnInit(): void {
     this.dataService.getClasses().subscribe(
-      (data) => { console.log(data) },
+      (data) => {
+        this.classes = data["result"];
+        // console.table(this.classes);
+
+      },
       (error) => { console.log(error) }
     )
   }
@@ -115,11 +121,35 @@ export class VideoQuestionComponent implements OnInit {
       }
     }
   }
-
   isSomethingEmpty(question) {
     return (question.question !== "" && question.option1 !== "" && question.option2 !== "" && question.option3 !== "" && question.option4 !== "" && question.answer !== "");
   }
-
+  getSubjects(classId) {
+    this.dataService.getSubjects(classId).subscribe(
+      (data) => {
+        console.log(data);
+        this.subjects = data["result"];
+      },
+      (error) => { console.log(error) }
+    )
+  }
+  getChapters(classId, subjectId) {
+    this.dataService.getChapters(classId, subjectId).subscribe(
+      (data) => {
+        console.log(data);
+        this.chapters = data["result"];
+      },
+      (error) => { console.log(error) }
+    )
+  }
+  update() {
+    this.getSubjects(this.questions.class);
+    this.getChapters(this.questions.class, this.questions.subject);
+  }
+  updateSubject() {
+    // console.log("Subjects", this.questions.subject);
+    this.getChapters(this.questions.class, this.questions.subject);
+  }
   onFileSelected($event) {
     this.file = $event.target.files[0];
     const reader = new FileReader();

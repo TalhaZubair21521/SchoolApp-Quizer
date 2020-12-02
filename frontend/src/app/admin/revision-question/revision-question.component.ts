@@ -11,6 +11,9 @@ export class RevisionQuestionComponent implements OnInit {
   @ViewChild('popup1') popup1: ElementRef;
   @ViewChild('popup4') popup2: ElementRef;
   @ViewChild('popup5') popup3: ElementRef;
+  classes = [];
+  subjects = [];
+  chapters = [];
   questions: any = {
     class: "1",
     subject: "1",
@@ -44,6 +47,12 @@ export class RevisionQuestionComponent implements OnInit {
   constructor(private dataService: DataserviceService) { }
 
   ngOnInit(): void {
+    this.dataService.getClasses().subscribe(
+      (data) => {
+        this.classes = data["result"];
+        // console.table(this.classes);
+      },
+      (error) => { console.log(error) })
   }
   onSubmit(formdata: NgForm) {
     for (i = 0; i < this.questions.questions.length; i++) {
@@ -72,11 +81,11 @@ export class RevisionQuestionComponent implements OnInit {
         i++;
       }
     });
-    console.log(this.questions.questions);
+    // console.log(this.questions.questions);
     if (flag[0] && flag[1] && flag[2] && flag[3] && flag[4]) {
       this.dataService.addRevisionQuestions(this.questions).subscribe(
         (data) => {
-          console.log(data);
+          // console.log(data);
           if (data["type"] === "success") {
             this.popup1.nativeElement.click();
           } else if (data["type"] === "fail") {
@@ -91,10 +100,34 @@ export class RevisionQuestionComponent implements OnInit {
       )
     } else {
       this.popup2.nativeElement.click()
-
     }
   }
-
+  getSubjects(classId) {
+    this.dataService.getSubjects(classId).subscribe(
+      (data) => {
+        console.log(data);
+        this.subjects = data["result"];
+      },
+      (error) => { console.log(error) }
+    )
+  }
+  getChapters(classId, subjectId) {
+    this.dataService.getChapters(classId, subjectId).subscribe(
+      (data) => {
+        console.log(data);
+        this.chapters = data["result"];
+      },
+      (error) => { console.log(error) }
+    )
+  }
+  update() {
+    this.getSubjects(this.questions.class);
+    this.getChapters(this.questions.class, this.questions.subject);
+  }
+  updateSubject() {
+    // console.log("Subjects", this.questions.subject);
+    this.getChapters(this.questions.class, this.questions.subject);
+  }
   isSomethingEmpty(question) {
     return (question.question !== "" && question.option1 !== "" && question.option2 !== "" && question.option3 !== "" && question.option4 !== "" && question.answer !== "");
   }

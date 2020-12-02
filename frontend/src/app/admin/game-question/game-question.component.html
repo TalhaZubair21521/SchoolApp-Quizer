@@ -33,22 +33,16 @@
                         </h5>
                         <select
                           class="form-control"
-                          id="exampleFormControlSelect1"
                           name="class"
                           [(ngModel)]="questions.class"
+                          (change)="update()"
                         >
-                          <option value="1">Class 1</option>
-                          <option value="2">Class 2</option>
-                          <option value="3">Class 3</option>
-                          <option value="4">Class 4</option>
-                          <option value="5">Class 5</option>
-                          <option value="6">Class 6</option>
-                          <option value="7">Class 7</option>
-                          <option value="8">Class 8</option>
-                          <option value="9">Class 9</option>
-                          <option value="10">Class 10</option>
-                          <option value="11">Class 11</option>
-                          <option value="12">Class 12</option>
+                          <option
+                            *ngFor="let class of classes"
+                            value="{{ class.classId }}"
+                          >
+                            {{ class.name }}
+                          </option>
                         </select>
                       </div>
                     </div>
@@ -65,17 +59,14 @@
                           id="exampleFormControlSelect1"
                           name="subject"
                           [(ngModel)]="questions.subject"
+                          (change)="updateSubject()"
                         >
-                          <option value="1">Subject Name 1</option>
-                          <option value="2">Subject Name 2</option>
-                          <option value="3">Subject Name 3</option>
-                          <option value="4">Subject Name 4</option>
-                          <option value="5">Subject Name 5</option>
-                          <option value="6">Subject Name 6</option>
-                          <option value="7">Subject Name 7</option>
-                          <option value="8">Subject Name 8</option>
-                          <option value="9">Subject Name 9</option>
-                          <option value="10">Subject Name 10</option>
+                          <option
+                            *ngFor="let subject of subjects"
+                            value="{{ subject.subjectId }}"
+                          >
+                            {{ subject.name }}
+                          </option>
                         </select>
                       </div>
                     </div>
@@ -93,16 +84,12 @@
                           name="chapter"
                           [(ngModel)]="questions.chapter"
                         >
-                          <option value="1">Chapter 1</option>
-                          <option value="2">Chapter 2</option>
-                          <option value="3">Chapter 3</option>
-                          <option value="4">Chapter 4</option>
-                          <option value="5">Chapter 5</option>
-                          <option value="6">Chapter 6</option>
-                          <option value="7">Chapter 7</option>
-                          <option value="8">Chapter 8</option>
-                          <option value="9">Chapter 9</option>
-                          <option value="10">Chapter 10</option>
+                          <option
+                            *ngFor="let chapter of chapters"
+                            value="{{ chapter.chapterId }}"
+                          >
+                            {{ chapter.name }}
+                          </option>
                         </select>
                       </div>
                     </div>

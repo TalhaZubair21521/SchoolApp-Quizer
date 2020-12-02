@@ -12,6 +12,9 @@ export class GameQuestionComponent implements OnInit {
   @ViewChild('popup1') popup1: ElementRef;
   @ViewChild('popup4') popup2: ElementRef;
   @ViewChild('popup5') popup3: ElementRef;
+  classes = [];
+  subjects = [];
+  chapters = [];
   questions: any = {
     class: "1",
     subject: "1",
@@ -45,6 +48,13 @@ export class GameQuestionComponent implements OnInit {
   constructor(private dataService: DataserviceService) { }
 
   ngOnInit(): void {
+    this.dataService.getClasses().subscribe(
+      (data) => {
+        this.classes = data["result"];
+        // console.table(this.classes);
+
+      },
+      (error) => { console.log(error) })
   }
   onSubmit(formdata: NgForm) {
     var flag = [true, true, true, true, true];
@@ -77,7 +87,32 @@ export class GameQuestionComponent implements OnInit {
       this.popup2.nativeElement.click()
     }
   }
-
+  getSubjects(classId) {
+    this.dataService.getSubjects(classId).subscribe(
+      (data) => {
+        console.log(data);
+        this.subjects = data["result"];
+      },
+      (error) => { console.log(error) }
+    )
+  }
+  getChapters(classId, subjectId) {
+    this.dataService.getChapters(classId, subjectId).subscribe(
+      (data) => {
+        console.log(data);
+        this.chapters = data["result"];
+      },
+      (error) => { console.log(error) }
+    )
+  }
+  update() {
+    this.getSubjects(this.questions.class);
+    this.getChapters(this.questions.class, this.questions.subject);
+  }
+  updateSubject() {
+    // console.log("Subjects", this.questions.subject);
+    this.getChapters(this.questions.class, this.questions.subject);
+  }
   isSomethingEmpty(question) {
     return (question.question !== "" && question.option1 !== "" && question.option2 !== "" && question.option3 !== "" && question.option4 !== "" && question.answer !== "");
   }
