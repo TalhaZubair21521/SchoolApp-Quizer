@@ -1,3 +1,126 @@
+CREATE TABLE videoquestions(
+    questionID int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    type varchar(30) NOT NULL,
+    question varchar(30) NOT NULL,
+    option1 varchar(30),
+    option2 varchar(30),
+    option3 varchar(30),
+    option4 varchar(30),
+    answer varchar(30) NOT NULL,
+    skill varchar(30) NOT NULL,
+    videoURL varchar(100) NOT NULL,
+    classID varchar(30) NOT NULL,
+    subjectID varchar(30) NOT NULL,
+    chapterID varchar(30) NOT NULL
+);
+
+CREATE TABLE revisionquestions(
+    questionID int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    type varchar(30) NOT NULL,
+    question varchar(30) NOT NULL,
+    option1 varchar(30),
+    option2 varchar(30),
+    option3 varchar(30),
+    option4 varchar(30),
+    answer varchar(30) NOT NULL,
+    skill varchar(30) NOT NULL,
+    classID varchar(30) NOT NULL,
+    subjectID varchar(30) NOT NULL,
+    chapterID varchar(30) NOT NULL
+);
+
+CREATE TABLE testpaperquestions(
+    questionID int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    type varchar(30) NOT NULL,
+    question varchar(30) NOT NULL,
+    option1 varchar(30),
+    option2 varchar(30),
+    option3 varchar(30),
+    option4 varchar(30),
+    answer varchar(30) NOT NULL,
+    skill varchar(30) NOT NULL,
+    classID varchar(30) NOT NULL,
+    subjectID varchar(30) NOT NULL,
+    chapterID varchar(30) NOT NULL
+);
+
+CREATE TABLE gamequestions(
+    questionID int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    type varchar(30) NOT NULL,
+    question varchar(30) NOT NULL,
+    option1 varchar(30),
+    option2 varchar(30),
+    option3 varchar(30),
+    option4 varchar(30),
+    answer varchar(30) NOT NULL,
+    skill varchar(30) NOT NULL,
+    classID varchar(30) NOT NULL,
+    subjectID varchar(30) NOT NULL,
+    chapterID varchar(30) NOT NULL
+);
+
+CREATE TABLE videoanswers(
+    userAnswerID int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    userID int NOT NULL,
+    videoquestionID int NOT NULL,
+    answer varchar(200) NOT NULL,
+    FOREIGN KEY (videoquestionID) REFERENCES videoquestions(questionID)
+);
+
+CREATE TABLE revisionanswers(
+    userAnswerID int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    userID int NOT NULL,
+    reivisionquestionID int NOT NULL,
+    answer varchar(200) NOT NULL,
+    FOREIGN KEY (reivisionquestionID) REFERENCES revisionquestions(questionID)
+);
+
+CREATE TABLE testpaperanswers(
+    userAnswerID int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    userID int NOT NULL,
+    testpaperquestionID int NOT NULL,
+    answer varchar(200) NOT NULL,
+    FOREIGN KEY (testpaperquestionID) REFERENCES testpaperquestions(questionID)
+);
+
+CREATE TABLE gameanswers(
+    userAnswerID int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    userID int NOT NULL,
+    gamequestionID int NOT NULL,
+    answer varchar(200) NOT NULL,
+    FOREIGN KEY (gamequestionID) REFERENCES gamequestions(questionID)
+);
+
+CREATE TABLE classes(
+    classId int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    name varchar(20) NOT NULL
+);
+
+CREATE TABLE subjects(
+    subjectId int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    name varchar(20) NOT NULL
+);
+
+CREATE TABLE chapters(
+    chapterId int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    name varchar(20) NOT NULL
+);
+
+CREATE TABLE classsubjects(
+    classsubjectID int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    classId int NOT NULL,
+    subjectId int NOT NULL,
+    FOREIGN KEY (classId) REFERENCES classes(classId),
+    FOREIGN KEY (subjectId) REFERENCES subjects(subjectId)
+);
+
+CREATE TABLE subjectschapter(
+    subjectchapterID int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    chapterId int NOT NULL,
+    subjectId int NOT NULL,
+    FOREIGN KEY (chapterId) REFERENCES chapters(chapterId),
+    FOREIGN KEY (subjectId) REFERENCES subjects(subjectId)
+);
 INSERT INTO `classes` (`name`) VALUES ('One');
 INSERT INTO `classes` (`name`) VALUES ( 'Two');
 INSERT INTO `classes` (`name`) VALUES ('Three');
@@ -24,10 +147,3 @@ INSERT INTO `classsubjects` (`classId`,`subjectId`) VALUES ('6','4');
 INSERT INTO `classsubjects` (`classId`,`subjectId`) VALUES ('6','5');
 
 INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('1','1');
-
-INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('2','5');
-INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('3','5');
-INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('4','5');
-INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('5','5');
-
-select * from classes join classsubjects on classes.classId=classsubjects.classId join subjects on classsubjects.subjectId=subjects.subjectId join subjectschapter on subjectschapter.subjectId=subjects.subjectId join chapters on subjectschapter.chapterId=chapters.chapterId;
