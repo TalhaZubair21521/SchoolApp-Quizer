@@ -1,0 +1,827 @@
+<div class="card m-5 p-4">
+  <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+    <div class="container mt-3">
+      <div class="row">
+        <div class="col">
+          <!-- Test Paper Activity -->
+          <div class="card spacer">
+            <h5 class="card-header">
+              <a
+                data-toggle="collapse"
+                href="#test"
+                aria-expanded="true"
+                aria-controls="collapse-example"
+                id="heading-example"
+                class="d-block"
+                style="text-decoration: none"
+              >
+                <i class="fa fa-chevron-down pull-right"></i>
+                Test Paper Activity
+              </a>
+            </h5>
+            <div id="test" class="collapse" aria-labelledby="heading-example">
+              <div class="card-body">
+                <div class="row justify-content-center">
+                  <div class="col-3">
+                    <div class="form-group">
+                      <h5
+                        style="text-align: center"
+                        for="exampleFormControlSelect1"
+                      >
+                        Choose Class
+                      </h5>
+                      <select
+                        class="form-control"
+                        name="class"
+                        [(ngModel)]="questions.class"
+                        (change)="update()"
+                      >
+                        <option
+                          *ngFor="let class of classes"
+                          value="{{ class.classId }}"
+                        >
+                          {{ class.name }}
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-3">
+                    <div class="form-group">
+                      <h5
+                        style="text-align: center"
+                        for="exampleFormControlSelect1"
+                      >
+                        Choose Subject
+                      </h5>
+                      <select
+                        class="form-control"
+                        id="exampleFormControlSelect1"
+                        name="subject"
+                        [(ngModel)]="questions.subject"
+                        (change)="updateSubject()"
+                      >
+                        <option
+                          *ngFor="let subject of subjects"
+                          value="{{ subject.subjectId }}"
+                        >
+                          {{ subject.name }}
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-3">
+                    <div class="form-group">
+                      <h5
+                        style="text-align: center"
+                        for="exampleFormControlSelect1"
+                      >
+                        Choose Chapter
+                      </h5>
+                      <select
+                        class="form-control"
+                        id="exampleFormControlSelect1"
+                        name="chapter"
+                        [(ngModel)]="questions.chapter"
+                      >
+                        <option
+                          *ngFor="let chapter of chapters"
+                          value="{{ chapter.chapterId }}"
+                        >
+                          {{ chapter.name }}
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="questions">
+                  <div class="card mb-3">
+                    <div class="card-header text-right" style="color: brown">
+                      {{ questions.questions[10].skill }}
+                    </div>
+                    <div class="card-body">
+                      <h5 class="card-title">Question 1</h5>
+                      <div class="form-group">
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="Question1"
+                          aria-describedby="QHelp"
+                          placeholder="Enter Question Here"
+                          name="gameQ1"
+                          [(ngModel)]="questions.questions[10].question"
+                        />
+                        <small id="QHelp" class="form-text text-muted"
+                          >Enter Choices and click correct choice.</small
+                        >
+                      </div>
+                      <div class="choices">
+                        <div class="form-check mt-2">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="gameQ1answer"
+                            [(ngModel)]="questions.questions[10].answer"
+                            id="c1"
+                            [(value)]="questions.questions[10].option1"
+                            style="margin-top: 10px"
+                          />
+                          <label class="form-check-label" for="c1">
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="Question1"
+                              placeholder="Enter Choice 1"
+                              name="gameQ1option1"
+                              [(ngModel)]="questions.questions[10].option1"
+                            />
+                          </label>
+                        </div>
+                        <div class="form-check mt-2">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="gameQ1answer"
+                            id="c2"
+                            [(ngModel)]="questions.questions[10].answer"
+                            [(value)]="questions.questions[10].option2"
+                            style="margin-top: 10px"
+                          />
+                          <label class="form-check-label" for="c2">
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="Question2"
+                              placeholder="Enter Choice 2"
+                              name="gameQ1option2"
+                              [(ngModel)]="questions.questions[10].option2"
+                            />
+                          </label>
+                        </div>
+                        <div class="form-check mt-2">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="gameQ1answer"
+                            id="c3"
+                            [(ngModel)]="questions.questions[10].answer"
+                            [(value)]="questions.questions[10].option3"
+                            style="margin-top: 10px"
+                          />
+                          <label class="form-check-label" for="c3">
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="Question3"
+                              placeholder="Enter Choice 3"
+                              name="gameQ1option3"
+                              [(ngModel)]="questions.questions[10].option3"
+                            />
+                          </label>
+                        </div>
+                        <div class="form-check mt-2">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="gameQ1answer"
+                            id="c4"
+                            [(ngModel)]="questions.questions[10].answer"
+                            [(value)]="questions.questions[10].option4"
+                            style="margin-top: 10px"
+                          />
+                          <label class="form-check-label" for="c4">
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="Question4"
+                              placeholder="Enter Choice 4"
+                              name="gameQ1option4"
+                              [(ngModel)]="questions.questions[10].option4"
+                            />
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="questions">
+                  <div class="card mb-3">
+                    <div class="card-header text-right" style="color: brown">
+                      {{ questions.questions[11].skill }}
+                    </div>
+                    <div class="card-body">
+                      <h5 class="card-title">Question 2</h5>
+                      <div class="form-group">
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="Question2"
+                          aria-describedby="QHelp"
+                          placeholder="Enter Question Here"
+                          name="gameQ2"
+                          [(ngModel)]="questions.questions[11].question"
+                        />
+                        <small id="QHelp" class="form-text text-muted"
+                          >Enter Choices and click correct choice.</small
+                        >
+                      </div>
+                      <div class="choices">
+                        <div class="form-check mt-2">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="gameQ2answer"
+                            [(ngModel)]="questions.questions[11].answer"
+                            id="c1"
+                            [(value)]="questions.questions[11].option1"
+                            style="margin-top: 10px"
+                          />
+                          <label class="form-check-label" for="c1">
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="Question2"
+                              placeholder="Enter Choice 1"
+                              name="gameQ2option1"
+                              ng-change="changeAnswer()"
+                              [(ngModel)]="questions.questions[11].option1"
+                            />
+                          </label>
+                        </div>
+                        <div class="form-check mt-2">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="gameQ2answer"
+                            id="c2"
+                            [(ngModel)]="questions.questions[11].answer"
+                            [(value)]="questions.questions[11].option2"
+                            style="margin-top: 10px"
+                          />
+                          <label class="form-check-label" for="c2">
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="Question2"
+                              placeholder="Enter Choice 2"
+                              name="gameQ2option2"
+                              [(ngModel)]="questions.questions[11].option2"
+                            />
+                          </label>
+                        </div>
+                        <div class="form-check mt-2">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="gameQ2answer"
+                            id="c3"
+                            [(ngModel)]="questions.questions[11].answer"
+                            [(value)]="questions.questions[11].option3"
+                            style="margin-top: 10px"
+                          />
+                          <label class="form-check-label" for="c3">
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="Question3"
+                              placeholder="Enter Choice 3"
+                              name="gameQ2option3"
+                              [(ngModel)]="questions.questions[11].option3"
+                            />
+                          </label>
+                        </div>
+                        <div class="form-check mt-2">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="gameQ2answer"
+                            id="c4"
+                            [(ngModel)]="questions.questions[11].answer"
+                            [(value)]="questions.questions[11].option4"
+                            style="margin-top: 10px"
+                          />
+                          <label class="form-check-label" for="c4">
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="Question4"
+                              placeholder="Enter Choice 4"
+                              name="gameQ2option4"
+                              [(ngModel)]="questions.questions[11].option4"
+                            />
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="questions">
+                  <div class="card mb-3">
+                    <div class="card-header text-right" style="color: brown">
+                      {{ questions.questions[12].skill }}
+                    </div>
+                    <div class="card-body">
+                      <h5 class="card-title">Question 3</h5>
+                      <div class="form-group">
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="Question3"
+                          aria-describedby="QHelp"
+                          placeholder="Enter Question Here"
+                          name="gameQ3"
+                          [(ngModel)]="questions.questions[12].question"
+                        />
+                        <small id="QHelp" class="form-text text-muted"
+                          >Enter Choices and click correct choice.</small
+                        >
+                      </div>
+                      <div class="choices">
+                        <div class="form-check mt-2">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="gameQ3answer"
+                            [(ngModel)]="questions.questions[12].answer"
+                            id="c1"
+                            [(value)]="questions.questions[12].option1"
+                            style="margin-top: 10px"
+                          />
+                          <label class="form-check-label" for="c1">
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="Question1"
+                              placeholder="Enter Choice 1"
+                              name="gameQ3option1"
+                              [(ngModel)]="questions.questions[12].option1"
+                            />
+                          </label>
+                        </div>
+                        <div class="form-check mt-2">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="gameQ3answer"
+                            id="c2"
+                            [(ngModel)]="questions.questions[12].answer"
+                            [(value)]="questions.questions[12].option2"
+                            style="margin-top: 10px"
+                          />
+                          <label class="form-check-label" for="c2">
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="Question2"
+                              placeholder="Enter Choice 2"
+                              name="gameQ3option2"
+                              [(ngModel)]="questions.questions[12].option2"
+                            />
+                          </label>
+                        </div>
+                        <div class="form-check mt-2">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="gameQ3answer"
+                            id="c3"
+                            [(ngModel)]="questions.questions[12].answer"
+                            [(value)]="questions.questions[12].option3"
+                            style="margin-top: 10px"
+                          />
+                          <label class="form-check-label" for="c3">
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="Question3"
+                              placeholder="Enter Choice 3"
+                              name="gameQ3option3"
+                              [(ngModel)]="questions.questions[12].option3"
+                            />
+                          </label>
+                        </div>
+                        <div class="form-check mt-2">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="gameQ3answer"
+                            id="c4"
+                            [(ngModel)]="questions.questions[12].answer"
+                            [(value)]="questions.questions[12].option4"
+                            style="margin-top: 10px"
+                          />
+                          <label class="form-check-label" for="c4">
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="Question4"
+                              placeholder="Enter Choice 4"
+                              name="gameQ3option4"
+                              [(ngModel)]="questions.questions[12].option4"
+                            />
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="questions">
+                  <div class="card mb-3">
+                    <div class="card-header text-right" style="color: brown">
+                      {{ questions.questions[13].skill }}
+                    </div>
+                    <div class="card-body">
+                      <h5 class="card-title">Question 4</h5>
+                      <div class="form-group">
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="Question4"
+                          aria-describedby="QHelp"
+                          placeholder="Enter Question Here"
+                          name="gameQ4"
+                          [(ngModel)]="questions.questions[13].question"
+                        />
+                        <small id="QHelp" class="form-text text-muted"
+                          >Enter Choices and click correct choice.</small
+                        >
+                      </div>
+                      <div class="choices">
+                        <div class="form-check mt-2">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="gameQ4answer"
+                            [(ngModel)]="questions.questions[13].answer"
+                            id="c1"
+                            [(value)]="questions.questions[13].option1"
+                            style="margin-top: 10px"
+                          />
+                          <label class="form-check-label" for="c1">
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="Question1"
+                              placeholder="Enter Choice 1"
+                              name="gameQ4option1"
+                              [(ngModel)]="questions.questions[13].option1"
+                            />
+                          </label>
+                        </div>
+                        <div class="form-check mt-2">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="gameQ4answer"
+                            id="c2"
+                            [(ngModel)]="questions.questions[13].answer"
+                            [(value)]="questions.questions[13].option2"
+                            style="margin-top: 10px"
+                          />
+                          <label class="form-check-label" for="c2">
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="Question2"
+                              placeholder="Enter Choice 2"
+                              name="gameQ4option2"
+                              [(ngModel)]="questions.questions[13].option2"
+                            />
+                          </label>
+                        </div>
+                        <div class="form-check mt-2">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="gameQ4answer"
+                            id="c3"
+                            [(ngModel)]="questions.questions[13].answer"
+                            [(value)]="questions.questions[13].option3"
+                            style="margin-top: 10px"
+                          />
+                          <label class="form-check-label" for="c3">
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="Question3"
+                              placeholder="Enter Choice 3"
+                              name="gameQ4option3"
+                              [(ngModel)]="questions.questions[13].option3"
+                            />
+                          </label>
+                        </div>
+                        <div class="form-check mt-2">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="gameQ4answer"
+                            id="c4"
+                            [(ngModel)]="questions.questions[13].answer"
+                            [(value)]="questions.questions[13].option4"
+                            style="margin-top: 10px"
+                          />
+                          <label class="form-check-label" for="c4">
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="Question4"
+                              placeholder="Enter Choice 4"
+                              name="gameQ4option4"
+                              [(ngModel)]="questions.questions[13].option4"
+                            />
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="questions">
+                  <div class="card mb-3">
+                    <div class="card-header text-right" style="color: brown">
+                      {{ questions.questions[14].skill }}
+                    </div>
+                    <div class="card-body">
+                      <h5 class="card-title">Question 5</h5>
+                      <div class="form-group">
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="Question5"
+                          aria-describedby="QHelp"
+                          placeholder="Enter Question Here"
+                          name="gameQ5"
+                          [(ngModel)]="questions.questions[14].question"
+                        />
+                        <small id="QHelp" class="form-text text-muted"
+                          >Enter Choices and click correct choice.</small
+                        >
+                      </div>
+                      <div class="choices">
+                        <div class="form-check mt-2">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="gameQ5answer"
+                            [(ngModel)]="questions.questions[14].answer"
+                            id="c1"
+                            [(value)]="questions.questions[14].option1"
+                            style="margin-top: 10px"
+                          />
+                          <label class="form-check-label" for="c1">
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="Question1"
+                              placeholder="Enter Choice 1"
+                              name="gameQ5option1"
+                              [(ngModel)]="questions.questions[14].option1"
+                            />
+                          </label>
+                        </div>
+                        <div class="form-check mt-2">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="gameQ5answer"
+                            id="c2"
+                            [(ngModel)]="questions.questions[14].answer"
+                            [(value)]="questions.questions[14].option2"
+                            style="margin-top: 10px"
+                          />
+                          <label class="form-check-label" for="c2">
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="Question2"
+                              placeholder="Enter Choice 2"
+                              name="gameQ5option2"
+                              [(ngModel)]="questions.questions[14].option2"
+                            />
+                          </label>
+                        </div>
+                        <div class="form-check mt-2">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="gameQ5answer"
+                            id="c3"
+                            [(ngModel)]="questions.questions[14].answer"
+                            [(value)]="questions.questions[14].option3"
+                            style="margin-top: 10px"
+                          />
+                          <label class="form-check-label" for="c3">
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="Question3"
+                              placeholder="Enter Choice 3"
+                              name="gameQ5option3"
+                              [(ngModel)]="questions.questions[14].option3"
+                            />
+                          </label>
+                        </div>
+                        <div class="form-check mt-2">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="gameQ5answer"
+                            id="c4"
+                            [(ngModel)]="questions.questions[14].answer"
+                            [(value)]="questions.questions[14].option4"
+                            style="margin-top: 10px"
+                          />
+                          <label class="form-check-label" for="c4">
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="Question4"
+                              placeholder="Enter Choice 4"
+                              name="gameQ5option4"
+                              [(ngModel)]="questions.questions[14].option4"
+                            />
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="spacer text-right">
+            <button class="btn btn-danger">Submit</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+<button
+  type="button"
+  #popup1
+  [hidden]="true"
+  class="btn btn-primary"
+  data-toggle="modal"
+  data-target="#question1"
+>
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="question1"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="card mb-3">
+          <div class="card-header">
+            <div class="row">
+              <div class="col text-center">Data Succcessfully Saved</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-sm btn-danger"
+          data-dismiss="modal"
+        >
+          Ok
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<button
+  type="button"
+  #popup4
+  [hidden]="true"
+  class="btn btn-primary"
+  data-toggle="modal"
+  data-target="#question4"
+>
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="question4"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="card mb-3">
+          <div class="card-header">
+            <div class="row">
+              <div class="col text-center">Fill All the Fields</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-sm btn-danger"
+          data-dismiss="modal"
+        >
+          Ok
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<button
+  type="button"
+  #popup5
+  [hidden]="true"
+  class="btn btn-primary"
+  data-toggle="modal"
+  data-target="#question10"
+>
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="question10"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="card mb-3">
+          <div class="card-header">
+            <div class="row">
+              <div class="col text-center">Data Already Present There</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-sm btn-danger"
+          data-dismiss="modal"
+        >
+          Ok
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

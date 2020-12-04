@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { DataserviceService } from '../../services/dataservice.service';
-
+import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-video',
   templateUrl: './video.component.html',
@@ -14,6 +14,12 @@ export class VideoComponent implements OnInit {
   @ViewChild('popup4') popup4: ElementRef;
   @ViewChild('popup5') popup5: ElementRef;
 
+  message: String = "";
+  classID: Number;
+  subjectID: Number;
+  chapterID: Number;
+  userID: Number;
+  videoURL: any = null;
   timecheck: any;
   answer1: any;
   answer2: any;
@@ -22,26 +28,44 @@ export class VideoComponent implements OnInit {
   answer5: any;
   list: any = [];
   solutions: any = [];
-
+  isError: Boolean = false;
   duration: any;
   count = 0;
   t: any;
 
-  constructor(private dataService: DataserviceService) {
-    this.dataService.getQuestions("video", "1", "1", "1").subscribe(
+  constructor(private dataService: DataserviceService, private router: Router, private activatedRoute: ActivatedRoute) {
+
+    this.activatedRoute.queryParams.subscribe(params => {
+      this.userID = params['userId'];
+      this.classID = params['classId'];
+      this.subjectID = params['subjectId'];
+      this.chapterID = params['chapterId'];
+    });
+    this.dataService.getQuestions("video", this.classID, this.subjectID, this.chapterID, this.userID).subscribe(
       (data) => {
+        console.log(data);
+        if (data['type'] === "fail") {
+          this.message = data['data'];
+          console.log(this.message);
+          this.isError = true;
+        }
         this.list = data["data"]["questions"];
+        console.log(this.list);
+        this.videoURL = "/assets/videos/" + this.list[0].videoURL;
       },
       err => { console.log(err) }
     )
   }
 
   ngOnInit(): void {
-    this.duration = 225;
-    let interval = Math.floor(this.duration / 5);
-    this.t = [interval, interval * 2, interval * 3, interval * 4, interval * 5];
-    console.log(this.t);
-    this.quizInterval();
+    setTimeout(() => {
+      this.duration = this.video.nativeElement.duration;
+      let interval = Math.floor(this.duration / 5);
+      this.t = [interval, interval * 2, interval * 3, interval * 4, interval * 5];
+      console.log(this.t);
+      this.quizInterval();
+    }, 1000)
+
   }
 
   quizInterval() {
@@ -88,30 +112,37 @@ export class VideoComponent implements OnInit {
     switch (questionNo) {
       case 1:
         console.log(questionNo, this.answer1);
-        this.solutions.push({ questionID: questionNo, answer: this.answer1 })
+        this.solutions.push({ questionID: this.list[0]["questionID"], answer: this.answer1 })
         break;
       case 2:
         console.log(questionNo, this.answer2);
-        this.solutions.push({ questionID: questionNo, answer: this.answer2 })
+        this.solutions.push({ questionID: this.list[1]["questionID"], answer: this.answer2 })
         break;
       case 3:
         console.log(questionNo, this.answer3);
-        this.solutions.push({ questionID: questionNo, answer: this.answer3 })
+        this.solutions.push({ questionID: this.list[2]["questionID"], answer: this.answer3 })
         break;
       case 4:
         console.log(questionNo, this.answer4);
-        this.solutions.push({ questionID: questionNo, answer: this.answer4 })
+        this.solutions.push({ questionID: this.list[3]["questionID"], answer: this.answer4 })
         break;
       case 5:
         console.log(questionNo, this.answer5);
-        this.solutions.push({ questionID: questionNo, answer: this.answer5 })
+        this.solutions.push({ questionID: this.list[4]["questionID"], answer: this.answer5 })
         break;
       default:
         break;
     }
     if (questionNo === 5) {
-      this.dataService.saveQuestions(this.solutions).subscribe(
-        (data) => { console.log(data) },
+      this.dataService.saveQuestions(this.solutions, this.userID, this.classID, this.subjectID, this.chapterID, "video").subscribe(
+        (data) => {
+          console.log(data);
+          if (data["type"] === "success") {
+            alert("Video Activity Result Saved");
+            // let queryParams = "?classId=" + this.classID + "&userId=" + this.userID + "&subjectId=" + this.subjectID + "&chapterId=" + this.chapterID;
+            // this.router.navigateByUrl('user/revision'.concat(queryParams));
+          }
+        },
         (err) => { console.log(err) }
       )
     }

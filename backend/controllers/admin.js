@@ -1,61 +1,65 @@
 const db = require("../database/connect");
 const mysql = require("mysql");
 
-exports.SaveActivityQuestions = async (req, res) => {
-   const data = {
-      class: 1,
-      subject: 1,
-      chapter: 1,
-      questions: [
-         { activity: "video", type: "mcqs", question: "What is Kharif Crop?", option1: "Wheat", option2: "Rice", option3: "Flour", option4: "Melon", answer: "Wheat", skill: "Reading" },
-         { activity: "video", type: "mcqs", question: "In the video which machinary is used for farming?", option1: "Car", option2: "Tractor", option3: "Jeep", option4: "Bulldozer", answer: "Tractor", skill: "Observation" },
-         { activity: "video", type: "mcqs", question: "How do you sow?", option1: "Mars", option2: "Flour", option3: "Earth", option4: "Jubiter", answer: "Earth", skill: "Listening" },
-         { activity: "video", type: "mcqs", question: "What is Rabi?", option1: "Lazani", option2: "Pike", option3: "Jugus", option4: "Shallow", answer: "Jugus", skill: "Writing" },
-         { activity: "video", type: "mcqs", question: "What ingredient is used while sowing wseds?", option1: "Crops", option2: "Masters", option3: "Fertilizer", option4: "Germs", answer: "Fertilizers", skill: "Learning" },
+exports.SaveVideoQuestions = async (req, res) => {
+   try {
+      let data = JSON.parse(req.body.data);
+      let videos = data.questions.filter((question) => {
+         if (question.activity === "video") {
+            return question;
+         } else {
+            return false;
+         }
+      });
+      var query = mysql.format("Select COUNT(questionID) AS counts from videoquestions where classID=? AND subjectID=? AND chapterID=?", [data.class, data.subject, data.chapter]);
+      db.query(query, (err, result, fields) => {
+         if (err) {
+            res.status(500).json({ type: "failure", data: { message: err } });
+            return;
+         }
+         if (result[0].counts > 0) {
+            res.status(200).json({ type: "fail", data: { msg: "Data Already Exists" } });
+            return;
+         } else {
+            videos.forEach(async (question) => {
+               var query = mysql.format("INSERT INTO videoquestions (type, question, option1, option2, option3, option4, answer, skill,classID,subjectID,chapterID,videoURL) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)", [question.type, question.question, question.option1, question.option2, question.option3, question.option4, question.answer, question.skill, data.class, data.subject, data.chapter, req.body.videoSource]);
+               db.query(query, (err, result, fields) => {
+                  if (err) {
+                     res.status(500).json({ type: "failure", data: { message: err } });
+                     return;
+                  }
+               })
+            });
+            res.status(200).json({ type: "success", data: { result: "Video Questions Data Added Successfully" } });
+         }
+      });
+   } catch (error) {
+      console.error(error);
+   }
+}
 
-         { activity: "revision", type: "oneword", question: "What is your name?", option1: "A", option2: "B", option3: "C", option4: "D", answer: "A", skill: "reading" },
-         { activity: "revision", type: "oneword", question: "What is your name?", option1: "A", option2: "B", option3: "C", option4: "D", answer: "B", skill: "observation" },
-         { activity: "revision", type: "oneword", question: "What is your name?", option1: "A", option2: "B", option3: "C", option4: "D", answer: "A", skill: "listening" },
-         { activity: "revision", type: "t/f", question: "What is your name?", option1: "", option2: "", option3: "", option4: "", answer: "true", skill: "writing" },
-         { activity: "revision", type: "t/f", question: "What is your name?", option1: "", option2: "", option3: "", option4: "", answer: "false", skill: "learning" },
-
-         { activity: "game", type: "mcqs", question: "What is your name?", option1: "A", option2: "B", option3: "C", option4: "D", answer: "A", skill: "reading" },
-         { activity: "game", type: "mcqs", question: "What is your name?", option1: "A", option2: "B", option3: "C", option4: "D", answer: "B", skill: "observation" },
-         { activity: "game", type: "mcqs", question: "What is your name?", option1: "A", option2: "B", option3: "C", option4: "D", answer: "C", skill: "listening" },
-         { activity: "game", type: "mcqs", question: "What is your name?", option1: "A", option2: "B", option3: "C", option4: "D", answer: "A", skill: "writing" },
-         { activity: "game", type: "mcqs", question: "What is your name?", option1: "A", option2: "B", option3: "C", option4: "D", answer: "D", skill: "learning" },
-
-         { activity: "test", type: "mcqs", question: "What is your name?", option1: "A", option2: "B", option3: "C", option4: "D", answer: "D", skill: "memory" },
-         { activity: "test", type: "mcqs", question: "What is your name?", option1: "A", option2: "B", option3: "C", option4: "D", answer: "A", skill: "conceptual" },
-         { activity: "test", type: "mcqs", question: "What is your name?", option1: "A", option2: "B", option3: "C", option4: "D", answer: "C", skill: "application" },
-         { activity: "test", type: "mcqs", question: "What is your name?", option1: "A", option2: "B", option3: "C", option4: "D", answer: "A", skill: "analysis" },
-         { activity: "test", type: "mcqs", question: "What is your name?", option1: "A", option2: "B", option3: "C", option4: "D", answer: "B", skill: "observation" }
-      ]
-   };
-
-   //Inserting Belong To Details
-   var query = mysql.format("INSERT INTO belongto (classID, subjectID, chapterID) VALUES (?,?,?)", [data.class, data.subject, data.chapter]);
+exports.SaveRevisionQuestions = async (req, res) => {
+   const data = req.body;
+   let revisions = data.questions.filter((question) => {
+      if (question.activity === "revision") {
+         return question;
+      } else {
+         return false;
+      }
+   })
+   var query = mysql.format("Select COUNT(questionID) AS counts from revisionquestions where classID=? AND subjectID=? AND chapterID=?", [data.class, data.subject, data.chapter]);
    db.query(query, (err, result, fields) => {
       if (err) {
          console.log(err);
          res.status(500).json({ type: "failure", data: { message: err } });
          return;
       }
-      const belongToID = result.insertId;
-      //Loop on Questions
-      data.questions.forEach(async (question) => {
-         //Loop on Inserting Question
-         var query = mysql.format("INSERT INTO question (type, question, option1, option2, option3, option4, answer, skill) VALUES (?,?,?,?,?,?,?,?)", [question.type, question.question, question.option1, question.option2, question.option3, question.option4, question.answer, question.skill]);
-         var activity = question.activity;
-         db.query(query, (err, result, fields) => {
-            if (err) {
-               console.log(err);
-               res.status(500).json({ type: "failure", data: { message: err } });
-               return;
-            }
-            const questionID = result.insertId;
-            //Inserting Activity Questions
-            var query = mysql.format("INSERT INTO activityquestion (activity, questionID, belongToID) VALUES (?,?,?)", [activity, questionID, belongToID]);
+      if (result[0].counts > 0) {
+         res.status(200).json({ type: "fail", data: { msg: "Data Already Exists" } });
+         return;
+      } else {
+         revisions.forEach(async (question) => {
+            var query = mysql.format("INSERT INTO revisionquestions (type, question, option1, option2, option3, option4, answer, skill,classID,subjectID,chapterID) VALUES (?,?,?,?,?,?,?,?,?,?,?)", [question.type, question.question, question.option1, question.option2, question.option3, question.option4, question.answer, question.skill, data.class, data.subject, data.chapter]);
             db.query(query, (err, result, fields) => {
                if (err) {
                   console.log(err);
@@ -63,9 +67,116 @@ exports.SaveActivityQuestions = async (req, res) => {
                   return;
                }
             })
-         })
-      });
-      //Sending Response
-      res.status(200).json({ type: "success", data: { message: "Questions Inserted Successfully" } })
+         });
+         res.status(200).json({ type: "success", data: { result: "Revisions Questions Data Added Successfully" } });
+      }
+   });
+}
+
+exports.SaveGameQuestions = async (req, res) => {
+   const data = req.body;
+   let games = data.questions.filter((question) => {
+      if (question.activity === "game") {
+         return question;
+      } else {
+         return false;
+      }
+   })
+   var query = mysql.format("Select COUNT(questionID) AS counts from gamequestions where classID=? AND subjectID=? AND chapterID=?", [data.class, data.subject, data.chapter]);
+   db.query(query, (err, result, fields) => {
+      if (err) {
+         res.status(500).json({ type: "failure", data: { message: err } });
+         return;
+      }
+      if (result[0].counts > 0) {
+         res.status(200).json({ type: "fail", data: { msg: "Data Already Exists" } });
+         return;
+      } else {
+         games.forEach(async (question) => {
+            var query = mysql.format("INSERT INTO gamequestions (type, question, option1, option2, option3, option4, answer, skill,classID,subjectID,chapterID) VALUES (?,?,?,?,?,?,?,?,?,?,?)", [question.type, question.question, question.option1, question.option2, question.option3, question.option4, question.answer, question.skill, data.class, data.subject, data.chapter]);
+            db.query(query, (err, result, fields) => {
+               if (err) {
+                  res.status(500).json({ type: "failure", data: { message: err } });
+                  return;
+               }
+            })
+         });
+         res.status(200).json({ type: "success", data: { result: "Game Questions Data Added Successfully" } });
+      }
+   });
+}
+
+exports.SaveTestQuestions = async (req, res) => {
+   const data = req.body;
+   let tests = data.questions.filter((question) => {
+      if (question.activity === "test") {
+         return question;
+      } else {
+         return false;
+      }
+   })
+   var query = mysql.format("Select COUNT(questionID) AS counts from testpaperquestions where classID=? AND subjectID=? AND chapterID=?", [data.class, data.subject, data.chapter]);
+   db.query(query, (err, result, fields) => {
+      if (err) {
+         res.status(500).json({ type: "failure", data: { message: err } });
+         return;
+      }
+      if (result[0].counts > 0) {
+         res.status(200).json({ type: "fail", data: { msg: "Data Already Exists" } });
+         return;
+      } else {
+         tests.forEach(async (question) => {
+            var query = mysql.format("INSERT INTO testpaperquestions (type, question, option1, option2, option3, option4, answer, skill,classID,subjectID,chapterID) VALUES (?,?,?,?,?,?,?,?,?,?,?)", [question.type, question.question, question.option1, question.option2, question.option3, question.option4, question.answer, question.skill, data.class, data.subject, data.chapter]);
+            db.query(query, (err, result, fields) => {
+               if (err) {
+                  res.status(500).json({ type: "failure", data: { message: err } });
+                  return;
+               }
+            })
+         });
+         res.status(200).json({ type: "success", data: { result: "Test Questions Data Added Successfully" } });
+      }
+   });
+}
+
+
+
+exports.GetClasses = async (req, res) => {
+   var query = mysql.format("Select * from classes;", []);
+   db.query(query, (err, result, fields) => {
+      if (err) {
+         res.status(500).json({ type: "failure", data: { message: err } });
+         return;
+      } else {
+         res.status(200).json({ type: "success", result: result });
+      }
+   });
+}
+
+exports.GetSubjects = async (req, res) => {
+   const classID = req.query.classId;
+   var query = mysql.format("Select * from classes join classsubjects on classes.classId=classsubjects.classId join subjects on classsubjects.subjectId=subjects.subjectId where classes.classId=?", [classID]);
+   db.query(query, (err, result, fields) => {
+      if (err) {
+         res.status(500).json({ type: "failure", data: { message: err } });
+         return;
+      } else {
+         res.status(200).json({ type: "success", result: result });
+      }
+   });
+}
+
+exports.GetChapters = async (req, res) => {
+   const classID = req.query.classId;
+   const subjectID = req.query.subjectId;
+   var query = mysql.format("select * from classes join classsubjects on classes.classId=classsubjects.classId join subjects on classsubjects.subjectId=subjects.subjectId join subjectschapter on subjectschapter.subjectId=subjects.subjectId join chapters on subjectschapter.chapterId=chapters.chapterId where classes.classId=? AND subjects.subjectId=?", [classID, subjectID]);
+   db.query(query, (err, result, fields) => {
+      if (err) {
+         console.log(err);
+         res.status(500).json({ type: "failure", data: { message: err } });
+         return;
+      } else {
+         res.status(200).json({ type: "success", result: result });
+      }
    });
 }

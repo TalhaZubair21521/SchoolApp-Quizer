@@ -7,16 +7,149 @@ exports.GetQuestions = async (req, res) => {
         const classID = req.body.data.class;
         const subjectID = req.body.data.subject;
         const chapterID = req.body.data.chapter;
-        var query = mysql.format("SELECT * from question join activityquestion on question.questionID=activityquestion.questionID join belongto on belongto.belongToID=activityquestion.belongToID where activityquestion.activity=? && belongto.classID=? && belongto.subjectID=? && belongto.chapterID=?;", [activity, classID, subjectID, chapterID]);
-        db.query(query, (err, result, fields) => {
-            if (err) {
-                console.log(err);
-                res.status(500).json({ type: "failure", data: { message: err } });
-                return;
-            }
-            res.status(200).json({ type: "success", data: { message: "Questions", questions: result } })
-        })
+        const userID = req.body.data.user;
+        if (activity === "video") {
+            var query = mysql.format("Select * from videoquestions where classID=? AND subjectID=? AND chapterID=?", [classID, subjectID, chapterID]);
+            db.query(query, (err, result, fields) => {
+                if (err) {
+                    res.status(500).json({ type: "failure", data: { message: err } });
+                    return;
+                } else {
+                    if (result.length > 0) {
+                        var query = mysql.format("Select * from videoquestions join videoanswers on videoquestions.questionID=videoanswers.videoquestionID where videoquestions.classID=? AND videoquestions.subjectID=? AND videoquestions.chapterID=? AND videoanswers.userID=?", [classID, subjectID, chapterID, userID]);
+                        db.query(query, (err, result, fields) => {
+                            if (err) {
+                                res.status(500).json({ type: "failure", data: { message: err } });
+                                return;
+                            } else {
+                                if (result.length > 0) {
+                                    res.status(200).json({ type: "fail", data: "You have already Completed This Activity" })
+                                } else {
+                                    var query = mysql.format("Select * from videoquestions where classID=? AND subjectID=? AND chapterID=?;", [classID, subjectID, chapterID]);
+                                    db.query(query, (err, result, fields) => {
+                                        if (err) {
+                                            res.status(500).json({ type: "failure", data: { message: err } });
+                                            return;
+                                        } else {
+                                            res.status(200).json({ type: "success", data: { message: "Questions", questions: result } })
+                                        }
+                                    })
+                                }
+                            }
+                        });
+                    } else {
+                        res.status(200).json({ type: "fail", data: "Admin has Not Added Questions For this Chapter" })
+                    }
+                }
+            });
+
+        } else if (activity === "revision") {
+            var query = mysql.format("Select * from revisionquestions where classID=? AND subjectID=? AND chapterID=?", [classID, subjectID, chapterID]);
+            db.query(query, (err, result, fields) => {
+                if (err) {
+                    res.status(500).json({ type: "failure", data: { message: err } });
+                    return;
+                } else {
+                    if (result.length > 0) {
+                        var query = mysql.format("Select * from revisionquestions join revisionanswers on revisionquestions.questionID=revisionanswers.reivisionquestionID where revisionquestions.classID=? AND revisionquestions.subjectID=? AND revisionquestions.chapterID=? AND revisionanswers.userID=?", [classID, subjectID, chapterID, userID]);
+                        db.query(query, (err, result, fields) => {
+                            if (err) {
+                                res.status(500).json({ type: "failure", data: { message: err } });
+                                return;
+                            } else {
+                                if (result.length > 0) {
+                                    res.status(200).json({ type: "fail", data: "You have already Completed This Activity" })
+                                } else {
+                                    var query = mysql.format("Select * from revisionquestions where classID=? AND subjectID=? AND chapterID=?;", [classID, subjectID, chapterID]);
+                                    db.query(query, (err, result, fields) => {
+                                        if (err) {
+                                            res.status(500).json({ type: "failure", data: { message: err } });
+                                            return;
+                                        } else {
+                                            res.status(200).json({ type: "success", data: { message: "Questions", questions: result } })
+                                        }
+                                    })
+                                }
+                            }
+                        });
+                    } else {
+                        res.status(200).json({ type: "fail", data: "Admin has Not Added Questions For this Chapter" })
+                    }
+                }
+            });
+
+        } else if (activity === "game") {
+            var query = mysql.format("Select * from gamequestions where classID=? AND subjectID=? AND chapterID=?", [classID, subjectID, chapterID]);
+            db.query(query, (err, result, fields) => {
+                if (err) {
+                    res.status(500).json({ type: "failure", data: { message: err } });
+                    return;
+                } else {
+                    if (result.length > 0) {
+                        var query = mysql.format("Select * from gamequestions join gameanswers on gamequestions.questionID=gameanswers.gamequestionID where gamequestions.classID=? AND gamequestions.subjectID=? AND gamequestions.chapterID=? AND gameanswers.userID=?", [classID, subjectID, chapterID, userID]);
+                        db.query(query, (err, result, fields) => {
+                            if (err) {
+                                res.status(500).json({ type: "failure", data: { message: err } });
+                                return;
+                            } else {
+                                if (result.length > 0) {
+                                    res.status(200).json({ type: "fail", data: "You have already Completed This Activity" })
+                                } else {
+                                    var query = mysql.format("Select * from gamequestions where classID=? AND subjectID=? AND chapterID=?;", [classID, subjectID, chapterID]);
+                                    db.query(query, (err, result, fields) => {
+                                        if (err) {
+                                            res.status(500).json({ type: "failure", data: { message: err } });
+                                            return;
+                                        } else {
+                                            res.status(200).json({ type: "success", data: { message: "Questions", questions: result } })
+                                        }
+                                    })
+                                }
+                            }
+                        });
+                    } else {
+                        res.status(200).json({ type: "fail", data: "Admin has Not Added Questions For this Chapter" })
+                    }
+                }
+            });
+
+        } else if (activity === "test") {
+            var query = mysql.format("Select * from testpaperquestions where classID=? AND subjectID=? AND chapterID=?", [classID, subjectID, chapterID]);
+            db.query(query, (err, result, fields) => {
+                if (err) {
+                    res.status(500).json({ type: "failure", data: { message: err } });
+                    return;
+                } else {
+                    if (result.length > 0) {
+                        var query = mysql.format("Select * from testpaperquestions join testpaperanswers on testpaperquestions.questionID=testpaperanswers.testpaperquestionID where testpaperquestions.classID=? AND testpaperquestions.subjectID=? AND testpaperquestions.chapterID=? AND testpaperanswers.userID=?", [classID, subjectID, chapterID, userID]);
+                        db.query(query, (err, result, fields) => {
+                            if (err) {
+                                res.status(500).json({ type: "failure", data: { message: err } });
+                                return;
+                            } else {
+                                if (result.length > 0) {
+                                    res.status(200).json({ type: "fail", data: "You have already Completed This Activity" })
+                                } else {
+                                    var query = mysql.format("Select * from testpaperquestions where classID=? AND subjectID=? AND chapterID=?;", [classID, subjectID, chapterID]);
+                                    db.query(query, (err, result, fields) => {
+                                        if (err) {
+                                            res.status(500).json({ type: "failure", data: { message: err } });
+                                            return;
+                                        } else {
+                                            res.status(200).json({ type: "success", data: { message: "Questions", questions: result } })
+                                        }
+                                    })
+                                }
+                            }
+                        });
+                    } else {
+                        res.status(200).json({ type: "fail", data: "Admin has Not Added Questions For this Chapter" })
+                    }
+                }
+            });
+        }
     } catch (error) {
+        console.log(error)
         res.status(500).json({ type: "failure", data: { message: error } });
     }
 }
@@ -24,27 +157,61 @@ exports.GetQuestions = async (req, res) => {
 exports.SaveAnswers = async (req, res) => {
     try {
         const userID = req.body.userID;
-        const belongToID = req.body.belongToID;
-
         const answers = req.body.data;
-        // answers = [
-        //     { questionID: 1, answer: "answerForQuestion1" },
-        //     { questionID: 2, answer: "answerForQuestion2" },
-        //     { questionID: 3, answer: "answerForQuestion3" },
-        //     { questionID: 4, answer: "answerForQuestion4" },
-        //     { questionID: 5, answer: "answerForQuestion5" },
-        // ];
-
-        answers.forEach(async (question) => {
-            var query = mysql.format("INSERT INTO useranswer (userID,questionID,belongToID,answer) VALUES (?,?,?,?)", [userID, question.questionID, belongToID, question.answer]);
-            db.query(query, (err, result, fields) => {
-                if (err) {
-                    console.log(err);
-                    res.status(500).json({ type: "failure", data: { message: err } });
-                    return;
-                }
-            });
+        const activity = req.body.activity;
+        let anss = answers.map((ans) => {
+            if (typeof ans.answer === 'undefined' || ans.answer === "") {
+                return { questionID: ans.questionID, answer: "NoAnswerGiven" }
+            } else {
+                return ans;
+            }
         });
+        if (activity === "video") {
+            anss.forEach(async (question) => {
+                var query = mysql.format("INSERT INTO videoanswers (userID,videoquestionID,answer) VALUES (?,?,?)", [userID, question.questionID, question.answer]);
+                db.query(query, (err, result, fields) => {
+                    if (err) {
+                        console.log(err);
+                        res.status(500).json({ type: "failure", data: { message: err } });
+                        return;
+                    }
+                });
+            });
+        } else if (activity === "revision") {
+            anss.forEach(async (question) => {
+                var query = mysql.format("INSERT INTO revisionanswers (userID,reivisionquestionID,answer) VALUES (?,?,?)", [userID, question.questionID, question.answer]);
+                db.query(query, (err, result, fields) => {
+                    if (err) {
+                        console.log(err);
+                        res.status(500).json({ type: "failure", data: { message: err } });
+                        return;
+                    }
+                });
+            });
+        } else if (activity === "game") {
+            anss.forEach(async (question) => {
+                var query = mysql.format("INSERT INTO gameanswers (userID,gamequestionID,answer) VALUES (?,?,?)", [userID, question.questionID, question.answer]);
+                db.query(query, (err, result, fields) => {
+                    if (err) {
+                        console.log(err);
+                        res.status(500).json({ type: "failure", data: { message: err } });
+                        return;
+                    }
+                });
+            });
+        } else if (activity === "test") {
+            anss.forEach(async (question) => {
+                var query = mysql.format("INSERT INTO testpaperanswers (userID,testpaperquestionID,answer) VALUES (?,?,?)", [userID, question.questionID, question.answer]);
+                db.query(query, (err, result, fields) => {
+                    if (err) {
+                        console.log(err);
+                        res.status(500).json({ type: "failure", data: { message: err } });
+                        return;
+                    }
+                });
+            });
+        }
+
         res.status(200).json({ type: "success", data: { message: "Answer Saved Successfully" } })
     } catch (error) {
         res.status(500).json({ type: "failure", data: { message: error } });

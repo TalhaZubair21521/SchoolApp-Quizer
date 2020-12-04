@@ -1,0 +1,964 @@
+<div class="card m-5 p-4">
+  <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+    <div class="container mt-3">
+      <div class="row">
+        <div class="col">
+          <!-- Video Activity -->
+          <div class="card spacer">
+            <h5 class="card-header">
+              <a
+                data-toggle="collapse"
+                href="#video"
+                aria-expanded="true"
+                aria-controls="collapse-example"
+                id="heading-example"
+                class="d-block"
+                style="text-decoration: none"
+              >
+                <i class="fa fa-chevron-down pull-right"></i>
+                Video Activity
+              </a>
+            </h5>
+            <!-- Question 1 -->
+            <div id="video" class="collapse" aria-labelledby="heading-example">
+              <div class="card-body">
+                <div class="row justify-content-center">
+                  <div class="col-3">
+                    <div class="form-group">
+                      <h5
+                        style="text-align: center"
+                        for="exampleFormControlSelect1"
+                      >
+                        Choose Class
+                      </h5>
+                      <select
+                        class="form-control"
+                        name="class"
+                        [(ngModel)]="questions.class"
+                        (change)="update()"
+                      >
+                        <option
+                          *ngFor="let class of classes"
+                          value="{{ class.classId }}"
+                        >
+                          {{ class.name }}
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-3">
+                    <div class="form-group">
+                      <h5
+                        style="text-align: center"
+                        for="exampleFormControlSelect1"
+                      >
+                        Choose Subject
+                      </h5>
+                      <select
+                        class="form-control"
+                        id="exampleFormControlSelect1"
+                        name="subject"
+                        [(ngModel)]="questions.subject"
+                        (change)="updateSubject()"
+                      >
+                        <option
+                          *ngFor="let subject of subjects"
+                          value="{{ subject.subjectId }}"
+                        >
+                          {{ subject.name }}
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-3">
+                    <div class="form-group">
+                      <h5
+                        style="text-align: center"
+                        for="exampleFormControlSelect1"
+                      >
+                        Choose Chapter
+                      </h5>
+                      <select
+                        class="form-control"
+                        id="exampleFormControlSelect1"
+                        name="chapter"
+                        [(ngModel)]="questions.chapter"
+                      >
+                        <option
+                          *ngFor="let chapter of chapters"
+                          value="{{ chapter.chapterId }}"
+                        >
+                          {{ chapter.name }}
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="d-md-flex align-items-center justify-content-center"
+                >
+                  <label style="color: red">Maximum File Size Can 15 MB</label>
+                </div>
+                <div
+                  class="d-md-flex align-items-center justify-content-center"
+                >
+                  <input
+                    type="file"
+                    accept=".mp4"
+                    name="uploadfile"
+                    (change)="onFileSelected($event)"
+                  />
+                </div>
+                <div class="questions">
+                  <div class="card mb-3">
+                    <div class="card-header text-right" style="color: brown">
+                      {{ questions.questions[0].skill }}
+                    </div>
+                    <div class="card-body">
+                      <h5 class="card-title">Question 1</h5>
+                      <div class="form-group">
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="Question1"
+                          aria-describedby="QHelp"
+                          placeholder="Enter Question Here"
+                          name="videoQ1"
+                          [(ngModel)]="questions.questions[0].question"
+                        />
+                        <small id="QHelp" class="form-text text-muted"
+                          >Enter Choices and click correct choice.</small
+                        >
+                      </div>
+                      <div class="choices">
+                        <div class="form-check mt-2">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="videoQ1answer"
+                            [(ngModel)]="questions.questions[0].answer"
+                            id="c1"
+                            [(value)]="questions.questions[0].option1"
+                            style="margin-top: 10px"
+                          />
+                          <label class="form-check-label" for="c1">
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="Question1"
+                              placeholder="Enter Choice 1"
+                              name="videoQ1option1"
+                              [(ngModel)]="questions.questions[0].option1"
+                            />
+                          </label>
+                        </div>
+                        <div class="form-check mt-2">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="videoQ1answer"
+                            id="c2"
+                            [(ngModel)]="questions.questions[0].answer"
+                            [(value)]="questions.questions[0].option2"
+                            style="margin-top: 10px"
+                          />
+                          <label class="form-check-label" for="c2">
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="Question2"
+                              placeholder="Enter Choice 2"
+                              name="videoQ1option2"
+                              [(ngModel)]="questions.questions[0].option2"
+                            />
+                          </label>
+                        </div>
+                        <div class="form-check mt-2">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="videoQ1answer"
+                            id="c3"
+                            [(ngModel)]="questions.questions[0].answer"
+                            [(value)]="questions.questions[0].option3"
+                            style="margin-top: 10px"
+                          />
+                          <label class="form-check-label" for="c3">
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="Question3"
+                              placeholder="Enter Choice 3"
+                              name="videoQ1option3"
+                              [(ngModel)]="questions.questions[0].option3"
+                            />
+                          </label>
+                        </div>
+                        <div class="form-check mt-2">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="videoQ1answer"
+                            id="c4"
+                            [(ngModel)]="questions.questions[0].answer"
+                            [(value)]="questions.questions[0].option4"
+                            style="margin-top: 10px"
+                          />
+                          <label class="form-check-label" for="c4">
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="Question4"
+                              placeholder="Enter Choice 4"
+                              name="videoQ1option4"
+                              [(ngModel)]="questions.questions[0].option4"
+                            />
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Question 2 -->
+            <div id="video" class="collapse" aria-labelledby="heading-example">
+              <div class="card-body">
+                <div class="questions">
+                  <div class="card mb-3">
+                    <div class="card-header text-right" style="color: brown">
+                      {{ questions.questions[1].skill }}
+                    </div>
+                    <div class="card-body">
+                      <h5 class="card-title">Question 2</h5>
+                      <div class="form-group">
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="Question1"
+                          aria-describedby="QHelp"
+                          placeholder="Enter Question Here"
+                          name="videoQ2"
+                          [(ngModel)]="questions.questions[1].question"
+                        />
+                        <small id="QHelp" class="form-text text-muted"
+                          >Enter Choices and click correct choice.</small
+                        >
+                      </div>
+                      <div class="choices">
+                        <div class="form-check mt-2">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="videoQ2answer"
+                            [(ngModel)]="questions.questions[1].answer"
+                            id="c1"
+                            [(value)]="questions.questions[1].option1"
+                            style="margin-top: 10px"
+                          />
+                          <label class="form-check-label" for="c1">
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="Question1"
+                              placeholder="Enter Choice 1"
+                              name="videoQ2option1"
+                              [(ngModel)]="questions.questions[1].option1"
+                            />
+                          </label>
+                        </div>
+                        <div class="form-check mt-2">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="videoQ2answer"
+                            id="c2"
+                            [(ngModel)]="questions.questions[1].answer"
+                            [(value)]="questions.questions[1].option2"
+                            style="margin-top: 10px"
+                          />
+                          <label class="form-check-label" for="c2">
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="Question2"
+                              placeholder="Enter Choice 2"
+                              name="videoQ2option2"
+                              [(ngModel)]="questions.questions[1].option2"
+                            />
+                          </label>
+                        </div>
+                        <div class="form-check mt-2">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="videoQ2answer"
+                            id="c3"
+                            [(ngModel)]="questions.questions[1].answer"
+                            [(value)]="questions.questions[1].option3"
+                            style="margin-top: 10px"
+                          />
+                          <label class="form-check-label" for="c3">
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="Question3"
+                              placeholder="Enter Choice 3"
+                              name="videoQ2option3"
+                              [(ngModel)]="questions.questions[1].option3"
+                            />
+                          </label>
+                        </div>
+                        <div class="form-check mt-2">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="videoQ2answer"
+                            id="c4"
+                            [(ngModel)]="questions.questions[1].answer"
+                            [(value)]="questions.questions[1].option4"
+                            style="margin-top: 10px"
+                          />
+                          <label class="form-check-label" for="c4">
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="Question4"
+                              placeholder="Enter Choice 4"
+                              name="videoQ2option4"
+                              [(ngModel)]="questions.questions[1].option4"
+                            />
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Question 3 -->
+            <div id="video" class="collapse" aria-labelledby="heading-example">
+              <div class="card-body">
+                <div class="questions">
+                  <div class="card mb-3">
+                    <div class="card-header text-right" style="color: brown">
+                      {{ questions.questions[2].skill }}
+                    </div>
+                    <div class="card-body">
+                      <h5 class="card-title">Question 3</h5>
+                      <div class="form-group">
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="Question1"
+                          aria-describedby="QHelp"
+                          placeholder="Enter Question Here"
+                          name="videoQ3"
+                          [(ngModel)]="questions.questions[2].question"
+                        />
+                        <small id="QHelp" class="form-text text-muted"
+                          >Enter Choices and click correct choice.</small
+                        >
+                      </div>
+                      <div class="choices">
+                        <div class="form-check mt-2">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="videoQ3answer"
+                            [(ngModel)]="questions.questions[2].answer"
+                            id="c1"
+                            [(value)]="questions.questions[2].option1"
+                            style="margin-top: 10px"
+                          />
+                          <label class="form-check-label" for="c1">
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="Question1"
+                              placeholder="Enter Choice 1"
+                              name="videoQ3option1"
+                              [(ngModel)]="questions.questions[2].option1"
+                            />
+                          </label>
+                        </div>
+                        <div class="form-check mt-2">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="videoQ3answer"
+                            id="c2"
+                            [(ngModel)]="questions.questions[2].answer"
+                            [(value)]="questions.questions[2].option2"
+                            style="margin-top: 10px"
+                          />
+                          <label class="form-check-label" for="c2">
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="Question2"
+                              placeholder="Enter Choice 2"
+                              name="videoQ3option2"
+                              [(ngModel)]="questions.questions[2].option2"
+                            />
+                          </label>
+                        </div>
+                        <div class="form-check mt-2">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="videoQ3answer"
+                            id="c3"
+                            [(ngModel)]="questions.questions[2].answer"
+                            [(value)]="questions.questions[2].option3"
+                            style="margin-top: 10px"
+                          />
+                          <label class="form-check-label" for="c3">
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="Question3"
+                              placeholder="Enter Choice 3"
+                              name="videoQ3option3"
+                              [(ngModel)]="questions.questions[2].option3"
+                            />
+                          </label>
+                        </div>
+                        <div class="form-check mt-2">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="videoQ3answer"
+                            id="c4"
+                            [(ngModel)]="questions.questions[2].answer"
+                            [(value)]="questions.questions[2].option4"
+                            style="margin-top: 10px"
+                          />
+                          <label class="form-check-label" for="c4">
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="Question4"
+                              placeholder="Enter Choice 4"
+                              name="videoQ3option4"
+                              [(ngModel)]="questions.questions[2].option4"
+                            />
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Question 4 -->
+            <div id="video" class="collapse" aria-labelledby="heading-example">
+              <div class="card-body">
+                <div class="questions">
+                  <div class="card mb-3">
+                    <div class="card-header text-right" style="color: brown">
+                      {{ questions.questions[3].skill }}
+                    </div>
+                    <div class="card-body">
+                      <h5 class="card-title">Question 4</h5>
+                      <div class="form-group">
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="Question1"
+                          aria-describedby="QHelp"
+                          placeholder="Enter Question Here"
+                          name="videoQ4"
+                          [(ngModel)]="questions.questions[3].question"
+                        />
+                        <small id="QHelp" class="form-text text-muted"
+                          >Enter Choices and click correct choice.</small
+                        >
+                      </div>
+                      <div class="choices">
+                        <div class="form-check mt-2">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="videoQ4answer"
+                            [(ngModel)]="questions.questions[3].answer"
+                            id="c1"
+                            [(value)]="questions.questions[3].option1"
+                            style="margin-top: 10px"
+                          />
+                          <label class="form-check-label" for="c1">
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="Question1"
+                              placeholder="Enter Choice 1"
+                              name="videoQ4option1"
+                              [(ngModel)]="questions.questions[3].option1"
+                            />
+                          </label>
+                        </div>
+                        <div class="form-check mt-2">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="videoQ4answer"
+                            id="c2"
+                            [(ngModel)]="questions.questions[3].answer"
+                            [(value)]="questions.questions[3].option2"
+                            style="margin-top: 10px"
+                          />
+                          <label class="form-check-label" for="c2">
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="Question2"
+                              placeholder="Enter Choice 2"
+                              name="videoQ4option2"
+                              [(ngModel)]="questions.questions[3].option2"
+                            />
+                          </label>
+                        </div>
+                        <div class="form-check mt-2">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="videoQ4answer"
+                            id="c3"
+                            [(ngModel)]="questions.questions[3].answer"
+                            [(value)]="questions.questions[3].option3"
+                            style="margin-top: 10px"
+                          />
+                          <label class="form-check-label" for="c3">
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="Question3"
+                              placeholder="Enter Choice 3"
+                              name="videoQ4option3"
+                              [(ngModel)]="questions.questions[3].option3"
+                            />
+                          </label>
+                        </div>
+                        <div class="form-check mt-2">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="videoQ4answer"
+                            id="c4"
+                            [(ngModel)]="questions.questions[3].answer"
+                            [(value)]="questions.questions[3].option4"
+                            style="margin-top: 10px"
+                          />
+                          <label class="form-check-label" for="c4">
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="Question4"
+                              placeholder="Enter Choice 4"
+                              name="videoQ4option4"
+                              [(ngModel)]="questions.questions[3].option4"
+                            />
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Question 5 -->
+            <div id="video" class="collapse" aria-labelledby="heading-example">
+              <div class="card-body">
+                <div class="questions">
+                  <div class="card mb-3">
+                    <div class="card-header text-right" style="color: brown">
+                      {{ questions.questions[4].skill }}
+                    </div>
+                    <div class="card-body">
+                      <h5 class="card-title">Question 5</h5>
+                      <div class="form-group">
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="Question1"
+                          aria-describedby="QHelp"
+                          placeholder="Enter Question Here"
+                          name="videoQ5"
+                          [(ngModel)]="questions.questions[4].question"
+                        />
+                        <small id="QHelp" class="form-text text-muted"
+                          >Enter Choices and click correct choice.</small
+                        >
+                      </div>
+                      <div class="choices">
+                        <div class="form-check mt-2">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="videoQ5answer"
+                            [(ngModel)]="questions.questions[4].answer"
+                            id="c1"
+                            [(value)]="questions.questions[4].option1"
+                            style="margin-top: 10px"
+                          />
+                          <label class="form-check-label" for="c1">
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="Question1"
+                              placeholder="Enter Choice 1"
+                              name="videoQ5option1"
+                              [(ngModel)]="questions.questions[4].option1"
+                            />
+                          </label>
+                        </div>
+                        <div class="form-check mt-2">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="videoQ5answer"
+                            id="c2"
+                            [(ngModel)]="questions.questions[4].answer"
+                            [(value)]="questions.questions[4].option2"
+                            style="margin-top: 10px"
+                          />
+                          <label class="form-check-label" for="c2">
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="Question2"
+                              placeholder="Enter Choice 2"
+                              name="videoQ5option2"
+                              [(ngModel)]="questions.questions[4].option2"
+                            />
+                          </label>
+                        </div>
+                        <div class="form-check mt-2">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="videoQ5answer"
+                            id="c3"
+                            [(ngModel)]="questions.questions[4].answer"
+                            [(value)]="questions.questions[4].option3"
+                            style="margin-top: 10px"
+                          />
+                          <label class="form-check-label" for="c3">
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="Question3"
+                              placeholder="Enter Choice 3"
+                              name="videoQ5option3"
+                              [(ngModel)]="questions.questions[4].option3"
+                            />
+                          </label>
+                        </div>
+                        <div class="form-check mt-2">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="videoQ5answer"
+                            id="c4"
+                            [(ngModel)]="questions.questions[4].answer"
+                            [(value)]="questions.questions[4].option4"
+                            style="margin-top: 10px"
+                          />
+                          <label class="form-check-label" for="c4">
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="Question4"
+                              placeholder="Enter Choice 4"
+                              name="videoQ5option4"
+                              [(ngModel)]="questions.questions[4].option4"
+                            />
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="spacer text-right">
+            <button class="btn btn-danger">Submit</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+<button
+  type="button"
+  #popup1
+  [hidden]="true"
+  class="btn btn-primary"
+  data-toggle="modal"
+  data-target="#question1"
+>
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="question1"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="card mb-3">
+          <div class="card-header">
+            <div class="row">
+              <div class="col text-center">Data Succcessfully Saved</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-sm btn-danger"
+          data-dismiss="modal"
+        >
+          Ok
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<button
+  type="button"
+  #popup2
+  [hidden]="true"
+  class="btn btn-primary"
+  data-toggle="modal"
+  data-target="#question2"
+>
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="question2"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="card mb-3">
+          <div class="card-header">
+            <div class="row">
+              <div class="col text-center">
+                File Size Must be Less than 15 MB
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-sm btn-danger"
+          data-dismiss="modal"
+        >
+          Ok
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<button
+  type="button"
+  #popup3
+  [hidden]="true"
+  class="btn btn-primary"
+  data-toggle="modal"
+  data-target="#question3"
+>
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="question3"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="card mb-3">
+          <div class="card-header">
+            <div class="row">
+              <div class="col text-center">No Video Selected</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-sm btn-danger"
+          data-dismiss="modal"
+        >
+          Ok
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<button
+  type="button"
+  #popup4
+  [hidden]="true"
+  class="btn btn-primary"
+  data-toggle="modal"
+  data-target="#question4"
+>
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="question4"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="card mb-3">
+          <div class="card-header">
+            <div class="row">
+              <div class="col text-center">Fill All the Fields</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-sm btn-danger"
+          data-dismiss="modal"
+        >
+          Ok
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<button
+  type="button"
+  #popup5
+  [hidden]="true"
+  class="btn btn-primary"
+  data-toggle="modal"
+  data-target="#question10"
+>
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="question10"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="card mb-3">
+          <div class="card-header">
+            <div class="row">
+              <div class="col text-center">Data Already Present There</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-sm btn-danger"
+          data-dismiss="modal"
+        >
+          Ok
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
