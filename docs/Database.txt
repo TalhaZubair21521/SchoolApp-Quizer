@@ -166,3 +166,10 @@ CREATE TABLE result(
     application int NOT NULL,
     analysis int NOT NULL
 );
+
+
+
+select * from videoquestions as q join videoanswers as a on q.questionID=a.videoquestionID where a.userID=1;
+select * from revisionquestions as q join revisionanswers as a on q.questionID=a.reivisionquestionID where a.userID=1;
+select * from testpaperquestions as q join testpaperanswers as a on q.questionID=a.testpaperquestionID where a.userID=1;
+select * from gamequestions as q join gameanswers as a on q.questionID=a.gamequestionID where a.userID=1;

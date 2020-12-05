@@ -5,5 +5,6 @@ const router = express.Router();
 
 router.post("/getQuestions", userController.GetQuestions);
 router.post("/saveAnswers", userController.SaveAnswers);
+router.get("/getScore", userController.GetScore);
 
 exports.routes = router;

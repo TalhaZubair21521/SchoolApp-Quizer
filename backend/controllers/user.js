@@ -223,7 +223,44 @@ exports.SaveAnswers = async (req, res) => {
     }
 }
 
-
+exports.GetScore = async (req, res) => {
+    try {
+        const userID = req.query.userID;
+        let userAnswers = [];
+        var query = mysql.format("select * from videoquestions as q join videoanswers as a on q.questionID=a.videoquestionID where a.userID=?;", [userID]);
+        db.query(query, (err, result, fields) => {
+            if (err) {
+                console.log(err);
+                res.status(500).json({ type: "failure", data: { message: err } });
+                return;
+            } else {
+                userAnswers = result;
+                var query = mysql.format("select * from revisionquestions as q join revisionanswers as a on q.questionID=a.reivisionquestionID where a.userID=?;", [userID]);
+                db.query(query, (err, result, fields) => {
+                    if (err) {
+                        res.status(500).json({ type: "failure", data: { message: err } });
+                        return;
+                    } else {
+                        userAnswers = [...userAnswers, result];
+                        var query = mysql.format("select * from testpaperquestions as q join testpaperanswers as a on q.questionID=a.testpaperquestionID where a.userID=?;", [userID]);
+                        db.query(query, (err, result, fields) => {
+                            if (err) {
+                                res.status(500).json({ type: "failure", data: { message: err } });
+                                return;
+                            } else {
+                                userAnswers = [...userAnswers, result];
+                                res.send(userAnswers);
+                            }
+                        });
+                    }
+                });
+            }
+        });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ type: "failure", result: error })
+    }
+}
 
 
 
