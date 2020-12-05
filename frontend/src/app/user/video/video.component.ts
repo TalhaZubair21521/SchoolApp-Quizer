@@ -51,7 +51,7 @@ export class VideoComponent implements OnInit {
         }
         this.list = data["data"]["questions"];
         console.log(this.list);
-        this.videoURL = "/assets/videos/" + this.list[0].videoURL;
+        this.videoURL = "http://localhost:1111/assets/videos/" + this.list[0].videoURL;
       },
       err => { console.log(err) }
     )
@@ -141,6 +141,10 @@ export class VideoComponent implements OnInit {
             alert("Video Activity Result Saved");
             // let queryParams = "?classId=" + this.classID + "&userId=" + this.userID + "&subjectId=" + this.subjectID + "&chapterId=" + this.chapterID;
             // this.router.navigateByUrl('user/revision'.concat(queryParams));
+          } else if (data["type"] === "fail") {
+            this.message = data['data'];
+            console.log(this.message);
+            this.isError = true;
           }
         },
         (err) => { console.log(err) }

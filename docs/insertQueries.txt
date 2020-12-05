@@ -103,7 +103,7 @@ CREATE TABLE subjects(
 
 CREATE TABLE chapters(
     chapterId int NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    name varchar(20) NOT NULL
+    name varchar(200) NOT NULL
 );
 
 CREATE TABLE classsubjects(

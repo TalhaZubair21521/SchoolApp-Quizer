@@ -89,6 +89,10 @@ export class TestComponent implements OnInit {
           console.log(data);
           if (data["type"] === "success") {
             alert("Test Activity Result Saved");
+          } else if (data["type"] === "fail") {
+            this.message = data['data'];
+            console.log(this.message);
+            this.isError = true;
           }
         },
         (err) => { console.error(err) }

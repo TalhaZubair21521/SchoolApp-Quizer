@@ -3,6 +3,7 @@ const app = express();
 const bodyparser = require("body-parser");
 const cors = require("cors");
 const path = require("path");
+const morgan = require('morgan');
 
 require("dotenv").config();
 require("./database/connect");
@@ -16,6 +17,8 @@ app.use(bodyparser.urlencoded({ extended: true }));
 
 const user = require("./routes/user");
 const admin = require("./routes/admin");
+
+app.use(morgan('dev'));
 
 app.use("/api/user", user.routes);
 app.use("/api/admin", admin.routes);
