@@ -317,6 +317,11 @@ class TestComponent {
                 if (data["type"] === "success") {
                     alert("Test Activity Result Saved");
                 }
+                else if (data["type"] === "fail") {
+                    this.message = data['data'];
+                    console.log(this.message);
+                    this.isError = true;
+                }
             }, (err) => { console.error(err); });
         }
     }
@@ -1590,6 +1595,11 @@ class VideoComponent {
                     // let queryParams = "?classId=" + this.classID + "&userId=" + this.userID + "&subjectId=" + this.subjectID + "&chapterId=" + this.chapterID;
                     // this.router.navigateByUrl('user/revision'.concat(queryParams));
                 }
+                else if (data["type"] === "fail") {
+                    this.message = data['data'];
+                    console.log(this.message);
+                    this.isError = true;
+                }
             }, (err) => { console.log(err); });
         }
         this.video.nativeElement.play();
@@ -1618,7 +1628,7 @@ VideoComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineCom
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", ctx.isError);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", !ctx.isError);
-    } }, directives: [_angular_common__WEBPACK_IMPORTED_MODULE_3__["NgIf"], _angular_forms__WEBPACK_IMPORTED_MODULE_4__["RadioControlValueAccessor"], _angular_forms__WEBPACK_IMPORTED_MODULE_4__["DefaultValueAccessor"], _angular_forms__WEBPACK_IMPORTED_MODULE_4__["NgControlStatus"], _angular_forms__WEBPACK_IMPORTED_MODULE_4__["NgModel"]], styles: ["\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3VzZXIvdmlkZW8vdmlkZW8uY29tcG9uZW50LmNzcyJ9 */"] });
+    } }, directives: [_angular_common__WEBPACK_IMPORTED_MODULE_3__["NgIf"], _angular_forms__WEBPACK_IMPORTED_MODULE_4__["RadioControlValueAccessor"], _angular_forms__WEBPACK_IMPORTED_MODULE_4__["DefaultValueAccessor"], _angular_forms__WEBPACK_IMPORTED_MODULE_4__["NgControlStatus"], _angular_forms__WEBPACK_IMPORTED_MODULE_4__["NgModel"]], styles: ["video[_ngcontent-%COMP%]::-webkit-media-controls-fullscreen-button {\r\n  display: none;\r\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvdXNlci92aWRlby92aWRlby5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsYUFBYTtBQUNmIiwiZmlsZSI6InNyYy9hcHAvdXNlci92aWRlby92aWRlby5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsidmlkZW86Oi13ZWJraXQtbWVkaWEtY29udHJvbHMtZnVsbHNjcmVlbi1idXR0b24ge1xyXG4gIGRpc3BsYXk6IG5vbmU7XHJcbn1cclxuIl19 */"] });
 /*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](VideoComponent, [{
         type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"],
         args: [{
@@ -2862,6 +2872,11 @@ class RevisionComponent {
                 console.log(data);
                 if (data["type"] === "success") {
                     alert("Revision Activity Result Saved");
+                }
+                else if (data["type"] === "fail") {
+                    this.message = data['data'];
+                    console.log(this.message);
+                    this.isError = true;
                 }
             }, (err) => { console.error(err); });
         }

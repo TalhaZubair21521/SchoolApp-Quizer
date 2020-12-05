@@ -51,7 +51,7 @@ export class VideoComponent implements OnInit {
         }
         this.list = data["data"]["questions"];
         console.log(this.list);
-        this.videoURL = "http://localhost:1111/assets/videos/" + this.list[0].videoURL;
+        this.videoURL = "/assets/videos/" + this.list[0].videoURL;
       },
       err => { console.log(err) }
     )
