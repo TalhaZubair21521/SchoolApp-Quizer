@@ -1,6 +1,6 @@
 const db = require("../database/connect");
 const mysql = require("mysql");
-
+const Helper = require("./functions/calculateScore");
 exports.GetQuestions = async (req, res) => {
     try {
         const activity = req.body.data.activity;
@@ -226,30 +226,38 @@ exports.SaveAnswers = async (req, res) => {
 exports.GetScore = async (req, res) => {
     try {
         const userID = req.query.userID;
+        const classID = req.query.classID;
+        const subjectID = req.query.subjectID;
+        const chapterID = req.query.chapterID;
+
         let userAnswers = [];
-        var query = mysql.format("select * from videoquestions as q join videoanswers as a on q.questionID=a.videoquestionID where a.userID=?;", [userID]);
+
+        var query = mysql.format("select q.answer as original,q.questionID as ID, a.answer as answer,'video' as activity, a.userID as userID from videoquestions as q join videoanswers as a on q.questionID=a.videoquestionID where a.userID=? AND q.classID=? AND q.subjectID=? AND q.chapterID=?;", [userID, classID, subjectID, chapterID]);
         db.query(query, (err, result, fields) => {
             if (err) {
                 console.log(err);
                 res.status(500).json({ type: "failure", data: { message: err } });
                 return;
             } else {
-                userAnswers = result;
-                var query = mysql.format("select * from revisionquestions as q join revisionanswers as a on q.questionID=a.reivisionquestionID where a.userID=?;", [userID]);
+                userAnswers = [...userAnswers, ...result];
+                var query = mysql.format("select q.answer as original,q.questionID as ID, a.answer as answer,'revision' as activity, a.userID as userID from revisionquestions as q join revisionanswers as a on q.questionID=a.reivisionquestionID where a.userID=? AND q.classID=? AND q.subjectID=? AND q.chapterID=?;", [userID, classID, subjectID, chapterID]);
                 db.query(query, (err, result, fields) => {
                     if (err) {
+                        console.log(err);
                         res.status(500).json({ type: "failure", data: { message: err } });
                         return;
                     } else {
-                        userAnswers = [...userAnswers, result];
-                        var query = mysql.format("select * from testpaperquestions as q join testpaperanswers as a on q.questionID=a.testpaperquestionID where a.userID=?;", [userID]);
-                        db.query(query, (err, result, fields) => {
+                        userAnswers = [...userAnswers, ...result];
+                        var query = mysql.format("select q.answer as original,q.questionID as ID, a.answer as answer,'test' as activity, a.userID as userID from testpaperquestions as q join testpaperanswers as a on q.questionID=a.testpaperquestionID where a.userID=? AND q.classID=? AND q.subjectID=? AND q.chapterID=?;", [userID, classID, subjectID, chapterID]);
+                        db.query(query, async (err, result, fields) => {
                             if (err) {
+                                console.log(err);
                                 res.status(500).json({ type: "failure", data: { message: err } });
                                 return;
                             } else {
-                                userAnswers = [...userAnswers, result];
-                                res.send(userAnswers);
+                                userAnswers = [...userAnswers, ...result];
+                                const score = await Helper.GetScore(userAnswers);
+                                res.status(200).json({ type: "success", result: { dataOF: { classID: classID, subjectID: subjectID, chapterID: chapterID, userID: userID, score: score } } });
                             }
                         });
                     }
@@ -261,17 +269,4 @@ exports.GetScore = async (req, res) => {
         res.status(500).json({ type: "failure", result: error })
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
