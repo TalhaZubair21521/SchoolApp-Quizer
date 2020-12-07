@@ -227,12 +227,10 @@ exports.GetScore = async (req, res) => {
     try {
         const userID = req.query.userID;
         const classID = req.query.classID;
-        const subjectID = req.query.subjectID;
-        const chapterID = req.query.chapterID;
 
         let userAnswers = [];
 
-        var query = mysql.format("select q.answer as original,q.questionID as ID, a.answer as answer,'video' as activity, a.userID as userID from videoquestions as q join videoanswers as a on q.questionID=a.videoquestionID where a.userID=? AND q.classID=? AND q.subjectID=? AND q.chapterID=?;", [userID, classID, subjectID, chapterID]);
+        var query = mysql.format("select subjects.name,q.answer as original,q.question,q.skill,q.questionID as questionID, a.answer as answer,'video' as activity, a.userID as userID from videoquestions as q join videoanswers as a on q.questionID=a.videoquestionID join subjects on q.subjectID=subjects.subjectId where a.userID=? AND q.classID=?", [userID, classID]);
         db.query(query, (err, result, fields) => {
             if (err) {
                 console.log(err);
@@ -240,7 +238,7 @@ exports.GetScore = async (req, res) => {
                 return;
             } else {
                 userAnswers = [...userAnswers, ...result];
-                var query = mysql.format("select q.answer as original,q.questionID as ID, a.answer as answer,'revision' as activity, a.userID as userID from revisionquestions as q join revisionanswers as a on q.questionID=a.reivisionquestionID where a.userID=? AND q.classID=? AND q.subjectID=? AND q.chapterID=?;", [userID, classID, subjectID, chapterID]);
+                var query = mysql.format("select subjects.name,q.answer as original,q.question,q.skill,q.questionID as questionID, a.answer as answer,'revision' as activity, a.userID as userID from revisionquestions as q join revisionanswers as a on q.questionID=a.reivisionquestionID join subjects on q.subjectID=subjects.subjectId where a.userID=? AND q.classID=?", [userID, classID]);
                 db.query(query, (err, result, fields) => {
                     if (err) {
                         console.log(err);
@@ -248,7 +246,7 @@ exports.GetScore = async (req, res) => {
                         return;
                     } else {
                         userAnswers = [...userAnswers, ...result];
-                        var query = mysql.format("select q.answer as original,q.questionID as ID, a.answer as answer,'test' as activity, a.userID as userID from testpaperquestions as q join testpaperanswers as a on q.questionID=a.testpaperquestionID where a.userID=? AND q.classID=? AND q.subjectID=? AND q.chapterID=?;", [userID, classID, subjectID, chapterID]);
+                        var query = mysql.format("select subjects.name,q.answer as original,q.question,q.skill,q.questionID as questionID, a.answer as answer,'testpaper' as activity, a.userID as userID from testpaperquestions as q join testpaperanswers as a on q.questionID=a.testpaperquestionID join subjects on q.subjectID=subjects.subjectId where a.userID=? AND q.classID=?", [userID, classID]);
                         db.query(query, async (err, result, fields) => {
                             if (err) {
                                 console.log(err);
@@ -256,8 +254,10 @@ exports.GetScore = async (req, res) => {
                                 return;
                             } else {
                                 userAnswers = [...userAnswers, ...result];
-                                const score = await Helper.GetScore(userAnswers);
-                                res.status(200).json({ type: "success", result: { dataOF: { classID: classID, subjectID: subjectID, chapterID: chapterID, userID: userID, score: score } } });
+                                const score = await Helper.GetOverallResult(userAnswers);
+                                const subjectWise = await Helper.GetSubjectWiseResult(userAnswers);
+                                const skillWise = await Helper.GetSkillWiseResult(userAnswers);
+                                res.status(200).json({ type: "success", result: { score: score, subjectsWise: subjectWise, skillWise: skillWise } });
                             }
                         });
                     }
