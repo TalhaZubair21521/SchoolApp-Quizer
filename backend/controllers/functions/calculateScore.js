@@ -25,19 +25,28 @@ exports.GetSubjects = async (answers) => {
 exports.GetSubjectWiseResult = async (answers) => {
     const subjects = await this.GetSubjects(answers);
     let subjectsMap = new Map();
+    let subjectsMarks = new Map();
     subjects.forEach(async (element) => {
         subjectsMap.set(element, 0);
+        subjectsMarks.set(element, 0);
     });
+
     answers.forEach(async (element) => {
         if (element.answer === element.original) {
             subjectsMap.set(element.name, (subjectsMap.get(element.name) + 1));
+            subjectsMarks.set(element.name, (subjectsMarks.get(element.name) + 6));
         }
     });
+
     let subjectWise = {};
+    let subjectMarks = {};
     subjectsMap.forEach(async (value, key) => {
         subjectWise[key] = value;
     })
-    return subjectWise;
+    subjectsMarks.forEach(async (value, key) => {
+        subjectMarks[key] = value;
+    });
+    return { correctAnswers: subjectWise, subjectScore: subjectMarks };
 }
 
 exports.GetSkills = async (answers) => {
