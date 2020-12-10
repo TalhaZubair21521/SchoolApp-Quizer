@@ -210,9 +210,6 @@ INSERT INTO `chapters` (`name`) VALUES ('Water');
 INSERT INTO `chapters` (`name`) VALUES ('Air Around Us');
 INSERT INTO `chapters` (`name`) VALUES ('Garbage In Garbage Out');
 
-
-
-
 INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('1','1');
 INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('2','1');
 INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('3','1');
@@ -276,12 +273,17 @@ INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('56','5');
 INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('57','5');
 INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('58','5');
 
-
-
 INSERT INTO `subjects` (`name`) VALUES ('Science');
+INSERT INTO `subjects` (`name`) VALUES ('History');
+INSERT INTO `subjects` (`name`) VALUES ('Civics');
+INSERT INTO `subjects` (`name`) VALUES ('Geography');
+INSERT INTO `subjects` (`name`) VALUES ('Maths');
 
 INSERT INTO `classsubjects` (`classId`,`subjectId`) VALUES ('7','6');
-
+INSERT INTO `classsubjects` (`classId`,`subjectId`) VALUES ('7','7');
+INSERT INTO `classsubjects` (`classId`,`subjectId`) VALUES ('7','8');
+INSERT INTO `classsubjects` (`classId`,`subjectId`) VALUES ('7','9');
+INSERT INTO `classsubjects` (`classId`,`subjectId`) VALUES ('7','10');
 
 INSERT INTO `chapters` (`name`) VALUES ('Nutrition In Plants');
 INSERT INTO `chapters` (`name`) VALUES ('Nutrition in Animals');
@@ -289,14 +291,12 @@ INSERT INTO `chapters` (`name`) VALUES ('Fiber To Fabric');
 INSERT INTO `chapters` (`name`) VALUES ('Heat');
 INSERT INTO `chapters` (`name`) VALUES ('Acid Base and Salt');
 INSERT INTO `chapters` (`name`) VALUES ('Physical And Chemical Changes');
-
 INSERT INTO `chapters` (`name`) VALUES ('Weather, Climate and Adaptations of Animals To Climate');
 INSERT INTO `chapters` (`name`) VALUES ('Winds Storms and Cyclones');
 INSERT INTO `chapters` (`name`) VALUES ('Soil');
 INSERT INTO `chapters` (`name`) VALUES ('Respiration in Organisms');
 INSERT INTO `chapters` (`name`) VALUES ('Transportation in Animals and Plants');
 INSERT INTO `chapters` (`name`) VALUES ('Reproduction in Plants');
-
 INSERT INTO `chapters` (`name`) VALUES ('Motion and Time');
 INSERT INTO `chapters` (`name`) VALUES ('Electric Current and its effects');
 INSERT INTO `chapters` (`name`) VALUES ('Light');
@@ -323,43 +323,16 @@ INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('74','6');
 INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('75','6');
 INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('76','6');
 
-
-INSERT INTO `subjects` (`name`) VALUES ('History');
-INSERT INTO `subjects` (`name`) VALUES ('Civics');
-INSERT INTO `subjects` (`name`) VALUES ('Geography');
-
-INSERT INTO `classsubjects` (`classId`,`subjectId`) VALUES ('8','7');
-INSERT INTO `classsubjects` (`classId`,`subjectId`) VALUES ('8','8');
-INSERT INTO `classsubjects` (`classId`,`subjectId`) VALUES ('8','9');
-
-INSERT INTO `chapters` (`name`) VALUES ('How,When & Where');
-INSERT INTO `chapters` (`name`) VALUES ('From Trade To Terriorty');
-INSERT INTO `chapters` (`name`) VALUES ('Ruling the countryside');
-INSERT INTO `chapters` (`name`) VALUES ('Tribals, Dikus and the Vision of a Golden Age');
-INSERT INTO `chapters` (`name`) VALUES ('When People Rebel');
-INSERT INTO `chapters` (`name`) VALUES ('Weavers, Iron Smelters and Factory Owners');
-INSERT INTO `chapters` (`name`) VALUES ('Civilising the “Native”, Educating the Nation');
-INSERT INTO `chapters` (`name`) VALUES ('Women, caste & Reforms');
-INSERT INTO `chapters` (`name`) VALUES ('The Making of National Movement- 1870s-1947');
-INSERT INTO `chapters` (`name`) VALUES ('India after Independence');
-
-INSERT INTO `chapters` (`name`) VALUES ('The Indian Constitution');
-INSERT INTO `chapters` (`name`) VALUES ('Understanding Secularism');
-INSERT INTO `chapters` (`name`) VALUES ('Why do we need a Parliament');
-INSERT INTO `chapters` (`name`) VALUES ('Understanding Laws');
-INSERT INTO `chapters` (`name`) VALUES ('Judiciary');
-INSERT INTO `chapters` (`name`) VALUES ('Understanding Our Criminal Justice System');
-INSERT INTO `chapters` (`name`) VALUES ('Understanding Marginalisation');
-INSERT INTO `chapters` (`name`) VALUES ('Confronting Marginalisation');
-INSERT INTO `chapters` (`name`) VALUES ('Public Facilities');
-INSERT INTO `chapters` (`name`) VALUES ('Law and Social Justice');
-
-INSERT INTO `chapters` (`name`) VALUES ('Resources');
-INSERT INTO `chapters` (`name`) VALUES ('Land, Soil, Water, Natural Vegetation and Wildlife Resources');
-INSERT INTO `chapters` (`name`) VALUES ('Mineral and Power Resources');
-INSERT INTO `chapters` (`name`) VALUES ('Agriculture');
-INSERT INTO `chapters` (`name`) VALUES ('Industries');
-INSERT INTO `chapters` (`name`) VALUES ('Human Resources');
+INSERT INTO `chapters` (`name`) VALUES ('Tracing Changes through a thousand years');
+INSERT INTO `chapters` (`name`) VALUES ('New kings & Kingdom');
+INSERT INTO `chapters` (`name`) VALUES ('The Delhi Sultans');
+INSERT INTO `chapters` (`name`) VALUES ('The Mughal Empire');
+INSERT INTO `chapters` (`name`) VALUES ('Ruler & Buildings');
+INSERT INTO `chapters` (`name`) VALUES ('Town, Traders & Craftperson');
+INSERT INTO `chapters` (`name`) VALUES ('Tribes, Nomads & Settle Communities');
+INSERT INTO `chapters` (`name`) VALUES ('Devotional Path to the Drive');
+INSERT INTO `chapters` (`name`) VALUES ('The Making of Regional Culture');
+INSERT INTO `chapters` (`name`) VALUES ('Eighteen Century Political formation');
 
 INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('77','7');
 INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('78','7');
@@ -372,6 +345,16 @@ INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('84','7');
 INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('85','7');
 INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('86','7');
 
+INSERT INTO `chapters` (`name`) VALUES ('On Equality');
+INSERT INTO `chapters` (`name`) VALUES ('Role of the Government in health');
+INSERT INTO `chapters` (`name`) VALUES ('How the State Government work');
+INSERT INTO `chapters` (`name`) VALUES ('Growing up as Boys & Girls');
+INSERT INTO `chapters` (`name`) VALUES ('Women Change the World');
+INSERT INTO `chapters` (`name`) VALUES ('Understanding Media');
+INSERT INTO `chapters` (`name`) VALUES ('Market Around Us');
+INSERT INTO `chapters` (`name`) VALUES ('A Shirt in the Market');
+INSERT INTO `chapters` (`name`) VALUES ('Struggles in the market');
+
 INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('87','8');
 INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('88','8');
 INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('89','8');
@@ -381,18 +364,281 @@ INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('92','8');
 INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('93','8');
 INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('94','8');
 INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('95','8');
-INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('96','8');
 
+INSERT INTO `chapters` (`name`) VALUES ('Enviornment');
+INSERT INTO `chapters` (`name`) VALUES ('Inside Our Earth');
+INSERT INTO `chapters` (`name`) VALUES ('Our Changing earth');
+INSERT INTO `chapters` (`name`) VALUES ('Air');
+INSERT INTO `chapters` (`name`) VALUES ('Water');
+INSERT INTO `chapters` (`name`) VALUES ('Natural Vegetation & Wildlife');
+INSERT INTO `chapters` (`name`) VALUES ('Human Enviornment-Settlement,transport,communication');
+INSERT INTO `chapters` (`name`) VALUES ('Human Enviornment Interaction');
+INSERT INTO `chapters` (`name`) VALUES ('Life in the Dessert');
+
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('96','9');
 INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('97','9');
 INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('98','9');
 INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('99','9');
 INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('100','9');
 INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('101','9');
 INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('102','9');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('103','9');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('104','9');
 
+INSERT INTO `chapters` (`name`) VALUES ('Integers');
+INSERT INTO `chapters` (`name`) VALUES ('Fractions and Decimals');
+INSERT INTO `chapters` (`name`) VALUES ('Data Handling');
+INSERT INTO `chapters` (`name`) VALUES ('Simple Equations');
+INSERT INTO `chapters` (`name`) VALUES ('Lines and Angles');
+INSERT INTO `chapters` (`name`) VALUES ('The Triangle and its Properties');
+INSERT INTO `chapters` (`name`) VALUES ('Congruence of Triangles');
+INSERT INTO `chapters` (`name`) VALUES ('Comparing Quantities');
+INSERT INTO `chapters` (`name`) VALUES ('Rational Numbers');
+INSERT INTO `chapters` (`name`) VALUES ('Practical Geometry');
+INSERT INTO `chapters` (`name`) VALUES ('Perimeter and Area');
+INSERT INTO `chapters` (`name`) VALUES ('Algebraic Expressions');
+INSERT INTO `chapters` (`name`) VALUES ('Exponents and Powers');
+INSERT INTO `chapters` (`name`) VALUES ('Symmetry');
+INSERT INTO `chapters` (`name`) VALUES ('Visualizing Solid Shapes');
+
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('105','10');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('106','10');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('107','10');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('108','10');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('109','10');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('110','10');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('111','10');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('112','10');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('113','10');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('114','10');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('115','10');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('116','10');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('117','10');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('118','10');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('119','10');
+
+INSERT INTO `subjects` (`name`) VALUES ('Science');
+INSERT INTO `subjects` (`name`) VALUES ('History');
+INSERT INTO `subjects` (`name`) VALUES ('Civics');
+INSERT INTO `subjects` (`name`) VALUES ('Geography');
 INSERT INTO `subjects` (`name`) VALUES ('Maths');
 
-INSERT INTO `classsubjects` (`classId`,`subjectId`) VALUES ('9','10');
+INSERT INTO `classsubjects` (`classId`,`subjectId`) VALUES ('8','11');
+INSERT INTO `classsubjects` (`classId`,`subjectId`) VALUES ('8','12');
+INSERT INTO `classsubjects` (`classId`,`subjectId`) VALUES ('8','13');
+INSERT INTO `classsubjects` (`classId`,`subjectId`) VALUES ('8','14');
+INSERT INTO `classsubjects` (`classId`,`subjectId`) VALUES ('8','15');
+
+INSERT INTO `chapters` (`name`) VALUES ('Crop Production and Management');
+INSERT INTO `chapters` (`name`) VALUES ('Microorganism Friend Foe');
+INSERT INTO `chapters` (`name`) VALUES ('Synthetic Fibers and Plastics');
+INSERT INTO `chapters` (`name`) VALUES ('Materials : Metals And Non Metals');
+INSERT INTO `chapters` (`name`) VALUES ('Coal and Petroleum');
+INSERT INTO `chapters` (`name`) VALUES ('Combustion and Flames');
+INSERT INTO `chapters` (`name`) VALUES ('Conservation of Plants and Animals');
+INSERT INTO `chapters` (`name`) VALUES ('Cell Structure and Functions');
+INSERT INTO `chapters` (`name`) VALUES ('Reproduction in Animals');
+INSERT INTO `chapters` (`name`) VALUES ('Reaching The Age of Adolescence');
+INSERT INTO `chapters` (`name`) VALUES ('Force and Pressure');
+INSERT INTO `chapters` (`name`) VALUES ('Friction');
+INSERT INTO `chapters` (`name`) VALUES ('Propagation of Sound');
+INSERT INTO `chapters` (`name`) VALUES ('Chemical Effects of Electric Current');
+INSERT INTO `chapters` (`name`) VALUES ('Some Natural Phenomena');
+INSERT INTO `chapters` (`name`) VALUES ('Light');
+INSERT INTO `chapters` (`name`) VALUES ('Stars and The Solar System');
+INSERT INTO `chapters` (`name`) VALUES ('Pollution Air Water');
+
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('120','11');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('121','11');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('122','11');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('123','11');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('124','11');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('125','11');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('126','11');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('127','11');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('128','11');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('129','11');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('130','11');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('131','11');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('132','11');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('133','11');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('134','11');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('135','11');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('136','11');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('137','11');
+
+INSERT INTO `chapters` (`name`) VALUES ('How,When & Where');
+INSERT INTO `chapters` (`name`) VALUES ('From Trade To Terriorty');
+INSERT INTO `chapters` (`name`) VALUES ('Ruling the countryside');
+INSERT INTO `chapters` (`name`) VALUES ('Tribals, Dikus and the Vision of a Golden Age');
+INSERT INTO `chapters` (`name`) VALUES ('When People Rebel');
+INSERT INTO `chapters` (`name`) VALUES ('Weavers, Iron Smelters and Factory Owners');
+INSERT INTO `chapters` (`name`) VALUES ('Civilising the “Native”, Educating the Nation');
+INSERT INTO `chapters` (`name`) VALUES ('Women, caste & Reforms');
+INSERT INTO `chapters` (`name`) VALUES ('The Making of National Movement- 1870s-1947');
+INSERT INTO `chapters` (`name`) VALUES ('India after Independence');
+
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('138','12');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('139','12');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('140','12');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('141','12');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('142','12');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('143','12');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('144','12');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('145','12');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('146','12');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('147','12');
+
+INSERT INTO `chapters` (`name`) VALUES ('The Indian Constitution');
+INSERT INTO `chapters` (`name`) VALUES ('Understanding Secularism');
+INSERT INTO `chapters` (`name`) VALUES ('Why do we need a Parliament');
+INSERT INTO `chapters` (`name`) VALUES ('Understanding Laws');
+INSERT INTO `chapters` (`name`) VALUES ('Judiciary');
+INSERT INTO `chapters` (`name`) VALUES ('Understanding Our Criminal Justice System');
+INSERT INTO `chapters` (`name`) VALUES ('Understanding Marginalisation');
+INSERT INTO `chapters` (`name`) VALUES ('Confronting Marginalisation');
+INSERT INTO `chapters` (`name`) VALUES ('Public Facilities');
+INSERT INTO `chapters` (`name`) VALUES ('Law and Social Justice');
+
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('148','13');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('149','13');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('150','13');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('151','13');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('152','13');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('153','13');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('154','13');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('155','13');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('156','13');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('157','13');
+
+INSERT INTO `chapters` (`name`) VALUES ('Resources');
+INSERT INTO `chapters` (`name`) VALUES ('Land, Soil, Water, Natural Vegetation and Wildlife Resources');
+INSERT INTO `chapters` (`name`) VALUES ('Mineral and Power Resources');
+INSERT INTO `chapters` (`name`) VALUES ('Agriculture');
+INSERT INTO `chapters` (`name`) VALUES ('Industries');
+INSERT INTO `chapters` (`name`) VALUES ('Human Resources');
+
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('158','14');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('159','14');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('160','14');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('161','14');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('162','14');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('163','14');
+
+INSERT INTO `chapters` (`name`) VALUES ('Rational Numbers');
+INSERT INTO `chapters` (`name`) VALUES ('Linear Equation in One Variable');
+INSERT INTO `chapters` (`name`) VALUES ('Understanding Quadrilaterals');
+INSERT INTO `chapters` (`name`) VALUES ('Practical Geometry');
+INSERT INTO `chapters` (`name`) VALUES ('Data Handling');
+INSERT INTO `chapters` (`name`) VALUES ('Squares and Square Roots');
+INSERT INTO `chapters` (`name`) VALUES ('Cubes and Cube Roots');
+INSERT INTO `chapters` (`name`) VALUES ('Comparing Quantities');
+INSERT INTO `chapters` (`name`) VALUES ('Algebraic Expressions and Identities');
+INSERT INTO `chapters` (`name`) VALUES ('Visualising Solid Shapes');
+INSERT INTO `chapters` (`name`) VALUES ('Mensuration');
+INSERT INTO `chapters` (`name`) VALUES ('Exponents and Powers');
+INSERT INTO `chapters` (`name`) VALUES ('Direct and Inverse Proportions');
+INSERT INTO `chapters` (`name`) VALUES ('Factorisation');
+INSERT INTO `chapters` (`name`) VALUES ('Introduction to Graphs');
+INSERT INTO `chapters` (`name`) VALUES ('Playing with Numbers');
+
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('164','15');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('165','15');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('166','15');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('167','15');
+
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('168','15');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('169','15');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('170','15');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('171','15');
+
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('172','15');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('173','15');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('174','15');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('175','15');
+
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('176','15');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('177','15');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('178','15');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('179','15');
+
+INSERT INTO `subjects` (`name`) VALUES ('Science');
+INSERT INTO `subjects` (`name`) VALUES ('History');
+INSERT INTO `subjects` (`name`) VALUES ('Economics');
+INSERT INTO `subjects` (`name`) VALUES ('Civics');
+INSERT INTO `subjects` (`name`) VALUES ('Maths');
+
+INSERT INTO `classsubjects` (`classId`,`subjectId`) VALUES ('9','16');
+INSERT INTO `classsubjects` (`classId`,`subjectId`) VALUES ('9','17');
+INSERT INTO `classsubjects` (`classId`,`subjectId`) VALUES ('9','18');
+INSERT INTO `classsubjects` (`classId`,`subjectId`) VALUES ('9','19');
+INSERT INTO `classsubjects` (`classId`,`subjectId`) VALUES ('9','20');
+
+INSERT INTO `chapters` (`name`) VALUES ('Matter In Our Surroundings');
+INSERT INTO `chapters` (`name`) VALUES ('Is Matter Around Us Pure?');
+INSERT INTO `chapters` (`name`) VALUES ('Atoms And Molecules');
+INSERT INTO `chapters` (`name`) VALUES ('Structure Of The Atom');
+INSERT INTO `chapters` (`name`) VALUES ('The Fundamental Unit Of Life');
+INSERT INTO `chapters` (`name`) VALUES ('Tissues');
+INSERT INTO `chapters` (`name`) VALUES ('Diversity in Living Organisms');
+INSERT INTO `chapters` (`name`) VALUES ('Motion');
+INSERT INTO `chapters` (`name`) VALUES ('Force And Laws Of Motion');
+INSERT INTO `chapters` (`name`) VALUES ('Gravitation');
+INSERT INTO `chapters` (`name`) VALUES ('Work And Energy');
+INSERT INTO `chapters` (`name`) VALUES ('Sound');
+INSERT INTO `chapters` (`name`) VALUES ('Why Do We Fall Ill?');
+INSERT INTO `chapters` (`name`) VALUES ('Natural Resources');
+INSERT INTO `chapters` (`name`) VALUES ('Improvement In Food Resources');
+
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('180','16');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('181','16');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('182','16');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('183','16');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('184','16');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('185','16');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('186','16');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('187','16');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('188','16');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('189','16');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('190','16');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('191','16');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('192','16');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('193','16');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('194','16');
+
+INSERT INTO `chapters` (`name`) VALUES ('The French Revolution');
+INSERT INTO `chapters` (`name`) VALUES ('Socialism in Europe and the Russian Revolution');
+INSERT INTO `chapters` (`name`) VALUES ('Nazism and the Rise of Hitler');
+INSERT INTO `chapters` (`name`) VALUES ('Forest Society and Colonialism');
+INSERT INTO `chapters` (`name`) VALUES ('Pastoralists in the Modern World');
+
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('195','17');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('196','17');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('197','17');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('198','17');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('199','17');
+
+INSERT INTO `chapters` (`name`) VALUES ('The Story of Village Palampur');
+INSERT INTO `chapters` (`name`) VALUES ('People as Resource');
+INSERT INTO `chapters` (`name`) VALUES ('Poverty as a Challenge');
+INSERT INTO `chapters` (`name`) VALUES ('Food Security in India');
+
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('200','18');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('201','18');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('202','18');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('203','18');
+
+INSERT INTO `chapters` (`name`) VALUES ('What is Democracy? Why Democracy?');
+INSERT INTO `chapters` (`name`) VALUES ('Constitutional Design ');
+INSERT INTO `chapters` (`name`) VALUES ('Electoral Politics ');
+INSERT INTO `chapters` (`name`) VALUES ('Working of Institutions ');
+INSERT INTO `chapters` (`name`) VALUES ('Democratic Rights');
+
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('204','19');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('205','19');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('206','19');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('207','19');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('208','19');
 
 INSERT INTO `chapters` (`name`) VALUES ('Number Systems');
 INSERT INTO `chapters` (`name`) VALUES ('Polynomials');
@@ -410,31 +656,73 @@ INSERT INTO `chapters` (`name`) VALUES ('Surface Areas and Volumes');
 INSERT INTO `chapters` (`name`) VALUES ('Statistics');
 INSERT INTO `chapters` (`name`) VALUES ('Probability');
 
-INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('103','10');
-INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('104','10');
-INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('105','10');
-INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('106','10');
-INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('107','10');
-INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('108','10');
-INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('109','10');
-INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('110','10');
-INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('111','10');
-INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('112','10');
-INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('113','10');
-INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('114','10');
-INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('115','10');
-INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('116','10');
-INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('117','10');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('209','20');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('210','20');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('211','20');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('212','20');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('213','20');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('214','20');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('215','20');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('216','20');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('217','20');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('218','20');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('219','20');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('220','20');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('221','20');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('222','20');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('223','20');
 
+INSERT INTO `subjects` (`name`) VALUES ('Science');
 INSERT INTO `subjects` (`name`) VALUES ('History');
 INSERT INTO `subjects` (`name`) VALUES ('Economics');
 INSERT INTO `subjects` (`name`) VALUES ('Civics');
 INSERT INTO `subjects` (`name`) VALUES ('Geography');
+INSERT INTO `subjects` (`name`) VALUES ('Maths');
 
-INSERT INTO `classsubjects` (`classId`,`subjectId`) VALUES ('10','11');
-INSERT INTO `classsubjects` (`classId`,`subjectId`) VALUES ('10','12');
-INSERT INTO `classsubjects` (`classId`,`subjectId`) VALUES ('10','13');
-INSERT INTO `classsubjects` (`classId`,`subjectId`) VALUES ('10','14');
+INSERT INTO `classsubjects` (`classId`,`subjectId`) VALUES ('10','21');
+INSERT INTO `classsubjects` (`classId`,`subjectId`) VALUES ('10','22');
+INSERT INTO `classsubjects` (`classId`,`subjectId`) VALUES ('10','23');
+INSERT INTO `classsubjects` (`classId`,`subjectId`) VALUES ('10','24');
+INSERT INTO `classsubjects` (`classId`,`subjectId`) VALUES ('10','25');
+INSERT INTO `classsubjects` (`classId`,`subjectId`) VALUES ('10','26');
+
+//Science
+
+INSERT INTO `chapters` (`name`) VALUES ('Chemical reactions and equations');
+INSERT INTO `chapters` (`name`) VALUES ('Acids, bases and salt');
+INSERT INTO `chapters` (`name`) VALUES ('Metals and Non-metals');
+INSERT INTO `chapters` (`name`) VALUES ('Carbon and Its Compounds');
+INSERT INTO `chapters` (`name`) VALUES ('Periodic Classification Of Elements');
+INSERT INTO `chapters` (`name`) VALUES ('Life Processes');
+INSERT INTO `chapters` (`name`) VALUES ('Control and Coordination');
+INSERT INTO `chapters` (`name`) VALUES ('How do Organisms Reproduce?');
+INSERT INTO `chapters` (`name`) VALUES ('Heredity and Evolution');
+INSERT INTO `chapters` (`name`) VALUES ('Light Reflection and Refraction');
+INSERT INTO `chapters` (`name`) VALUES ('The Human Eye and Colourful World');
+INSERT INTO `chapters` (`name`) VALUES ('Electricity');
+INSERT INTO `chapters` (`name`) VALUES ('Magnetic Effects of Electric Current');
+INSERT INTO `chapters` (`name`) VALUES ('Sources of Energy');
+INSERT INTO `chapters` (`name`) VALUES ('Our Environment');
+INSERT INTO `chapters` (`name`) VALUES ('Sustainable Management of Natural Resources');
+
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('224','21');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('225','21');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('226','21');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('227','21');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('228','21');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('229','21');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('230','21');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('231','21');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('232','21');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('233','21');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('234','21');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('235','21');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('236','21');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('237','21');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('238','21');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('239','21');
+
+//History
 
 INSERT INTO `chapters` (`name`) VALUES ('The Rise of Nationalism in Europe');
 INSERT INTO `chapters` (`name`) VALUES ('Nationalism in India');
@@ -442,11 +730,27 @@ INSERT INTO `chapters` (`name`) VALUES ('The Making of a Global World');
 INSERT INTO `chapters` (`name`) VALUES ('The Age of Industrialisation');
 INSERT INTO `chapters` (`name`) VALUES ('Print Culture and The Modern World');
 
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('240','22');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('241','22');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('242','22');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('243','22');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('244','22');
+
+//Economics
+
 INSERT INTO `chapters` (`name`) VALUES ('Development');
 INSERT INTO `chapters` (`name`) VALUES ('Sectors of the Indian Economy');
 INSERT INTO `chapters` (`name`) VALUES ('Money and Credit');
 INSERT INTO `chapters` (`name`) VALUES ('Globalisation and the Indian Economy');
 INSERT INTO `chapters` (`name`) VALUES ('Consumer Rights');
+
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('245','23');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('246','23');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('247','23');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('248','23');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('249','23');
+
+//Civics
 
 INSERT INTO `chapters` (`name`) VALUES ('Power-sharing');
 INSERT INTO `chapters` (`name`) VALUES ('Federalism');
@@ -457,6 +761,17 @@ INSERT INTO `chapters` (`name`) VALUES ('Political parties');
 INSERT INTO `chapters` (`name`) VALUES ('Outcomes of Democracy');
 INSERT INTO `chapters` (`name`) VALUES ('Challenges to Democracy');
 
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('250','24');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('251','24');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('252','24');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('253','24');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('254','24');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('255','24');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('256','24');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('257','24');
+
+//Geography
+
 INSERT INTO `chapters` (`name`) VALUES ('Resources and Development');
 INSERT INTO `chapters` (`name`) VALUES ('Forest and Wildlife Resources');
 INSERT INTO `chapters` (`name`) VALUES ('Water Resources');
@@ -465,31 +780,44 @@ INSERT INTO `chapters` (`name`) VALUES ('Minerals and Energy Resources');
 INSERT INTO `chapters` (`name`) VALUES ('Manufacturing Industries');
 INSERT INTO `chapters` (`name`) VALUES ('Life Lines of National Economy');
 
-INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('118','11');
-INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('119','11');
-INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('120','11');
-INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('121','11');
-INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('122','11');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('258','25');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('259','25');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('260','25');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('261','25');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('262','25');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('263','25');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('264','25');
 
-INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('123','12');
-INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('124','12');
-INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('125','12');
-INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('126','12');
-INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('127','12');
+//Maths
 
-INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('128','13');
-INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('129','13');
-INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('130','13');
-INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('131','13');
-INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('132','13');
-INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('133','13');
-INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('134','13');
-INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('135','13');
+INSERT INTO `chapters` (`name`) VALUES ('Real Numbers');
+INSERT INTO `chapters` (`name`) VALUES ('Polynomials');
+INSERT INTO `chapters` (`name`) VALUES ('Pair Of Linear Equations In Two Variables');
+INSERT INTO `chapters` (`name`) VALUES ('Quadratic Equations');
+INSERT INTO `chapters` (`name`) VALUES ('Arithmetic Progressions');
+INSERT INTO `chapters` (`name`) VALUES ('Triangles');
+INSERT INTO `chapters` (`name`) VALUES ('Coordinate Geometry');
+INSERT INTO `chapters` (`name`) VALUES ('Introduction To Trigonometry');
+INSERT INTO `chapters` (`name`) VALUES ('Some Applications Of Trigonometry');
+INSERT INTO `chapters` (`name`) VALUES ('Circles');
+INSERT INTO `chapters` (`name`) VALUES ('Constructions');
+INSERT INTO `chapters` (`name`) VALUES ('Areas Related To Circles');
+INSERT INTO `chapters` (`name`) VALUES ('Surface Areas And Volumes');
+INSERT INTO `chapters` (`name`) VALUES ('Statistics');
+INSERT INTO `chapters` (`name`) VALUES ('Probability');
 
-INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('136','14');
-INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('137','14');
-INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('138','14');
-INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('139','14');
-INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('140','14');
-INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('141','14');
-INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('142','14');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('265','26');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('266','26');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('267','26');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('268','26');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('269','26');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('270','26');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('271','26');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('272','26');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('273','26');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('274','26');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('275','26');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('276','26');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('277','26');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('278','26');
+INSERT INTO `subjectschapter` (`chapterId`,`subjectId`) VALUES ('279','26');

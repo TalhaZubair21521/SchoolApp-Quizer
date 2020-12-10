@@ -1,5 +1,6 @@
 const db = require("../database/connect");
 const mysql = require("mysql");
+const fs = require("fs");
 
 exports.SaveVideoQuestions = async (req, res) => {
    try {
@@ -14,10 +15,13 @@ exports.SaveVideoQuestions = async (req, res) => {
       var query = mysql.format("Select COUNT(questionID) AS counts from videoquestions where classID=? AND subjectID=? AND chapterID=?", [data.class, data.subject, data.chapter]);
       db.query(query, (err, result, fields) => {
          if (err) {
+            console.log(err);
+            fs.unlinkSync("assets/videos/" + req.body.videoSource);
             res.status(500).json({ type: "failure", data: { message: err } });
             return;
          }
          if (result[0].counts > 0) {
+            fs.unlinkSync("assets/videos/" + req.body.videoSource);
             res.status(200).json({ type: "fail", data: { msg: "Data Already Exists" } });
             return;
          } else {
@@ -25,6 +29,8 @@ exports.SaveVideoQuestions = async (req, res) => {
                var query = mysql.format("INSERT INTO videoquestions (type, question, option1, option2, option3, option4, answer, skill,classID,subjectID,chapterID,videoURL) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)", [question.type, question.question, question.option1, question.option2, question.option3, question.option4, question.answer, question.skill, data.class, data.subject, data.chapter, req.body.videoSource]);
                db.query(query, (err, result, fields) => {
                   if (err) {
+                     console.log(err);
+                     fs.unlinkSync("assets/videos/" + req.body.videoSource);
                      res.status(500).json({ type: "failure", data: { message: err } });
                      return;
                   }
@@ -35,6 +41,7 @@ exports.SaveVideoQuestions = async (req, res) => {
       });
    } catch (error) {
       console.error(error);
+      res.status(500).json({ type: "failure", data: { result: error } });
    }
 }
 
