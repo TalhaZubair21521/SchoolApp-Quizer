@@ -253,6 +253,7 @@ exports.GetScore = async (req, res) => {
                                 res.status(500).json({ type: "failure", data: { message: err } });
                                 return;
                             } else {
+                                console.log("Hehe");
                                 userAnswers = [...userAnswers, ...result];
                                 const score = await Helper.GetOverallResult(userAnswers);
                                 const subjectWise = await Helper.GetSubjectWiseResult(userAnswers);
