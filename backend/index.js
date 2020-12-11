@@ -21,6 +21,10 @@ const admin = require("./routes/admin");
 
 app.use(morgan('dev'));
 
+app.use(morgan('common', {
+    stream: fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' })
+}));
+
 app.use("/api/user", user.routes);
 app.use("/api/admin", admin.routes);
 

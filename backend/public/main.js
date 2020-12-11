@@ -3100,7 +3100,7 @@ class VideoQuestionComponent {
         }
         else {
             const size = this.file.size / 1000000;
-            if (size > 15) {
+            if (size > 25) {
                 this.popup2.nativeElement.click();
             }
             else {

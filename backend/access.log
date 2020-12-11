@@ -1,0 +1,16 @@
+127.0.0.1 - - [11/Dec/2020:11:54:33 +0000] "GET / HTTP/1.1" 200 574
+127.0.0.1 - - [11/Dec/2020:11:54:33 +0000] "GET /runtime.js HTTP/1.1" 200 6299
+127.0.0.1 - - [11/Dec/2020:11:54:34 +0000] "GET /polyfills.js HTTP/1.1" 200 144700
+127.0.0.1 - - [11/Dec/2020:11:54:34 +0000] "GET /scripts.js HTTP/1.1" 200 173991
+127.0.0.1 - - [11/Dec/2020:11:54:34 +0000] "GET /styles.js HTTP/1.1" 200 951432
+127.0.0.1 - - [11/Dec/2020:11:54:34 +0000] "GET /vendor.js HTTP/1.1" 200 2788789
+127.0.0.1 - - [11/Dec/2020:11:54:34 +0000] "GET /main.js HTTP/1.1" 200 441171
+127.0.0.1 - - [11/Dec/2020:11:54:35 +0000] "GET /assets/avatar.png HTTP/1.1" 304 -
+127.0.0.1 - - [11/Dec/2020:11:54:35 +0000] "GET /assets/logo.png HTTP/1.1" 304 -
+127.0.0.1 - - [11/Dec/2020:11:54:35 +0000] "GET /api/admin/getClasses HTTP/1.1" 304 -
+127.0.0.1 - - [11/Dec/2020:11:54:35 +0000] "GET /api/admin/getClasses HTTP/1.1" 304 -
+127.0.0.1 - - [11/Dec/2020:11:54:35 +0000] "GET /api/admin/getClasses HTTP/1.1" 304 -
+127.0.0.1 - - [11/Dec/2020:11:54:35 +0000] "GET /api/admin/getClasses HTTP/1.1" 304 -
+127.0.0.1 - - [11/Dec/2020:11:54:40 +0000] "GET /api/admin/getSubjects?classId=6 HTTP/1.1" 200 348
+127.0.0.1 - - [11/Dec/2020:11:54:40 +0000] "GET /api/admin/getChapters?classId=6&subjectId=1 HTTP/1.1" 200 1535
+127.0.0.1 - - [11/Dec/2020:11:54:42 +0000] "GET /api/admin/getChapters?classId=6&subjectId=5 HTTP/1.1" 200 1888
